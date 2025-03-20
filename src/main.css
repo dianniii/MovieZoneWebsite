@@ -1,1 +1,98 @@
-/*# sourceMappingURL=main.css.map */
+.header {
+  margin: 20px 40px;
+  width: 95%;
+  height: 60px;
+  border-radius: 10px;
+  padding: 0 3vw;
+  background-color: rgba(21, 21, 21, 0.8980392157);
+  position: sticky;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+}
+
+.logo-container {
+  height: 100%;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.logoImg {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  cursor: pointer;
+}
+
+.nav-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 5vw;
+  font-size: 1.2rem;
+}
+
+.menuItem:hover {
+  cursor: pointer;
+  font-weight: bold;
+  color: tomato;
+}
+
+.search-container {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+#searchInput {
+  padding: 10px 5px;
+  border-radius: 20px;
+  width: 20vw;
+  border: none;
+}
+
+.searchIcon {
+  cursor: pointer;
+  height: 75%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+ul li {
+  list-style: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  margin: 0;
+}
+
+input:focus {
+  outline: none;
+}/*# sourceMappingURL=main.css.map */
