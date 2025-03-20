@@ -12,51 +12,51 @@
     color: white;
 }
 
-.logo-container{
+.logo__container{
     height: 100%;
     color: white;
     display: flex;
     align-items: center;
 }
 
-.logoImg{
+.logo__icon{
     height: 100%;
     object-fit: cover;
     cursor: pointer;
 }
 
-.nav-container{
+.navigation__container{
     height: 100%;
     display: flex;
     align-items: center;
 }
-.nav-menu{
+.navigation__menu{
     display: flex;
     gap: 5vw;
     font-size: 1.2rem;
 }
 
-.menuItem:hover{
+.navigation__item:hover{
     cursor: pointer;
     font-weight: bold;
     color: tomato;
 }
 
-.search-container{
+.search__container{
     height: 100%;
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-#searchInput{
+#search__input{
     padding: 10px 20px;
     border-radius: 20px;
     width: 20vw;
     border: none;
 }
 
-.searchIcon{
+.search__icon{
     cursor: pointer;
     height: 75%;
 }
