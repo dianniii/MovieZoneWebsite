@@ -2,10 +2,13 @@
 //   background-color: #141414);
 //   color: white;
 // }
-.full-movie {
+
+.main {
   margin: 50px auto;
   width: 83%;
-
+}
+.full-movie {
+  // styles for banner
   &__banner {
     margin-bottom: 50px;
     padding: 40px;
@@ -38,8 +41,9 @@
   }
 
   &__tagline {
-    font-size: 30px;
+    font-size: 35px;
     line-height: 100%;
+    font-style: italic;
   }
 
   &__control-bar {
@@ -59,4 +63,27 @@
     width: 24px;
     height: 24px;
   }
+
+  // styles for info
+  &__info {
+    display: flex;
+    gap: 20px;
+  }
+
+  &__content,
+  &__facts {
+    padding: 40px;
+  }
+
+  &__content {
+    width: 66%;
+  }
+
+  &__facts {
+    width: 32%;
+  }
 }
+
+// border-radius: 12px;
+// border: 1px solid var(--Black-15, #262626);
+// background: var(--Black-10, #1A1A1A);
