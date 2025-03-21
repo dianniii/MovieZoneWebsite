@@ -3,28 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>loading...</title>
+    <link rel="stylesheet" href="./src/assets/styles/normalize.css" />
+    <link rel="stylesheet" href="./src/main.css" />
+    <title>Doc</title>
   </head>
   <body>
     <header class="header"></header>
     <main class="main">
       <div class="full-movie">
         <div class="full-movie__banner">
-          <h1 class="full-movie__title" data-id="19995">Avatar</h1>
-          <p class="full-movie__tagline">Enter the world of Pandora</p>
-          <div class="full-movie__poster-container">
+          <!-- <div class="full-movie__poster-container">
             <img
-              class="full-movie__porster"
+              class="full-movie__poster"
               src="https://media.themoviedb.org/t/p/w220_and_h330_face/kyeqWdyUXW608qlYkRqosgbbJyK.jpg"
               alt="avatar"
             />
-          </div>
-          <p class="full-movie__genres">
-            Genres: Action, Adventure, Adventure, Science Fiction
+          </div> -->
+          <h1 class="full-movie__title" data-id="19995">Avatar</h1>
+          <p class="full-movie__tagline full-movie__feature">
+            Enter the world of Pandora
           </p>
+          <div class="full-movie__control-bar">
+            <button class="full-movie__banner-btn" id="likeMovieBtn">
+              <img
+                class="full-movie__banner-icon"
+                src="./public/icons/likeIcon.svg"
+                alt="like icon"
+              />
+            </button>
+            <button class="full-movie__banner-btn" id="addMovieBtn">
+              <img
+                class="full-movie__banner-icon"
+                src="./public/icons/plusIcon.svg"
+                alt="plus"
+              />
+            </button>
+          </div>
         </div>
-        <p class="full-movie__director">Director: James Cameron</p>
-        <p class="full-movie__cast">
+        <p class="full-movie__director full-movie__feature">
+          Director: James Cameron
+        </p>
+        <p class="full-movie__cast full-movie__feature">
           Cast: Sam Worthington, Zoe Saldaña, Sigourney Weaver, Stephen Lang,
           Michelle Rodriguez, Giovanni Ribisi, Joel David Moore,
           <span class="full-movie__cast--hidden">
@@ -45,16 +64,20 @@
           </span>
           <button class="full-movie__read-more-btn">View all...</button>
         </p>
-        <p class="full-movie__release">Release date: 2009-12-15</p>
-        <p class="full-movie__country">Country: US</p>
-        <p class="full-movie__runtime">Duration: 162 min.</p>
-        <p class="full-movie__overview">
+        <p class="full-movie__release full-movie__feature">
+          Release date: 2009-12-15
+        </p>
+        <p class="full-movie__country full-movie__feature">Country: US</p>
+        <p class="full-movie__runtime full-movie__feature">
+          Duration: 162 min.
+        </p>
+        <p class="full-movie__overview full-movie__feature">
           Overview: In the 22nd century, a paraplegic Marine is dispatched to
           the moon Pandora on a unique mission, but becomes torn between
           following orders and protecting an alien civilization.
         </p>
-        <p class="full-movie__rating">TMBD rating: 7.6</p>
-        <div class="full-movie__link">
+        <p class="full-movie__rating full-movie__feature">TMBD rating: 7.6</p>
+        <div class="full-movie__link full-movie__feature">
           Links:
           <a
             href="https://www.themoviedb.org/movie/19995"

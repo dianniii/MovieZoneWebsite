@@ -1,0 +1,62 @@
+// body {
+//   background-color: #141414);
+//   color: white;
+// }
+.full-movie {
+  margin: 50px auto;
+  width: 83%;
+
+  &__banner {
+    margin-bottom: 50px;
+    padding: 40px;
+    height: 30vh;
+    min-height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    border-radius: 12px;
+    border: 1px solid #262626;
+    background-image: linear-gradient(
+        0deg,
+        #141414 0%,
+        rgba(20, 20, 20, 0) 100%
+      ),
+      url("https://image.tmdb.org/t/p/original/vL5LR6WdxWPjLPFRLe133jXWsh5.jpg");
+    background-color: lightgray;
+    background-position: top center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: white;
+  }
+
+  &__title {
+    font-size: 50px;
+    font-weight: 600;
+    line-height: 100%;
+  }
+
+  &__tagline {
+    font-size: 30px;
+    line-height: 100%;
+  }
+
+  &__control-bar {
+    display: flex;
+    gap: 10px;
+  }
+
+  &__banner-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    border: 1px solid #262626;
+    background: #0f0f0f;
+  }
+
+  &__banner-icon {
+    width: 24px;
+    height: 24px;
+  }
+}
