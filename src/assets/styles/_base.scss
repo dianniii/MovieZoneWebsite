@@ -31,3 +31,8 @@ h6 {
 input:focus {
   outline: none; // Убирает стандартное выделение
 }
+
+button,
+a {
+  cursor: pointer;
+}
