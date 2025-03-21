@@ -1,0 +1,63 @@
+.header{
+    margin: 20px 40px;
+    width: 95%;
+    height: 60px;
+    border-radius: 10px;
+    padding: 0 3vw;
+    background-color: #151515E5;
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+}
+
+.logo{
+    height: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+
+&__icon{
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+}
+
+.nav{
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+&__menu{
+    display: flex;
+    gap: 5vw;
+    font-size: 1.2rem;
+}
+
+&__menu-item:hover{
+    cursor: pointer;
+    font-weight: bold;
+    color: tomato;
+}
+}
+.search{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+
+&__input{
+    padding: 10px 20px;
+    border-radius: 20px;
+    width: 20vw;
+    border: none;
+}
+
+&__icon{
+    cursor: pointer;
+    height: 75%;
+}
+}
