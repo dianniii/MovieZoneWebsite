@@ -12,13 +12,12 @@
   color: white;
 }
 
-.logo__container {
+.logo {
   height: 100%;
   color: white;
   display: flex;
   align-items: center;
 }
-
 .logo__icon {
   height: 100%;
   -o-object-fit: cover;
@@ -26,38 +25,34 @@
   cursor: pointer;
 }
 
-.nav-container {
+.nav {
   height: 100%;
   display: flex;
   align-items: center;
 }
-
 .nav__menu {
   display: flex;
   gap: 5vw;
   font-size: 1.2rem;
 }
-
 .nav__menu-item:hover {
   cursor: pointer;
   font-weight: bold;
   color: tomato;
 }
 
-.search-container {
+.search {
   height: 100%;
   display: flex;
   align-items: center;
   gap: 20px;
 }
-
-#search__input {
+.search__input {
   padding: 10px 20px;
   border-radius: 20px;
   width: 20vw;
   border: none;
 }
-
 .search__icon {
   cursor: pointer;
   height: 75%;
@@ -95,4 +90,68 @@ h6 {
 
 input:focus {
   outline: none;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("Montserrat-SemiBold.woff2") format("woff2"), url("Montserrat-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("Montserrat-Regular.woff2") format("woff2"), url("Montserrat-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("Montserrat-Bold.woff2") format("woff2"), url("Montserrat-Bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("Montserrat-ExtraBold.woff2") format("woff2"), url("Montserrat-ExtraBold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("Montserrat-Medium.woff2") format("woff2"), url("Montserrat-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("BebasNeue-Regular.woff2") format("woff2"), url("BebasNeue-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("Inter-SemiBold.woff2") format("woff2"), url("Inter-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Urbanist";
+  src: url("Urbanist-Regular.woff2") format("woff2"), url("Urbanist-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Urbanist";
+  src: url("Urbanist-SemiBold.woff2") format("woff2"), url("Urbanist-SemiBold.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
 }/*# sourceMappingURL=main.css.map */

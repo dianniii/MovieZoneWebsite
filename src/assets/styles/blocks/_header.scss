@@ -12,51 +12,52 @@
     color: white;
 }
 
-.logo__container{
+.logo{
     height: 100%;
     color: white;
     display: flex;
     align-items: center;
-}
 
-.logo__icon{
+&__icon{
     height: 100%;
     object-fit: cover;
     cursor: pointer;
 }
+}
 
-.nav-container{
+.nav{
     height: 100%;
     display: flex;
     align-items: center;
-}
-.nav__menu{
+
+&__menu{
     display: flex;
     gap: 5vw;
     font-size: 1.2rem;
 }
 
-.nav__menu-item:hover{
+&__menu-item:hover{
     cursor: pointer;
     font-weight: bold;
     color: tomato;
 }
-
-.search-container{
+}
+.search{
     height: 100%;
     display: flex;
     align-items: center;
     gap: 20px;
-}
 
-#search__input{
+
+&__input{
     padding: 10px 20px;
     border-radius: 20px;
     width: 20vw;
     border: none;
 }
 
-.search__icon{
+&__icon{
     cursor: pointer;
     height: 75%;
+}
 }
