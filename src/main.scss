@@ -1,9 +1,13 @@
-// import fonts
-@import "./assets/fonts/fonts";
 @import "./assets/styles/vars";
 @import "./assets/styles/mixins";
+@import "./assets/styles/_base.scss";
+
+// import fonts
+@import "./assets/fonts/fonts";
 
 @import "./assets/styles/base";
 
 // import blocks
 @import "./assets/styles/blocks/moviePage";
+@import "./assets/styles/blocks/_header.scss";
+
