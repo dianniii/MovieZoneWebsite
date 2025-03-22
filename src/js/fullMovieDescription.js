@@ -7,16 +7,9 @@ const searchParameters = `movie_id=${movie_id}`;
 const blockName = "full-movie__";
 
 const likeIconPath = "./public/icons/likeIcon.svg";
-const addMovieIconPath = "./public/icons/plusIcon.svg";
+const addIconPath = "./public/icons/plusIcon.svg";
 const TMBDIconPath = "./public/icons/TMBD.svg";
 const filmIconPath = "./public/icons/filmIcon.svg";
-
-const classNames = {
-  banner: "full-movie__banner",
-  title: "full-movie__title",
-  tagline: ["full-movie__tagline", "full-movie__feature"],
-  controlBar: "full-movie__control-bar",
-};
 
 const propertyNames = [
   "id",
@@ -34,18 +27,31 @@ const propertyNames = [
   "directors", // (array)
 ];
 
-function createElementWithClassId(tag, className, id = false) {
+const classesBanner = {
+  banner: `${blockName}banner`,
+  title: `${blockName}title`,
+  tagline: [`${blockName}tagline`, `${blockName}feature`],
+  controlBar: `${blockName}control-bar`,
+  button: `${blockName}banner-btn`,
+  icon: `${blockName}banner-icon`,
+};
+
+const idS = {
+  likeBtnId: "likeMovieBtn",
+  addBtnId: "addMovieBtn",
+  hiddenCastPart: "castAdditionalPart",
+  castBtnId: "castMovieBtn";
+};
+
+function createElementWithProps(tag, className, id = false, text = false) {
   const element = document.createElement(tag);
 
-  if (Array.isArray(className)) {
-    element.classList.add(className);
-  } else {
-    className.forEach((name) => element.classList.add(name));
-  }
+  Array.isArray(classNames)
+    ? className.forEach((name) => element.classList.add(name))
+    : element.classList.add(className);
 
-  if (id) {
-    element.setAttribute("id", id);
-  }
+  id && element.setAttribute("id", id); //&& возвращает первое ложное или, если оба истины, последнее истинное
+  if (text) element.textContent = text;
 
   return element;
 }
@@ -82,9 +88,52 @@ function createArrOfLi(arr) {
   return liElements;
 }
 
-// function createMovieBanner(movieData) {
-//   const banner = createElementWithClass("div", classNames.banner);
-// }
+function createMovieBannerElem(movieDescription) {
+  const bannerElem = createElementWithClass("div", `${blockName}__banner`);
+
+  const titleElem = createElementWithProps(
+    "h1",
+    classesBanner.title,
+    false,
+    movieDescription.title || "Unknown"
+  );
+  titleElem.setAttribute("data-id", movieDescription.id);
+  bannerElem.append(titleElem);
+
+  if (movieDescription.tagline) {
+    const taglineElem = createElementWithProps(
+      "p",
+      classesBanner.tagline,
+      false,
+      movieDescription.tagline
+    );
+
+    bannerElem.append(taglineElem);
+  }
+
+  bannerElem.append(createControlBarElem());
+}
+
+function createButtonWithIcon(id, iconSrc, alt) {
+    const btn = createElementWithProps("button", classesBanner.button, id);
+    btn.append(createImgElem(classesBanner.icon, iconSrc, alt));
+    return btn;
+  }
+
+function createControlBarElem() {
+  const controlBarElem = createElementWithProps(
+    "div",
+    classesBanner.controlBar
+  );
+
+  const likeBtnElem = createButtonWithIcon(idS.button, likeIconPath, "like icon")
+
+  const addBtnElem = createButtonWithIcon(idS.button, addIconPath, "plus icon")
+
+  controlBarElem.append(likeBtnElem, addBtnElem);
+
+  return controlBarElem;
+}
 
 async function fetchMovieObj() {
   try {
