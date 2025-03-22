@@ -50,11 +50,13 @@ function createElementWithClassId(tag, className, id = false) {
   return element;
 }
 
-//don't forget that this fun should be used only if castArr length > 5
-function splitCastArr(castArr) {
-  const firstFive = castArr.slice(0, 5);
-  const rest = castArr.slice(5);
-  return [firstFive, rest];
+//this fun should be used only if castArr length > 5
+function splitAndJoinCastArr(castArr) {
+  const firstFiveArr = castArr.slice(0, 5);
+  const firstFiveStr = firstFiveArr.join(", ");
+  const restArr = castArr.slice(5);
+  const restStr = restArr.join(", ");
+  return [firstFiveStr, restStr];
 }
 
 function getLanguageName(languageArr) {
