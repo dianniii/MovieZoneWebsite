@@ -1,10 +1,9 @@
 .header{
-    margin: 20px 40px;
     width: 95%;
-    height: 60px;
+    height: 70px;
     border-radius: 10px;
-    padding: 0 3vw;
-    background-color: #151515E5;
+    padding: 15px 5vw;
+    background-color: $light-black;
     position: sticky;
     display: flex;
     align-items: center;
@@ -33,7 +32,7 @@
 &__menu{
     display: flex;
     gap: 5vw;
-    font-size: 1.2rem;
+    $font-size-menuItem: 20px;
 }
 
 &__menu-item:hover{
