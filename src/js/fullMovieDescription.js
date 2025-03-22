@@ -4,6 +4,7 @@ let movie_id = "27205";
 const domenPartUrl = "https://movies.gila.workers.dev";
 const pathForFullMovieDescription = "/search/movie/description?";
 const searchParameters = `movie_id=${movie_id}`;
+const blockName = "full-movie__";
 
 const likeIconPath = "./public/icons/likeIcon.svg";
 const addMovieIconPath = "./public/icons/plusIcon.svg";
@@ -33,16 +34,51 @@ const propertyNames = [
   "directors", // (array)
 ];
 
-// function createElementWithClass(tag, className) {
-//   const element = document.createElement(tag);
+function createElementWithClassId(tag, className, id = false) {
+  const element = document.createElement(tag);
 
-//   if (Array.isArray(className)) {
-//     element.classList.add(className);
-//   } else {
-//     className.forEach((name) => element.classList.add(name));
-//   }
-//   return element;
-// }
+  if (Array.isArray(className)) {
+    element.classList.add(className);
+  } else {
+    className.forEach((name) => element.classList.add(name));
+  }
+
+  if (id) {
+    element.setAttribute("id", id);
+  }
+
+  return element;
+}
+
+//don't forget that this fun should be used only if castArr length > 5
+function splitCastArr(castArr) {
+  const firstFive = castArr.slice(0, 5);
+  const rest = castArr.slice(5);
+  return [firstFive, rest];
+}
+
+function getLanguageName(languageArr) {
+  const languageNames = [];
+  languageArr.forEach((language) => languageNames.push(language.english_name));
+  return languageNames;
+}
+
+function createImgElem(className, src, alt) {
+  const imgElem = createElementWithClassId("img", className);
+  imgElem.setAttribute("src", src);
+  imgElem.setAttribute("alt", alt);
+  return imgElem;
+}
+
+function createArrOfLi(arr) {
+  const liElements = [];
+  arr.forEach((item) => {
+    const liElem = createElementWithClassId("li", `${blockName}list-item`);
+    liElem.textContent = item;
+    liElements.push(liElem);
+  });
+  return liElements;
+}
 
 // function createMovieBanner(movieData) {
 //   const banner = createElementWithClass("div", classNames.banner);
@@ -79,7 +115,7 @@ async function filterMovieData() {
   const movieDescriptionObj = Object.fromEntries(
     Object.entries(movieData).filter((arr) => propertyNames.includes(arr[0]))
   );
-  console.log(movieDescriptionObj);
+  //   console.log(movieDescriptionObj);
   return movieDescriptionObj;
 }
 
