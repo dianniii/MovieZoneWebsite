@@ -101,7 +101,7 @@ function createTitleBannerElem(movieDescription) {
   return titleElem;
 }
 
-function changeBannerBG(movieDescription) {
+async function changeBannerBG(movieDescription) {
   const bannerElem = document.querySelector(`.${movieBlockName}banner`);
   const currentBg = getComputedStyle(bannerElem).backgroundImage;
   const imagePath =
@@ -110,11 +110,37 @@ function changeBannerBG(movieDescription) {
     const baseUrl = movieDescription.backdrop_path
       ? baseBackdropUrl
       : basePosterUrl;
-    const updatedBg = currentBg.replace(
-      /url\(["']?(.*?)["']?\)/,
-      `url("${baseUrl + imagePath}")`
-    );
-    bannerElem.style.backgroundImage = updatedBg;
+    const fullUrl = baseUrl + imagePath;
+
+    if (isValidUrl(fullUrl)) {
+      const isAccessible = await isAccessibleUrl(fullUrl);
+
+      if (isAccessible) {
+        const updatedBg = currentBg.replace(
+          /url\(["']?(.*?)["']?\)/,
+          `url("${baseUrl + imagePath}")`
+        );
+        bannerElem.style.backgroundImage = updatedBg;
+      }
+    }
+  }
+}
+
+function isValidUrl(url) {
+  try {
+    new URL(url);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+async function isAccessibleUrl(url) {
+  try {
+    const response = await fetch(url, { method: "HEAD" });
+    return response.ok;
+  } catch (e) {
+    return false;
   }
 }
 
@@ -471,14 +497,14 @@ function createRatingElem(movieDescription) {
   return featureElem;
 }
 
-function renderMovie(movieData) {
+async function renderMovie(movieData) {
   movieContainer.setAttribute("data-id", movieData.id);
 
   const bannerElem = createMovieBannerElem(movieData);
 
   const infoBlockElem = createInfoBlock(movieData);
   movieContainer.append(bannerElem, infoBlockElem);
-  changeBannerBG(movieData);
+  await changeBannerBG(movieData);
 }
 
 // document.getElementById("pasteTo").append(createFactsSection(movieData));
@@ -535,7 +561,7 @@ async function getAndShowMovie() {
       console.warn("Movie object is empty. Cannot filter movie info");
       return;
     }
-    renderMovie(movieData);
+    await renderMovie(movieData);
   } catch (error) {
     console.error("Ошибка при обработке фильма:", error);
     showErrorMessage();
