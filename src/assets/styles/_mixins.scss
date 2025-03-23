@@ -5,3 +5,32 @@
 }
 
 
+@mixin bebas-400-largeTitle {
+    font-family: $font-family-bebasNeue;
+    font-weight: $font-weight-400;
+    font-size: $font-size-movieTitle;
+}
+
+@mixin urbanist-400-mivieDiscription {
+    font-family: $font-family-urbanist;
+    font-weight: $font-weight-400;
+    font-size: $font-size-text;
+} 
+
+@mixin montserrat-500-generalText {
+    font-family: $font-family-montserrat;
+    font-weight: $font-weight-500;
+    font-size: $font-size-text;
+}
+
+@mixin montserrat-500-menuItem {
+    font-family: $font-family-montserrat;
+    font-weight: $font-weight-500;
+    font-size: $font-size-menuItem;
+}
+
+@mixin montserrat-800-genreTitle {
+    font-family: $font-family-montserrat;
+    font-weight: $font-weight-800;
+    font-size: $font-size-h2;
+}
