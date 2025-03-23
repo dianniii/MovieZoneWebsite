@@ -3,11 +3,10 @@ body {
   color: white;
 }
 
-.main {
+.full-movie {
   margin: 80px auto;
   width: 83%;
-}
-.full-movie {
+
   // styles for banner
   &__banner {
     margin-bottom: 50px;
@@ -148,4 +147,9 @@ body {
     text-decoration: underline;
     color: inherit;
   }
+}
+
+.error-msg {
+  text-align: center;
+  font-size: 70px;
 }
