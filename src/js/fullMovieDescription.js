@@ -1,150 +1,3 @@
-const movieData = {
-  adult: false,
-  backdrop_path: "/8ZTVqvKDQ8emSGUEMjsS4yHAwrp.jpg",
-  belongs_to_collection: null,
-  budget: 160000000,
-  genres: [
-    {
-      id: 28,
-      name: "Action",
-    },
-    {
-      id: 878,
-      name: "Science Fiction",
-    },
-    {
-      id: 12,
-      name: "Adventure",
-    },
-  ],
-  homepage: "https://www.warnerbros.com/movies/inception",
-  id: 27205,
-  imdb_id: "tt1375666",
-  origin_country: ["US", "GB"],
-  original_language: "en",
-  original_title: "Inception",
-  overview:
-    "Cobb, a skilled thief who commits corporate espionage by infiltrating the subconscious of his targets is offered a chance to regain his old life as payment for a task considered to be impossible: \"inception\", the implantation of another person's idea into a target's subconscious.",
-  popularity: 24.5,
-  poster_path: "/ljsZTbVsrQSqZgWeep2B1QiDKuh.jpg",
-  production_companies: [
-    {
-      id: 923,
-      logo_path: "/5UQsZrfbfG2dYJbx8DxfoTr2Bvu.png",
-      name: "Legendary Pictures",
-      origin_country: "US",
-    },
-    {
-      id: 9996,
-      logo_path: "/3tvBqYsBhxWeHlu62SIJ1el93O7.png",
-      name: "Syncopy",
-      origin_country: "GB",
-    },
-    {
-      id: 174,
-      logo_path: "/zhD3hhtKB5qyv7ZeL4uLpNxgMVU.png",
-      name: "Warner Bros. Pictures",
-      origin_country: "US",
-    },
-  ],
-  production_countries: [
-    {
-      iso_3166_1: "GB",
-      name: "United Kingdom",
-    },
-    {
-      iso_3166_1: "US",
-      name: "United States of America",
-    },
-  ],
-  release_date: "2010-07-15",
-  revenue: 839030630,
-  runtime: 148,
-  spoken_languages: [
-    {
-      english_name: "English",
-      iso_639_1: "en",
-      name: "English",
-    },
-    {
-      english_name: "French",
-      iso_639_1: "fr",
-      name: "Français",
-    },
-    {
-      english_name: "Japanese",
-      iso_639_1: "ja",
-      name: "日本語",
-    },
-    {
-      english_name: "Swahili",
-      iso_639_1: "sw",
-      name: "Kiswahili",
-    },
-  ],
-  status: "Released",
-  tagline: "Your mind is the scene of the crime.",
-  title: "Inception",
-  video: false,
-  vote_average: 8.4,
-  vote_count: 37210,
-  cast: [
-    "Leonardo DiCaprio",
-    "Joseph Gordon-Levitt",
-    "Ken Watanabe",
-    "Tom Hardy",
-    "Elliot Page",
-    "Dileep Rao",
-    "Cillian Murphy",
-    "Tom Berenger",
-    "Marion Cotillard",
-    "Pete Postlethwaite",
-    "Michael Caine",
-    "Lukas Haas",
-    "Talulah Riley",
-    "Tohoru Masamune",
-    "Taylor Geare",
-    "Claire Geare",
-    "Johnathan Geare",
-    "Yuji Okumoto",
-    "Earl Cameron",
-    "Ryan Hayward",
-    "Miranda Nolan",
-    "Russ Fega",
-    "Tim Kelleher",
-    "Coralie Dedykere",
-    "Silvie Laguna",
-    "Virgile Bramly",
-    "Nicolas Clerc",
-    "Jean-Michel Dagory",
-    "Marc Raducci",
-    "Tai-Li Lee",
-    "Magnus Nolan",
-    "Helena Cullinan",
-    "Mark Fleischmann",
-    "Shelley Lang",
-    "Adam Cole",
-    "Jack Murray",
-    "Kraig Thornber",
-    "Angela Nathenson",
-    "Natasha Beaumont",
-    "Carl Gilliard",
-    "Jill Maddrell",
-    "Alex Lombard",
-    "Nicole Pulliam",
-    "Peter Basham",
-    "Michael Gaston",
-    "Felix Scott",
-    "Andrew Pleavin",
-    "Lisa Reynolds",
-    "Jason Tendell",
-    "Jack Gilroy",
-    "Shannon Welles",
-    "Daniel Girondeaud",
-  ],
-  directors: ["Christopher Nolan"],
-};
-
 const movieContainer = document.getElementById("movie");
 let movie_id = "27205";
 // let movie_id = "1";
@@ -256,7 +109,7 @@ function changeBannerBG(movieDescription) {
   if (imagePath) {
     const baseUrl = movieDescription.backdrop_path
       ? baseBackdropUrl
-      : baseBackdropUrl;
+      : basePosterUrl;
     const updatedBg = currentBg.replace(
       /url\(["']?(.*?)["']?\)/,
       `url("${baseUrl + imagePath}")`
@@ -618,6 +471,16 @@ function createRatingElem(movieDescription) {
   return featureElem;
 }
 
+function renderMovie(movieData) {
+  movieContainer.setAttribute("data-id", movieData.id);
+
+  const bannerElem = createMovieBannerElem(movieData);
+
+  const infoBlockElem = createInfoBlock(movieData);
+  movieContainer.append(bannerElem, infoBlockElem);
+  changeBannerBG(movieData);
+}
+
 // document.getElementById("pasteTo").append(createFactsSection(movieData));
 
 async function fetchMovieObj() {
@@ -627,32 +490,61 @@ async function fetchMovieObj() {
     );
 
     if (!response.ok) {
-      throw new Error("Не удалось загрузить данные фильма");
+      console.log("Cannot fetch data form the server");
+      throw new Error("HTTP Error: " + response.status);
     }
 
-    const movieData = await response.json();
-    // console.log(movieData);
+    let movieData;
+    try {
+      movieData = await response.json();
+    } catch (jsonError) {
+      throw new Error("Cannot parse JSON: " + jsonError.message);
+    }
+
     return movieData;
   } catch (error) {
-    console.error("Ошибка:", error);
-    movieContainer.innerHTML =
-      "Произошла ошибка при загрузке данных. Попробуйте позже.";
+    console.error("Error while loading movie information", error);
     return null;
   }
 }
 
-async function filterMovieData() {
-  const movieData = await fetchMovieObj();
-
+function filterMovieData(movieData) {
   if (!movieData || Object.keys(movieData).length === 0) {
-    return;
+    return null;
   }
 
   const movieDescriptionObj = Object.fromEntries(
     Object.entries(movieData).filter((arr) => propertyNames.includes(arr[0]))
   );
-  console.log(movieDescriptionObj);
+  //   console.log(movieDescriptionObj);
   return movieDescriptionObj;
 }
 
-filterMovieData();
+async function getAndShowMovie() {
+  try {
+    const rawMovieData = await fetchMovieObj();
+
+    if (!rawMovieData) {
+      showErrorMessage();
+      return;
+    }
+
+    const movieData = filterMovieData(rawMovieData);
+    if (!movieData) {
+      showErrorMessage();
+      console.warn("Movie object is empty. Cannot filter movie info");
+      return;
+    }
+    renderMovie(movieData);
+  } catch (error) {
+    console.error("Ошибка при обработке фильма:", error);
+    showErrorMessage();
+  }
+}
+
+function showErrorMessage() {
+  movieContainer.classList.add("error-msg");
+  movieContainer.innerHTML = "Cannot load movie. Please, try again later";
+}
+
+document.addEventListener("DOMContentLoaded", getAndShowMovie());
