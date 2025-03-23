@@ -1,15 +1,164 @@
+const movieData = {
+  adult: false,
+  backdrop_path: "/8ZTVqvKDQ8emSGUEMjsS4yHAwrp.jpg",
+  belongs_to_collection: null,
+  budget: 160000000,
+  genres: [
+    {
+      id: 28,
+      name: "Action",
+    },
+    {
+      id: 878,
+      name: "Science Fiction",
+    },
+    {
+      id: 12,
+      name: "Adventure",
+    },
+  ],
+  homepage: "https://www.warnerbros.com/movies/inception",
+  id: 27205,
+  imdb_id: "tt1375666",
+  origin_country: ["US", "GB"],
+  original_language: "en",
+  original_title: "Inception",
+  overview:
+    "Cobb, a skilled thief who commits corporate espionage by infiltrating the subconscious of his targets is offered a chance to regain his old life as payment for a task considered to be impossible: \"inception\", the implantation of another person's idea into a target's subconscious.",
+  popularity: 24.5,
+  poster_path: "/ljsZTbVsrQSqZgWeep2B1QiDKuh.jpg",
+  production_companies: [
+    {
+      id: 923,
+      logo_path: "/5UQsZrfbfG2dYJbx8DxfoTr2Bvu.png",
+      name: "Legendary Pictures",
+      origin_country: "US",
+    },
+    {
+      id: 9996,
+      logo_path: "/3tvBqYsBhxWeHlu62SIJ1el93O7.png",
+      name: "Syncopy",
+      origin_country: "GB",
+    },
+    {
+      id: 174,
+      logo_path: "/zhD3hhtKB5qyv7ZeL4uLpNxgMVU.png",
+      name: "Warner Bros. Pictures",
+      origin_country: "US",
+    },
+  ],
+  production_countries: [
+    {
+      iso_3166_1: "GB",
+      name: "United Kingdom",
+    },
+    {
+      iso_3166_1: "US",
+      name: "United States of America",
+    },
+  ],
+  release_date: "2010-07-15",
+  revenue: 839030630,
+  runtime: 148,
+  spoken_languages: [
+    {
+      english_name: "English",
+      iso_639_1: "en",
+      name: "English",
+    },
+    {
+      english_name: "French",
+      iso_639_1: "fr",
+      name: "Français",
+    },
+    {
+      english_name: "Japanese",
+      iso_639_1: "ja",
+      name: "日本語",
+    },
+    {
+      english_name: "Swahili",
+      iso_639_1: "sw",
+      name: "Kiswahili",
+    },
+  ],
+  status: "Released",
+  tagline: "Your mind is the scene of the crime.",
+  title: "Inception",
+  video: false,
+  vote_average: 8.4,
+  vote_count: 37210,
+  cast: [
+    "Leonardo DiCaprio",
+    "Joseph Gordon-Levitt",
+    "Ken Watanabe",
+    "Tom Hardy",
+    "Elliot Page",
+    "Dileep Rao",
+    "Cillian Murphy",
+    "Tom Berenger",
+    "Marion Cotillard",
+    "Pete Postlethwaite",
+    "Michael Caine",
+    "Lukas Haas",
+    "Talulah Riley",
+    "Tohoru Masamune",
+    "Taylor Geare",
+    "Claire Geare",
+    "Johnathan Geare",
+    "Yuji Okumoto",
+    "Earl Cameron",
+    "Ryan Hayward",
+    "Miranda Nolan",
+    "Russ Fega",
+    "Tim Kelleher",
+    "Coralie Dedykere",
+    "Silvie Laguna",
+    "Virgile Bramly",
+    "Nicolas Clerc",
+    "Jean-Michel Dagory",
+    "Marc Raducci",
+    "Tai-Li Lee",
+    "Magnus Nolan",
+    "Helena Cullinan",
+    "Mark Fleischmann",
+    "Shelley Lang",
+    "Adam Cole",
+    "Jack Murray",
+    "Kraig Thornber",
+    "Angela Nathenson",
+    "Natasha Beaumont",
+    "Carl Gilliard",
+    "Jill Maddrell",
+    "Alex Lombard",
+    "Nicole Pulliam",
+    "Peter Basham",
+    "Michael Gaston",
+    "Felix Scott",
+    "Andrew Pleavin",
+    "Lisa Reynolds",
+    "Jason Tendell",
+    "Jack Gilroy",
+    "Shannon Welles",
+    "Daniel Girondeaud",
+  ],
+  directors: ["Christopher Nolan"],
+};
+
 const movieContainer = document.getElementById("movie");
 let movie_id = "27205";
 // let movie_id = "1";
-const domenPartUrl = "https://movies.gila.workers.dev";
-const pathForFullMovieDescription = "/search/movie/description?";
-const tmbdUrl = `https://www.themoviedb.org/movie/${movie_id}`;
-const searchParameters = `movie_id=${movie_id}`;
-const movieBlockName = "full-movie__";
+// const domenPartUrl = "https://movies.gila.workers.dev";
+// const pathForFullMovieDescription = "/search/movie/description?";
+const baseBackdropUrl = "https://image.tmdb.org/t/p/original/";
+const basePosterUrl = "https://media.themoviedb.org/t/p/w220_and_h330_face/";
+// const searchParameters = `movie_id=${movie_id}`;
 
+const movieBlockName = "full-movie__";
 const likeIconPath = "./public/icons/likeIcon.svg";
 const addIconPath = "./public/icons/plusIcon.svg";
 const TMBDIconPath = "./public/icons/TMBD.svg";
+const tmbdUrl = `https://www.themoviedb.org/movie/${movie_id}`;
 const filmIconPath = "./public/icons/filmIcon.svg";
 
 const propertyNames = [
@@ -33,7 +182,7 @@ const idS = {
   addBtnId: "addMovieBtn",
   shownCastPart: "castMainPart",
   hiddenCastPart: "castAdditionalPart",
-  castBtnId: "castMovieBtn",
+  castBtn: "castMovieBtn",
 };
 
 const classesBanner = {
@@ -52,6 +201,7 @@ const lstClasses = {
 
 const classesInfo = {
   content: `${movieBlockName}content`,
+  facts: `${movieBlockName}facts`,
   feature: `${movieBlockName}feature`,
   featureName: `${movieBlockName}feature-name`,
   featureVal: `${movieBlockName}feature-value`,
@@ -65,15 +215,9 @@ const classesInfo = {
 };
 
 function createMovieBannerElem(movieDescription) {
-  const bannerElem = createElementWithClass("div", `${movieBlockName}__banner`);
+  const bannerElem = createElementWithProps("div", `${movieBlockName}banner`);
 
-  const titleElem = createElementWithProps(
-    "h1",
-    classesBanner.title,
-    false,
-    movieDescription.title || "Unknown"
-  );
-  titleElem.setAttribute("data-id", movieDescription.id);
+  const titleElem = createTitleBannerElem(movieDescription);
   bannerElem.append(titleElem);
 
   if (movieDescription.tagline) {
@@ -88,12 +232,41 @@ function createMovieBannerElem(movieDescription) {
   }
 
   bannerElem.append(createControlBarElem());
+  return bannerElem;
+}
+
+function createTitleBannerElem(movieDescription) {
+  const titleElem = createElementWithProps(
+    "h1",
+    classesBanner.title,
+    false,
+    movieDescription.title || "Unknown"
+  );
+  titleElem.setAttribute("data-id", movieDescription.id);
+  return titleElem;
+}
+
+function changeBannerBG(movieDescription) {
+  const bannerElem = document.querySelector(`.${movieBlockName}banner`);
+  const currentBg = getComputedStyle(bannerElem).backgroundImage;
+  const imagePath =
+    movieDescription.backdrop_path || movieDescription.poster_path;
+  if (imagePath) {
+    const baseUrl = movieDescription.backdrop_path
+      ? baseBackdropUrl
+      : baseBackdropUrl;
+    const updatedBg = currentBg.replace(
+      /url\(["']?(.*?)["']?\)/,
+      `url("${baseUrl + imagePath}")`
+    );
+    bannerElem.style.backgroundImage = updatedBg;
+  }
 }
 
 function createElementWithProps(tag, className, id = false, text = false) {
   const element = document.createElement(tag);
 
-  Array.isArray(classNames)
+  Array.isArray(className)
     ? className.forEach((name) => element.classList.add(name))
     : element.classList.add(className);
 
@@ -103,20 +276,8 @@ function createElementWithProps(tag, className, id = false, text = false) {
   return element;
 }
 
-function getGenreNames(genres) {
-  const genreNames = [];
-  genres.forEach((genre) => genreNames.push(genre.name));
-  return genreNames;
-}
-
-function getLanguageName(languages) {
-  const languageNames = [];
-  languages.forEach((language) => languageNames.push(language.english_name));
-  return languageNames;
-}
-
 function createImgElem(className, src, alt) {
-  const imgElem = createElementWithClassId("img", className);
+  const imgElem = createElementWithProps("img", className);
   imgElem.setAttribute("src", src);
   imgElem.setAttribute("alt", alt);
   return imgElem;
@@ -161,36 +322,57 @@ function createContentSection(movieDescription) {
     classesInfo.content
   );
 
-  // create directors element
+  const directorContainer = createDirectorElem(movieDescription);
+  const castContainer = createCastElem(movieDescription);
+  const descriptionContainer = createDescriptionElem(movieDescription);
+  const genreContainer = createGenresElem(movieDescription);
+  const linksContainer = createLinksElem(movieDescription);
+  contentSectionElem.append(
+    directorContainer,
+    castContainer,
+    descriptionContainer,
+    genreContainer,
+    linksContainer
+  );
+  return contentSectionElem;
+}
+
+function createDirectorElem(movieDescription) {
   let directors = ["Unknown"];
-  if (movieDescription.directors.length) directors = movieDescription.directors;
-  const featureElem1 = createElementWithProps("div", classesInfo.feature);
-  const subtitleElem1 = createElementWithProps(
+
+  if (movieDescription.directors && movieDescription.directors.length) {
+    directors = movieDescription.directors;
+  }
+  const featureElem = createElementWithProps("div", classesInfo.feature);
+  const subtitleElem = createElementWithProps(
     "h2",
     classesInfo.featureName,
     false,
     directors.length > 1 ? "Directors:" : "Director:"
   );
-  const parElem1 = createElementWithProps(
+  const parElem = createElementWithProps(
     "p",
     classesInfo.featureVal,
     false,
     directors.join(", ")
   );
-  contentSectionElem.append(featureElem1.append(subtitleElem1, parElem1));
+  featureElem.append(subtitleElem, parElem);
+  return featureElem;
+}
 
-  //create cast element
+function createCastElem(movieDescription) {
   let cast = ["Unknown"];
-  if (movieDescription.cast.length) cast = movieDescription.cast;
+  if (movieDescription.cast && movieDescription.cast.length)
+    cast = movieDescription.cast;
 
-  const featureElem2 = createElementWithProps("div", classesInfo.feature);
-  const subtitleElem2 = createElementWithProps(
+  const featureElem = createElementWithProps("div", classesInfo.feature);
+  const subtitleElem = createElementWithProps(
     "h2",
     classesInfo.featureName,
     false,
     "Cast:"
   );
-  const parElem2 = createElementWithProps("p", classesInfo.featureVal, false);
+  const parElem = createElementWithProps("p", classesInfo.featureVal, false);
 
   if (cast.length > 5) {
     const [firstPart, secondPart] = splitAndJoinCastArr(cast);
@@ -198,97 +380,27 @@ function createContentSection(movieDescription) {
       "span",
       classesInfo.shownCast,
       false,
-      firstPart
+      firstPart + ", "
     );
     const hiddenCastElem = createElementWithProps(
       "span",
       classesInfo.hiddenCast,
       idS.hiddenCastPart,
-      secondPart
+      secondPart + " "
     );
     const castBtn = createElementWithProps(
       "button",
       classesInfo.castBtn,
-      idS.castBtnId,
+      idS.castBtn,
       "see more..."
     );
-    parElem2.append(shownCastElem, hiddenCastElem, castBtn);
+    parElem.append(shownCastElem, hiddenCastElem, castBtn);
   } else {
-    parElem2.textContent = cast.join(", ");
+    parElem.textContent = cast.join(", ");
   }
 
-  contentSectionElem.append(featureElem2.append(subtitleElem2, parElem2));
-
-  //create Description element
-  const description = movieDescription.overview || "Unknown";
-  const featureElem3 = createElementWithProps("div", classesInfo.feature);
-  const subtitleElem3 = createElementWithProps(
-    "h2",
-    classesInfo.featureName,
-    false,
-    "Description:"
-  );
-  const parElem3 = createElementWithProps(
-    "p",
-    classesInfo.featureVal,
-    false,
-    description
-  );
-  contentSectionElem.append(featureElem3.append(subtitleElem3, parElem3));
-
-  //create genres element
-  const genres = getGenreNames(movieDescription.genres);
-  if (genres.length) {
-    const featureElem4 = createElementWithProps("div", classesInfo.feature);
-    const subtitleElem4 = createElementWithProps(
-      "h2",
-      classesInfo.featureName,
-      false,
-      "Genres: "
-    );
-    const genreLst = createListElem(genres);
-    contentSectionElem.append(featureElem4.append(subtitleElem4, genreLst));
-  }
-
-  //create links element
-  const featureElem5 = createElementWithProps("div", classesInfo.feature);
-  const subtitleElem5 = createElementWithProps("h2", classesInfo.featureName);
-  const parElem5 = createElementWithProps("p", classesInfo.links);
-  const tmbdLinkElem = createLinkWithIcon(tmbdUrl, TMBDIconPath, "TMBD icon");
-  parElem5.append(tmbdLinkElem);
-  const homepageUrl = movieDescription.homepage;
-  if (homepageUrl) {
-    const homepageLinkElem = createLinkWithIcon(
-      homepageUrl,
-      filmIconPath,
-      "film icon"
-    );
-    parElem5.append(homepageLinkElem);
-  }
-  contentSectionElem.append(featureElem5.append(subtitleElem5, parElem5));
-}
-
-function createLinkWithIcon(href, iconSrc, alt) {
-  const linkElem = createElementWithProps("a", classesInfo.link);
-  link.setAttribute("target", "_blank");
-  link.setAttribute("href", href);
-  const iconElem = createImgElem(classesInfo.linkIcon, iconSrc, alt);
-  linkElem.append(iconElem);
-  return linkElem;
-}
-
-function createListElem(arr) {
-  const lstElem = createElementWithProps("ul", lstClasses.lst);
-  arr.forEach((item) => {
-    const liElem = createElementWithClassId(
-      "li",
-      `${movieBlockName}list-item`,
-      false,
-      item
-    );
-    lstElem.append(liElem);
-  });
-  return lstElem;
+  featureElem.append(subtitleElem, parElem);
+  return featureElem;
 }
 
 //this fun should be used only if castArr length > 5
@@ -300,39 +412,90 @@ function splitAndJoinCastArr(castArr) {
   return [firstFiveStr, restStr];
 }
 
-async function fetchMovieObj() {
-  try {
-    let response = await fetch(
-      domenPartUrl + pathForFullMovieDescription + searchParameters
-    );
-
-    if (!response.ok) {
-      throw new Error("Не удалось загрузить данные фильма");
-    }
-
-    const movieData = await response.json();
-    // console.log(movieData);
-    return movieData;
-  } catch (error) {
-    console.error("Ошибка:", error);
-    movieContainer.innerHTML =
-      "Произошла ошибка при загрузке данных. Попробуйте позже.";
-    return null;
-  }
-}
-
-async function filterMovieData() {
-  const movieData = await fetchMovieObj();
-
-  if (!movieData || Object.keys(movieData).length === 0) {
-    return;
-  }
-
-  const movieDescriptionObj = Object.fromEntries(
-    Object.entries(movieData).filter((arr) => propertyNames.includes(arr[0]))
+function createDescriptionElem(movieDescription) {
+  const description = movieDescription.overview || "Unknown";
+  const featureElem = createElementWithProps("div", classesInfo.feature);
+  const subtitleElem = createElementWithProps(
+    "h2",
+    classesInfo.featureName,
+    false,
+    "Description:"
   );
-  //   console.log(movieDescriptionObj);
-  return movieDescriptionObj;
+  const parElem = createElementWithProps(
+    "p",
+    classesInfo.featureVal,
+    false,
+    description
+  );
+  featureElem.append(subtitleElem, parElem);
+  return featureElem;
 }
 
-filterMovieData();
+function createGenresElem(movieDescription) {
+  const featureElem = createElementWithProps("div", classesInfo.feature);
+  const subtitleElem = createElementWithProps(
+    "h2",
+    classesInfo.featureName,
+    false,
+    "Genres: "
+  );
+
+  let genres = ["Unknown"];
+  if (movieDescription.genres && movieDescription.genres.length) {
+    genres = getGenreNames(movieDescription.genres);
+  }
+
+  const genreLstElem = createListElem(genres);
+  featureElem.append(subtitleElem, genreLstElem);
+  return featureElem;
+}
+
+function getGenreNames(genres) {
+  const genreNames = [];
+  genres.forEach((genre) => genreNames.push(genre.name));
+  return genreNames;
+}
+
+function createLinksElem(movieDescription) {
+  const featureElem = createElementWithProps("div", classesInfo.feature);
+  const subtitleElem = createElementWithProps("h2", classesInfo.featureName);
+  const parElem = createElementWithProps("p", classesInfo.links);
+  const tmbdLinkElem = createLinkWithIcon(tmbdUrl, TMBDIconPath, "TMBD icon");
+  parElem.append(tmbdLinkElem);
+  const homepageUrl = movieDescription.homepage;
+  if (homepageUrl) {
+    const homepageLinkElem = createLinkWithIcon(
+      homepageUrl,
+      filmIconPath,
+      "film icon"
+    );
+    parElem.append(homepageLinkElem);
+  }
+  featureElem.append(subtitleElem, parElem);
+  return featureElem;
+}
+
+function createLinkWithIcon(href, iconSrc, alt) {
+  const linkElem = createElementWithProps("a", classesInfo.link);
+  linkElem.setAttribute("target", "_blank");
+  linkElem.setAttribute("href", href);
+  const iconElem = createImgElem(classesInfo.linkIcon, iconSrc, alt);
+  linkElem.append(iconElem);
+  return linkElem;
+}
+
+function createListElem(arr) {
+  const lstElem = createElementWithProps("ul", lstClasses.lst);
+  arr.forEach((item) => {
+    const liElem = createElementWithProps("li", lstClasses.items, false, item);
+    lstElem.append(liElem);
+    console.log("append!");
+  });
+  return lstElem;
+}
+
+function getLanguageNames(languages) {
+  const languageNames = [];
+  languages.forEach((language) => languageNames.push(language.english_name));
+  return languageNames;
+}
