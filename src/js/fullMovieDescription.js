@@ -148,17 +148,19 @@ const movieData = {
 const movieContainer = document.getElementById("movie");
 let movie_id = "27205";
 // let movie_id = "1";
-// const domenPartUrl = "https://movies.gila.workers.dev";
-// const pathForFullMovieDescription = "/search/movie/description?";
+const domenPartUrl = "https://movies.gila.workers.dev";
+const pathForFullMovieDescription = "/search/movie/description?";
+const searchParameters = `movie_id=${movie_id}`;
+
+const tmbdUrl = `https://www.themoviedb.org/movie/${movie_id}`;
+
 const baseBackdropUrl = "https://image.tmdb.org/t/p/original/";
 const basePosterUrl = "https://media.themoviedb.org/t/p/w220_and_h330_face/";
-// const searchParameters = `movie_id=${movie_id}`;
 
 const movieBlockName = "full-movie__";
 const likeIconPath = "./public/icons/likeIcon.svg";
 const addIconPath = "./public/icons/plusIcon.svg";
 const TMBDIconPath = "./public/icons/TMBD.svg";
-const tmbdUrl = `https://www.themoviedb.org/movie/${movie_id}`;
 const filmIconPath = "./public/icons/filmIcon.svg";
 
 const propertyNames = [
@@ -499,3 +501,158 @@ function getLanguageNames(languages) {
   languages.forEach((language) => languageNames.push(language.english_name));
   return languageNames;
 }
+
+function createFactsSection(movieDescription) {
+  const factsSectionElem = createElementWithProps("section", classesInfo.facts);
+  const yearContainer = createYearElem(movieDescription);
+  const countryContainer = createCountryElem(movieDescription);
+  const languagesContainer = createLanguageElem(movieDescription);
+  const durationContainer = createDurationElem(movieDescription);
+  const ratingContainer = createRatingElem(movieDescription);
+  factsSectionElem.append(
+    yearContainer,
+    countryContainer,
+    languagesContainer,
+    durationContainer,
+    ratingContainer
+  );
+  return factsSectionElem;
+}
+
+function createYearElem(movieDescription) {
+  const featureElem = createElementWithProps("div", classesInfo.feature);
+  const subtitleElem = createElementWithProps(
+    "h2",
+    classesInfo.featureName,
+    false,
+    "Release Year:"
+  );
+  const releaseDate = movieDescription.release_date;
+  const year = releaseDate ? releaseDate.slice(0, 4) : "Unknown";
+  const parElem = createElementWithProps(
+    "p",
+    classesInfo.featureVal,
+    false,
+    year
+  );
+  featureElem.append(subtitleElem, parElem);
+  return featureElem;
+}
+
+function createCountryElem(movieDescription) {
+  const featureElem = createElementWithProps("div", classesInfo.feature);
+  let countryArr = movieDescription.origin_country;
+  const subtitleElem = createElementWithProps(
+    "h2",
+    classesInfo.featureName,
+    false,
+    countryArr.length < 2 ? "Country:" : "Countries:"
+  );
+  const parElem = createElementWithProps(
+    "p",
+    classesInfo.featureVal,
+    false,
+    countryArr.length ? countryArr.join(" ") : "Unknown"
+  );
+  featureElem.append(subtitleElem, parElem);
+  return featureElem;
+}
+
+function createLanguageElem(movieDescription) {
+  const featureElem = createElementWithProps("div", classesInfo.feature);
+
+  const languages = movieDescription.spoken_languages;
+  const languageNamesArr = getLanguageNames(languages);
+  const subtitleElem = createElementWithProps(
+    "h2",
+    classesInfo.featureName,
+    false,
+    languageNamesArr.length < 2 ? "Language:" : "Languages:"
+  );
+  const listElem = createListElem(languageNamesArr);
+  featureElem.append(subtitleElem, listElem);
+  return featureElem;
+}
+
+function getLanguageNames(languages) {
+  const languageNames = [];
+  languages.forEach((language) => languageNames.push(language.english_name));
+  return languageNames;
+}
+
+function createDurationElem(movieDescription) {
+  const featureElem = createElementWithProps("div", classesInfo.feature);
+  const subtitleElem = createElementWithProps(
+    "h2",
+    classesInfo.featureName,
+    false,
+    "Duration:"
+  );
+  const duration = movieDescription.runtime;
+  const parElem = createElementWithProps(
+    "p",
+    classesInfo.featureVal,
+    false,
+    duration ? duration + " min." : "Unknown"
+  );
+  featureElem.append(subtitleElem, parElem);
+  return featureElem;
+}
+
+function createRatingElem(movieDescription) {
+  const featureElem = createElementWithProps("div", classesInfo.feature);
+  const subtitleElem = createElementWithProps(
+    "h2",
+    classesInfo.featureName,
+    false,
+    "TMBD Rating:"
+  );
+  const rating = movieDescription.vote_average;
+  const parElem = createElementWithProps(
+    "p",
+    classesInfo.featureVal,
+    false,
+    rating ? rating.toFixed(1) : "Unknown"
+  );
+  featureElem.append(subtitleElem, parElem);
+  return featureElem;
+}
+
+// document.getElementById("pasteTo").append(createFactsSection(movieData));
+
+async function fetchMovieObj() {
+  try {
+    let response = await fetch(
+      domenPartUrl + pathForFullMovieDescription + searchParameters
+    );
+
+    if (!response.ok) {
+      throw new Error("Не удалось загрузить данные фильма");
+    }
+
+    const movieData = await response.json();
+    // console.log(movieData);
+    return movieData;
+  } catch (error) {
+    console.error("Ошибка:", error);
+    movieContainer.innerHTML =
+      "Произошла ошибка при загрузке данных. Попробуйте позже.";
+    return null;
+  }
+}
+
+async function filterMovieData() {
+  const movieData = await fetchMovieObj();
+
+  if (!movieData || Object.keys(movieData).length === 0) {
+    return;
+  }
+
+  const movieDescriptionObj = Object.fromEntries(
+    Object.entries(movieData).filter((arr) => propertyNames.includes(arr[0]))
+  );
+  console.log(movieDescriptionObj);
+  return movieDescriptionObj;
+}
+
+filterMovieData();
