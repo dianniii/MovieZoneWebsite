@@ -1,3 +1,11 @@
-import { setUpMovieCastBtn } from "./js/expandCast.js"; //Import setUpMovieCastBtn function from expandCast.js
+import { setUpMovieCastBtn } from "./js/expandCast.js";
+import { loadMoviePage } from "./js/fullMovieDescription.js";
 
-setUpMovieCastBtn(); //call imported setUpMovieCastBtn function. It sets up the logic for the "see more" button (id=castMovieBtn), including binding the event handler.
+// Слушаем события
+document.addEventListener("movieLoaded", setUpMovieCastBtn);
+
+document.addEventListener("movieError", function (event) {
+  console.error("Ошибка при загрузке фильма:", event.detail);
+});
+
+loadMoviePage();

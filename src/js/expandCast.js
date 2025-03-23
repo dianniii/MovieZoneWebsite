@@ -12,6 +12,6 @@ export function setUpMovieCastBtn() {
       castFullMovieBtn.textContent = "see less";
     }
   }
-
-  castFullMovieBtn.addEventListener("click", toggleCastElementLen);
+  if (castFullMovieBtn)
+    castFullMovieBtn.addEventListener("click", toggleCastElementLen);
 }
