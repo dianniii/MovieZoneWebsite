@@ -38,3 +38,46 @@
   font-weight: $font-weight-800;
   font-size: $font-size-h2;
 }
+
+//new mixins for fonts
+
+@mixin font-base {
+  font-family: $font-family;
+  line-height: $line-height;
+}
+
+@mixin font-h1 {
+  @include font-base;
+  font-weight: $font-weight-700;
+  font-size: $font-size-h1;
+  font-style: normal;
+}
+
+@mixin font-h2 {
+  @include font-base;
+  font-weight: $font-weight-700;
+  font-size: $font-size-h2;
+  font-style: normal;
+}
+
+@mixin font-h3 {
+  @include font-base;
+  font-weight: $font-weight-500;
+  font-size: $font-size-basic;
+  font-style: normal;
+  color: $greyTextColor;
+}
+
+@mixin font-tagline {
+  @include font-base;
+  font-weight: $font-weight-500;
+  font-size: $font-size-basic;
+  font-style: italic;
+}
+
+@mixin font-basic {
+  @include font-base;
+  font-weight: $font-weight-500;
+  font-size: $font-size-basic;
+  font-style: normal;
+}
