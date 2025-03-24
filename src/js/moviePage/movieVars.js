@@ -1,8 +1,7 @@
 export const movieContainer = document.getElementById("movie");
-export let movie_id = "19";
+
 export const domenPartUrl = "https://movies.gila.workers.dev";
 export const pathForFullMovieDescription = "/search/movie/description?";
-export const searchParameters = `movie_id=${movie_id}`;
 
 export const tmbdUrl = `https://www.themoviedb.org/movie/`;
 

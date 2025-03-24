@@ -15,7 +15,7 @@ import {
   createButtonWithIcon,
   createListElem,
   createLinkWithIcon,
-  getMovieId
+  getMovieId,
 } from "./movieUtils";
 
 export function createMovieBannerElem(movieDescription) {
@@ -59,6 +59,7 @@ function createControlBarElem() {
   const likeBtnElem = createButtonWithIcon(
     idS.likeBtnId,
     classesBanner.button,
+    classesBanner.icon,
     likeIconPath,
     "like icon"
   );
@@ -66,6 +67,7 @@ function createControlBarElem() {
   const addBtnElem = createButtonWithIcon(
     idS.addBtnId,
     classesBanner.button,
+    classesBanner.icon,
     addIconPath,
     "plus icon"
   );
@@ -93,7 +95,7 @@ function createContentSection(movieDescription) {
   const castContainer = createCastElem(movieDescription);
   const descriptionContainer = createDescriptionElem(movieDescription);
   const genreContainer = createGenresElem(movieDescription);
-  const linksContainer = createLinksElem(movieDescription;
+  const linksContainer = createLinksElem(movieDescription);
 
   contentSectionElem.append(
     directorContainer,
@@ -342,7 +344,7 @@ function createDurationElem(movieDescription) {
     "Duration:"
   );
   const duration = movieDescription.runtime;
-  console.log(duration);
+
   const parElem = createElementWithProps(
     "p",
     classesInfo.featureVal,

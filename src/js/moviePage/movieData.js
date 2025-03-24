@@ -2,7 +2,7 @@ import {
   domenPartUrl,
   pathForFullMovieDescription,
   propertyNames,
-} from "./vars.js";
+} from "./movieVars";
 
 export async function fetchMovieObj(movie_id) {
   try {

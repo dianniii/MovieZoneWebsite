@@ -19,9 +19,9 @@ export function createElementWithProps(
   return element;
 }
 
-export function createButtonWithIcon(id, className, iconSrc, alt) {
-  const btn = createElementWithProps("button", className, id);
-  btn.append(createImgElem(classesBanner.icon, iconSrc, alt));
+export function createButtonWithIcon(id, classBtn, classIcon, iconSrc, alt) {
+  const btn = createElementWithProps("button", classBtn, id);
+  btn.append(createImgElem(classIcon, iconSrc, alt));
   return btn;
 }
 
