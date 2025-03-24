@@ -1,12 +1,12 @@
 export function loadMoviePage() {
   const movieContainer = document.getElementById("movie");
   //   let movie_id = "27205";
-  let movie_id = "19";
+  // let movie_id = "19";
   const domenPartUrl = "https://movies.gila.workers.dev";
   const pathForFullMovieDescription = "/search/movie/description?";
-  const searchParameters = `movie_id=${movie_id}`;
+  // const searchParameters = `movie_id=${movie_id}`;
 
-  const tmbdUrl = `https://www.themoviedb.org/movie/${movie_id}`;
+  const tmbdUrl = `https://www.themoviedb.org/movie/`;
 
   const baseBackdropUrl = "https://image.tmdb.org/t/p/original";
   const basePosterUrl = "https://media.themoviedb.org/t/p/w220_and_h330_face";
@@ -167,12 +167,14 @@ export function loadMoviePage() {
 
     const likeBtnElem = createButtonWithIcon(
       idS.button,
+      classesBanner.button,
       likeIconPath,
       "like icon"
     );
 
     const addBtnElem = createButtonWithIcon(
       idS.button,
+      classesBanner.button,
       addIconPath,
       "plus icon"
     );
@@ -337,7 +339,13 @@ export function loadMoviePage() {
     const featureElem = createElementWithProps("div", classesInfo.feature);
     const subtitleElem = createElementWithProps("h2", classesInfo.featureName);
     const parElem = createElementWithProps("p", classesInfo.links);
-    const tmbdLinkElem = createLinkWithIcon(tmbdUrl, TMBDIconPath, "TMBD icon");
+    const tmbdLinkElem = createLinkWithIcon(
+      // classesInfo.link,
+      // classesInfo.linkIcon,
+      tmbdUrl + getMovieId(),
+      TMBDIconPath,
+      "TMBD icon"
+    );
     parElem.append(tmbdLinkElem);
     const homepageUrl = movieDescription.homepage;
     if (homepageUrl) {
@@ -350,6 +358,10 @@ export function loadMoviePage() {
     }
     featureElem.append(subtitleElem, parElem);
     return featureElem;
+  }
+
+  function getMovieId() {
+    return sessionStorage.getItem("movie_id");
   }
 
   function createLinkWithIcon(href, iconSrc, alt) {
@@ -371,15 +383,8 @@ export function loadMoviePage() {
         item
       );
       lstElem.append(liElem);
-      console.log("append!");
     });
     return lstElem;
-  }
-
-  function getLanguageNames(languages) {
-    const languageNames = [];
-    languages.forEach((language) => languageNames.push(language.english_name));
-    return languageNames;
   }
 
   function createFactsSection(movieDescription) {
@@ -472,7 +477,6 @@ export function loadMoviePage() {
       "Duration:"
     );
     const duration = movieDescription.runtime;
-    console.log(duration);
     const parElem = createElementWithProps(
       "p",
       classesInfo.featureVal,
@@ -502,22 +506,25 @@ export function loadMoviePage() {
     return featureElem;
   }
 
-  async function renderMovie(movieData) {
+  function renderMovie(movieData) {
     try {
       movieContainer.setAttribute("data-id", movieData.id);
 
       const bannerElem = createMovieBannerElem(movieData);
 
       const infoBlockElem = createInfoBlock(movieData);
+
       movieContainer.append(bannerElem, infoBlockElem);
+
       changeBannerBG(movieData);
     } catch (error) {
       console.error("Error during rendering movie:", error);
     }
   }
 
-  async function fetchMovieObj() {
+  async function fetchMovieObj(movie_id) {
     try {
+      const searchParameters = `movie_id=${movie_id}`;
       let response = await fetch(
         domenPartUrl + pathForFullMovieDescription + searchParameters
       );
@@ -554,9 +561,9 @@ export function loadMoviePage() {
     return movieDescriptionObj;
   }
 
-  async function getAndShowMovie() {
+  async function getAndShowMovie(movie_id) {
     try {
-      const rawMovieData = await fetchMovieObj();
+      const rawMovieData = await fetchMovieObj(movie_id);
 
       if (!rawMovieData) {
         showErrorMessage();
@@ -569,7 +576,7 @@ export function loadMoviePage() {
         console.warn("Movie object is empty. Cannot filter movie info");
         return;
       }
-      await renderMovie(movieData);
+      renderMovie(movieData);
       // console.log(movieData);
       const movieLoadedEvent = new CustomEvent("movieLoaded", {
         detail: movieData,
@@ -590,5 +597,16 @@ export function loadMoviePage() {
     movieContainer.innerHTML = "Cannot load movie. Please, try again later";
   }
 
-  document.addEventListener("DOMContentLoaded", getAndShowMovie());
+  // document.addEventListener("DOMContentLoaded", getAndShowMovie());
+  document.addEventListener("DOMContentLoaded", () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const movieId = urlParams.get("id");
+
+    if (!movieId) {
+      console.error("Movie ID is missing in the URL");
+      return;
+    }
+    sessionStorage.setItem("movie_id", movieId);
+    getAndShowMovie(movieId);
+  });
 }
