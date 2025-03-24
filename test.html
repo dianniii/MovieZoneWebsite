@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Let's test</h1>
+    <div class="movie" data-id="27205" id="movie">
+      <h2 class="subtitle">Inception</h2>
+      <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iste minima
+        enim fugit eum. Temporibus, asperiores! Nemo, harum quod. Vel distinctio
+        quisquam ad rerum odio! Corporis eligendi ex dolorum nemo totam.
+      </p>
+    </div>
+    <script>
+      document.getElementById("movie").addEventListener("click", (evt) => {
+        const movieElem = event.target.closest(".movie");
+        const movie_id = movieElem.getAttribute("data-id");
+        window.location.href = `movie.html?id=${movie_id}`;
+      });
+    </script>
+  </body>
+</html>

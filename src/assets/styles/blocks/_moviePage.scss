@@ -3,11 +3,10 @@ body {
   color: white;
 }
 
-.main {
+.full-movie {
   margin: 80px auto;
   width: 83%;
-}
-.full-movie {
+
   // styles for banner
   &__banner {
     margin-bottom: 50px;
@@ -26,7 +25,7 @@ body {
         #141414 0%,
         rgba(20, 20, 20, 0) 100%
       ),
-      url("https://image.tmdb.org/t/p/original/vL5LR6WdxWPjLPFRLe133jXWsh5.jpg");
+      url("./assets/images/defaultMovieBG2.jpg");
     background-color: lightgray;
     background-position: top center;
     background-size: cover;
@@ -104,7 +103,7 @@ body {
     color: #999;
   }
 
-  &__cast--hidden {
+  &__feature-value--hidden {
     display: none;
   }
 
@@ -120,20 +119,25 @@ body {
     border-radius: 14px;
   }
 
-  &__link-item {
+  // &__link-item {
+  //   width: 50px;
+  //   height: 40px;
+  // }
+
+  &__links {
+    display: flex;
+    gap: 15px;
+  }
+
+  &__link {
+    display: inline-block;
     width: 50px;
     height: 40px;
   }
 
-  &__link {
-    display: block;
-    width: 100%;
-    height: 100%;
-  }
-
   &__link-icon {
     width: 100%;
-    height: auto;
+    height: 100%;
     object-fit: contain;
   }
 
@@ -143,4 +147,9 @@ body {
     text-decoration: underline;
     color: inherit;
   }
+}
+
+.error-msg {
+  text-align: center;
+  font-size: 70px;
 }
