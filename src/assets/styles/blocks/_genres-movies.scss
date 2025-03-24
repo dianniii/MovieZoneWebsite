@@ -1,22 +1,22 @@
 .main{
-    background-color: #1A1A1A;
+    background-color: $light-black;
     padding: 50px 40px;
 }
 .movies-list {
     padding: 20px;
     &__container {
         margin-bottom: 70px;
-        position: relative; /* Позволяет заголовку позиционироваться относительно контейнера */
+        position: relative; 
     }
 
     &__title {
-        font-size: 24px;
-        font-weight: bold;
+        @include montserrat-800-genreTitle;
+        font-weight: 600;
         margin-bottom: 30px;
-        position: sticky; /* Заголовок остается фиксированным относительно контейнера */
-        top: 0; /* Фиксированная позиция сверху контейнера */
-        color: #FFFFFF;
-        z-index: 10; /* Приоритет над контентом */
+        position: sticky; 
+        top: 0; 
+        color: $textColor;
+        z-index: 10; 
     }
 
     &__scrollable {
@@ -28,17 +28,44 @@
         padding-bottom: 10px;
         scrollbar-width: none;
     }
+    &__info {
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.6); 
+        color: $textColor;
+        text-align: center;
+        padding: 5px;
+        border-radius: 0 0 5px 5px;
+    }
+    &__info-title {
+        margin: 0;
+        @include montserrat-500-generalText;
+    }
+
+    &__info-year {
+        margin: 0;
+        @include montserrat-500-generalText;
+    }
 
     &__movie {
         flex: 0 0 auto;
         width: 244px;
         height: 280px;
+        position: relative;
     }
-
+}   
     .img {
         width: 100%;
         height: 100%;
         object-fit: cover;
         border-radius: 5px;
+        position: relative;
+        display: block; 
+        background-color: $light-black; // Задний фон для рамки
+        border-radius: 10px; // 
+        padding: 20px; // Расстояние между картинкой и рамкой
+        box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5); // Тень для объёмности
     }
-}
+
