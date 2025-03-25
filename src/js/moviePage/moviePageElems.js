@@ -1,9 +1,7 @@
 import {
   movieBlockName,
   classesBanner,
-  likeIconPath,
-  addIconPath,
-  idS,
+  castIds,
   classesInfo,
   tmbdUrl,
   TMBDIconPath,
@@ -12,11 +10,12 @@ import {
 
 import {
   createElementWithProps,
-  createButtonWithIcon,
   createListElem,
   createLinkWithIcon,
   getMovieId,
 } from "./movieUtils";
+
+import { createControlBarElem } from "./createControlBar";
 
 export function createMovieBannerElem(movieDescription) {
   const bannerElem = createElementWithProps("div", `${movieBlockName}banner`);
@@ -48,33 +47,6 @@ function createTitleBannerElem(movieDescription) {
   );
   titleElem.setAttribute("data-id", movieDescription.id);
   return titleElem;
-}
-
-function createControlBarElem() {
-  const controlBarElem = createElementWithProps(
-    "div",
-    classesBanner.controlBar
-  );
-
-  const likeBtnElem = createButtonWithIcon(
-    idS.likeBtnId,
-    classesBanner.button,
-    classesBanner.icon,
-    likeIconPath,
-    "like icon"
-  );
-
-  const addBtnElem = createButtonWithIcon(
-    idS.addBtnId,
-    classesBanner.button,
-    classesBanner.icon,
-    addIconPath,
-    "plus icon"
-  );
-
-  controlBarElem.append(likeBtnElem, addBtnElem);
-
-  return controlBarElem;
 }
 
 export function createInfoBlock(movieDescription) {
@@ -156,13 +128,13 @@ function createCastElem(movieDescription) {
     const hiddenCastElem = createElementWithProps(
       "span",
       classesInfo.hiddenCast,
-      idS.hiddenCastPart,
+      castIds.hiddenCastPart,
       secondPart + " "
     );
     const castBtn = createElementWithProps(
       "button",
       classesInfo.castBtn,
-      idS.castBtn,
+      castIds.castBtn,
       "see more..."
     );
     parElem.append(shownCastElem, hiddenCastElem, castBtn);
