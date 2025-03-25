@@ -8,14 +8,18 @@
     <title>Document</title>
   </head>
   <body>
+    <!-- exmplae container на страницах не используем, берем только control bar. Контейнер здесь нужен для тестов -->
     <div class="example-container" id="pasteTo">
-      <!-- <div class="control-bar">
+      <div class="control-bar">
         <button class="control-bar__btn" id="likeMovieBtn">
           <img
             src="./public/icons/likeIcon.svg"
             alt="Like icon"
             class="control-bar__icon"
           />
+          <span class="control-bar__tooltip" id="likeTooltip"
+            >Add to Watched</span
+          >
         </button>
         <button class="control-bar__btn" id="addMovieBtn">
           <img
@@ -23,9 +27,12 @@
             alt="plus icon"
             class="control-bar__icon"
           />
+          <span class="control-bar__tooltip" id="addTooltip"
+            >Add to WatchList</span
+          >
         </button>
-      </div> -->
+      </div>
     </div>
-    <script type="module" src="./src/js/moviePage/createControlBar.js"></script>
+    <!-- <script type="module" src="./src/js/moviePage/createControlBar.js"></script> -->
   </body>
 </html>
