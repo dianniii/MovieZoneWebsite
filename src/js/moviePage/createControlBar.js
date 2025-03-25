@@ -1,18 +1,17 @@
 import { controlBarIconPaths, classesControlBar } from "./movieVars";
+import { isMovieStored } from "../localStorage";
 
-import {
-  createElementWithProps,
-  createButtonWithIcon,
-  isMovieStored,
-} from "./movieUtils";
+import { createElementWithProps, createButtonWithIcon } from "./movieUtils";
 
 export function createControlBarElem(movieData) {
+  // test();
   const controlBarElem = createElementWithProps(
     "div",
     classesControlBar.controlBar
   );
-  //проверить есть ли в localStorage в watched этот фильм (по movie_id)
-  const watched = isMovieStored(movieData.id, "favorite");
+
+  const watched = isMovieStored(movieData.id, "favorites");
+
   const favIconPath = watched
     ? controlBarIconPaths.dislikeIcon
     : controlBarIconPaths.likeIcon;
@@ -55,3 +54,11 @@ function createBtnWitTip(fav = true, iconPath, tooltipText) {
   btn.append(tooltip);
   return btn;
 }
+
+// function test() {
+// const favorites = [{ id: "27205" }];
+// const watch = [{ id: "27205" }];
+// window.localStorage.setItem("favorites", JSON.stringify(favorites));
+// window.localStorage.setItem("watchlist", JSON.stringify(watch));
+// window.localStorage.clear();
+// }
