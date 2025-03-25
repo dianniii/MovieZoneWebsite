@@ -115,19 +115,11 @@ function createDirectorElem(movieDescription) {
 
   const featureElem = createElementWithProps("div", classesInfo.feature);
 
-  const subtitleElem = createElementWithProps(
-    "h2",
-    classesInfo.featureName,
-    false,
+  const subtitleElem = createFeatureNameElem(
     directors.length > 1 ? "Directors:" : "Director:"
   );
 
-  const parElem = createElementWithProps(
-    "p",
-    classesInfo.featureVal,
-    false,
-    directors.join(", ")
-  );
+  const parElem = createFeatureValElem(false, directors.join(", "));
 
   featureElem.append(subtitleElem, parElem);
   return featureElem;
@@ -138,13 +130,9 @@ function createCastElem(movieDescription) {
   if (movieDescription.cast && movieDescription.cast.length)
     cast = movieDescription.cast;
   const featureElem = createElementWithProps("div", classesInfo.feature);
-  const subtitleElem = createElementWithProps(
-    "h2",
-    classesInfo.featureName,
-    false,
-    "Cast:"
-  );
-  const parElem = createElementWithProps("p", classesInfo.featureVal, false);
+  const subtitleElem = createFeatureNameElem("Cast:");
+  const parElem = createFeatureValElem();
+
   if (cast.length > 5) {
     const [firstPart, secondPart] = splitAndJoinCastArr(cast);
     const shownCastElem = createElementWithProps(
@@ -184,30 +172,17 @@ function splitAndJoinCastArr(castArr) {
 function createDescriptionElem(movieDescription) {
   const description = movieDescription.overview || "Unknown";
   const featureElem = createElementWithProps("div", classesInfo.feature);
-  const subtitleElem = createElementWithProps(
-    "h2",
-    classesInfo.featureName,
-    false,
-    "Description:"
-  );
-  const parElem = createElementWithProps(
-    "p",
-    classesInfo.featureVal,
-    false,
-    description
-  );
+  const subtitleElem = createFeatureNameElem("Description:");
+
+  const parElem = createFeatureValElem(false, description);
+
   featureElem.append(subtitleElem, parElem);
   return featureElem;
 }
 
 function createGenresElem(movieDescription) {
   const featureElem = createElementWithProps("div", classesInfo.feature);
-  const subtitleElem = createElementWithProps(
-    "h2",
-    classesInfo.featureName,
-    false,
-    "Genres: "
-  );
+  const subtitleElem = createFeatureNameElem("Genres:");
 
   let genres = ["Unknown"];
   if (movieDescription.genres && movieDescription.genres.length) {
@@ -227,8 +202,9 @@ function getGenreNames(genres) {
 
 function createLinksElem(movieDescription) {
   const featureElem = createElementWithProps("div", classesInfo.feature);
-  const subtitleElem = createElementWithProps("h2", classesInfo.featureName);
-  const parElem = createElementWithProps("p", classesInfo.links);
+  const subtitleElem = createFeatureNameElem("Links:");
+
+  const parElem = createFeatureValElem(true, false);
   const tmbdLinkElem = createLinkWithIcon(
     classesInfo.link,
     classesInfo.linkIcon,
@@ -273,20 +249,11 @@ function createFactsSection(movieDescription) {
 
 function createYearElem(movieDescription) {
   const featureElem = createElementWithProps("div", classesInfo.feature);
-  const subtitleElem = createElementWithProps(
-    "h2",
-    classesInfo.featureName,
-    false,
-    "Release Year:"
-  );
+  const subtitleElem = createFeatureNameElem("Release Year:");
+
   const releaseDate = movieDescription.release_date;
   const year = releaseDate ? releaseDate.slice(0, 4) : "Unknown";
-  const parElem = createElementWithProps(
-    "p",
-    classesInfo.featureVal,
-    false,
-    year
-  );
+  const parElem = createFeatureValElem(false, year);
   featureElem.append(subtitleElem, parElem);
   return featureElem;
 }
@@ -295,18 +262,13 @@ function createCountryElem(movieDescription) {
   const featureElem = createElementWithProps("div", classesInfo.feature);
   let countryArr = movieDescription.origin_country;
 
-  const subtitleElem = createElementWithProps(
-    "h2",
-    classesInfo.featureName,
-    false,
+  const subtitleElem = createFeatureNameElem(
     countryArr.length < 2 ? "Country:" : "Countries:"
   );
 
-  const parElem = createElementWithProps(
-    "p",
-    classesInfo.featureVal,
+  const parElem = createFeatureValElem(
     false,
-    countryArr.length ? countryArr.join(" ") : "Unknown"
+    countryArr.length ? countryArr.join(", ") : "Unknown"
   );
 
   featureElem.append(subtitleElem, parElem);
@@ -318,12 +280,11 @@ function createLanguageElem(movieDescription) {
 
   const languages = movieDescription.spoken_languages;
   const languageNamesArr = getLanguageNames(languages);
-  const subtitleElem = createElementWithProps(
-    "h2",
-    classesInfo.featureName,
-    false,
+
+  const subtitleElem = createFeatureNameElem(
     languageNamesArr.length < 2 ? "Language:" : "Languages:"
   );
+
   const listElem = createListElem(languageNamesArr);
   featureElem.append(subtitleElem, listElem);
   return featureElem;
@@ -337,17 +298,10 @@ function getLanguageNames(languages) {
 
 function createDurationElem(movieDescription) {
   const featureElem = createElementWithProps("div", classesInfo.feature);
-  const subtitleElem = createElementWithProps(
-    "h2",
-    classesInfo.featureName,
-    false,
-    "Duration:"
-  );
+  const subtitleElem = createFeatureNameElem("Duration:");
   const duration = movieDescription.runtime;
 
-  const parElem = createElementWithProps(
-    "p",
-    classesInfo.featureVal,
+  const parElem = createFeatureValElem(
     false,
     duration ? duration + " min." : "Unknown"
   );
@@ -357,19 +311,25 @@ function createDurationElem(movieDescription) {
 
 function createRatingElem(movieDescription) {
   const featureElem = createElementWithProps("div", classesInfo.feature);
-  const subtitleElem = createElementWithProps(
-    "h2",
-    classesInfo.featureName,
-    false,
-    "TMBD Rating:"
-  );
+  const subtitleElem = createFeatureNameElem("TMBD Rating:");
+
   const rating = movieDescription.vote_average;
-  const parElem = createElementWithProps(
-    "p",
-    classesInfo.featureVal,
+  const parElem = createFeatureValElem(
     false,
     rating ? rating.toFixed(1) : "Unknown"
   );
   featureElem.append(subtitleElem, parElem);
   return featureElem;
+}
+
+function createFeatureNameElem(text) {
+  return createElementWithProps("h2", classesInfo.featureName, false, text);
+}
+
+function createFeatureValElem(ifLinks = false, text = false) {
+  if (text) {
+    return createElementWithProps("p", classesInfo.featureVal, false, text);
+  }
+  const classNames = ifLinks ? classesInfo.links : classesInfo.featureVal;
+  return createElementWithProps("p", classNames);
 }
