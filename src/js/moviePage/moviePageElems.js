@@ -186,18 +186,12 @@ function createGenresElem(movieDescription) {
 
   let genres = ["Unknown"];
   if (movieDescription.genres && movieDescription.genres.length) {
-    genres = getGenreNames(movieDescription.genres);
+    genres = extractNames(movieDescription.genres, "name");
   }
 
   const genreLstElem = createListElem(genres);
   featureElem.append(subtitleElem, genreLstElem);
   return featureElem;
-}
-
-function getGenreNames(genres) {
-  const genreNames = [];
-  genres.forEach((genre) => genreNames.push(genre.name));
-  return genreNames;
 }
 
 function createLinksElem(movieDescription) {
@@ -278,8 +272,10 @@ function createCountryElem(movieDescription) {
 function createLanguageElem(movieDescription) {
   const featureElem = createElementWithProps("div", classesInfo.feature);
 
-  const languages = movieDescription.spoken_languages;
-  const languageNamesArr = getLanguageNames(languages);
+  const languageNamesArr = extractNames(
+    movieDescription.spoken_languages,
+    "english_name"
+  );
 
   const subtitleElem = createFeatureNameElem(
     languageNamesArr.length < 2 ? "Language:" : "Languages:"
@@ -288,12 +284,6 @@ function createLanguageElem(movieDescription) {
   const listElem = createListElem(languageNamesArr);
   featureElem.append(subtitleElem, listElem);
   return featureElem;
-}
-
-function getLanguageNames(languages) {
-  const languageNames = [];
-  languages.forEach((language) => languageNames.push(language.english_name));
-  return languageNames;
 }
 
 function createDurationElem(movieDescription) {
@@ -332,4 +322,8 @@ function createFeatureValElem(ifLinks = false, text = false) {
   }
   const classNames = ifLinks ? classesInfo.links : classesInfo.featureVal;
   return createElementWithProps("p", classNames);
+}
+
+function extractNames(arr, key) {
+  return arr.map((item) => item[key]);
 }
