@@ -50,10 +50,19 @@ function createImgElem(className, src, alt) {
   return imgElem;
 }
 
-export function getMovieId() {
-  return sessionStorage.getItem("movie_id");
-}
+// export function getMovieId() {
+//   return sessionStorage.getItem("movie_id");
+// }
 
 export function extractNames(arr, key) {
   return arr.map((item) => item[key]);
+}
+
+export function isMovieStored(movie_id, propName) {
+  const moviesStored = JSON.parse(window.localStorage.getItem(propName)) || [];
+  return moviesStored.some((movie) => movie.id === movie_id);
+}
+
+export function createControlBarBtn() {
+  return;
 }

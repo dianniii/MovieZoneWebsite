@@ -10,10 +10,15 @@ export const basePosterUrl =
   "https://media.themoviedb.org/t/p/w220_and_h330_face";
 
 export const movieBlockName = "full-movie__";
-export const likeIconPath = "./public/icons/likeIcon.svg";
-export const addIconPath = "./public/icons/plusIcon.svg";
-export const TMBDIconPath = "./public/icons/TMBD.svg";
-export const filmIconPath = "./public/icons/filmIcon.svg";
+
+export const iconPaths = {
+  likeIcon: "./public/icons/likeIcon.svg",
+  dislikeIcon: "./public/icons/dislikeIcon.svg",
+  addIcon: "./public/icons/plusIcon.svg",
+  removeIcon: "./public/icons/tickIcon.svg",
+  TMBDIcon: "./public/icons/TMBD.svg",
+  filmIcon: "./public/icons/filmIcon.svg",
+};
 
 export const propertyNames = [
   "id",
