@@ -102,7 +102,7 @@ export function loadMoviePage() {
       console.error("Movie ID is missing in the URL");
       return;
     }
-    sessionStorage.setItem("movie_id", movieId);
+    // sessionStorage.setItem("movie_id", movieId);
     getAndShowMovie(movieId);
   });
 }
