@@ -127,39 +127,51 @@ function createDirectorElem(movieDescription) {
 }
 
 function createCastElem(movieDescription) {
-  let cast = ["Unknown"];
-  if (movieDescription.cast && movieDescription.cast.length)
-    cast = movieDescription.cast;
+  const cast = getCastList(movieDescription);
+
   const featureElem = createElementWithProps("div", classesInfo.feature);
   const subtitleElem = createFeatureNameElem("Cast:");
+  const parElem = createCastContent(cast);
+  featureElem.append(subtitleElem, parElem);
+  return featureElem;
+}
+
+function getCastList(movieDescription) {
+  return movieDescription.cast && movieDescription.cast.length
+    ? movieDescription.cast
+    : ["Unknown"];
+}
+
+function createCastContent(cast) {
   const parElem = createFeatureValElem();
 
   if (cast.length > 5) {
     const [firstPart, secondPart] = splitAndJoinCastArr(cast);
-    const shownCastElem = createElementWithProps(
-      "span",
-      classesInfo.shownCast,
-      false,
-      firstPart + ", "
+    parElem.append(
+      createElementWithProps(
+        "span",
+        classesInfo.shownCast,
+        false,
+        firstPart + ", "
+      ),
+      createElementWithProps(
+        "span",
+        classesInfo.hiddenCast,
+        idS.hiddenCastPart,
+        secondPart + " "
+      ),
+      createElementWithProps(
+        "button",
+        classesInfo.castBtn,
+        idS.castBtn,
+        "see more..."
+      )
     );
-    const hiddenCastElem = createElementWithProps(
-      "span",
-      classesInfo.hiddenCast,
-      idS.hiddenCastPart,
-      secondPart + " "
-    );
-    const castBtn = createElementWithProps(
-      "button",
-      classesInfo.castBtn,
-      idS.castBtn,
-      "see more..."
-    );
-    parElem.append(shownCastElem, hiddenCastElem, castBtn);
   } else {
     parElem.textContent = cast.join(", ");
   }
-  featureElem.append(subtitleElem, parElem);
-  return featureElem;
+
+  return parElem;
 }
 
 function splitAndJoinCastArr(castArr) {
