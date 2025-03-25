@@ -54,12 +54,15 @@ export const classesBanner = {
 export const classesControlBar = {
   controlBar: "control-bar",
   button: "control-bar__btn",
+  tooltip: "control-bar__tooltip",
   icon: "control-bar__icon",
 };
 
 export const controlBarIds = {
   likeBtnId: "likeMovieBtn",
   addBtnId: "addMovieBtn",
+  watchTooltipId: "watchedTooltip",
+  watchListTooltipId: "WatchListTooltip",
 };
 
 export const lstClasses = {
