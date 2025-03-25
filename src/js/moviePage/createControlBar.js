@@ -1,4 +1,4 @@
-import { iconPaths, classesControlBar, controlBarIds } from "./movieVars";
+import { controlBarIconPaths, classesControlBar } from "./movieVars";
 
 import {
   createElementWithProps,
@@ -12,29 +12,46 @@ export function createControlBarElem(movieData) {
     classesControlBar.controlBar
   );
   //проверить есть ли в localStorage в watched этот фильм (по movie_id)
-  const watched = isMovieStored(movieData.id, "watched");
-
-  // const watched = isMovieWatched
-  const watchedBtnElem = createButtonWithIcon(
-    controlBarIds.likeBtnId,
-    classesControlBar.button,
-    classesControlBar.icon,
-    watched ? iconPaths.dislikeIcon : iconPaths.likeIcon,
-    watched ? "dislike icon" : "like icon"
+  const watched = isMovieStored(movieData.id, "favorite");
+  const favIconPath = watched
+    ? controlBarIconPaths.dislikeIcon
+    : controlBarIconPaths.likeIcon;
+  const favBtnElem = createBtnWitTip(
+    true,
+    favIconPath,
+    watched ? "remove from favorites" : "add to favorites"
   );
 
   //проверить есть ли в localStorage в watchlist этот фильм (по movie_id)
   const inWatchList = isMovieStored(movieData.id, "watchlist");
-
-  const watchListBtnElem = createButtonWithIcon(
-    controlBarIds.addBtnId,
-    classesControlBar.button,
-    classesControlBar.icon,
-    inWatchList ? iconPaths.removeIcon : iconPaths.addIcon,
-    inWatchList ? "tick icon" : "plus icon"
+  const watchlstIconPath = inWatchList
+    ? controlBarIconPaths.removeIcon
+    : controlBarIconPaths.addIcon;
+  const watchListBtnElem = createBtnWitTip(
+    false,
+    watchlstIconPath,
+    inWatchList ? "remove from watchlist" : "add to watchlist"
   );
 
-  controlBarElem.append(watchedBtnElem, watchListBtnElem);
-
+  controlBarElem.append(favBtnElem, watchListBtnElem);
   return controlBarElem;
+}
+
+function createBtnWitTip(fav = true, iconPath, tooltipText) {
+  const btn = createButtonWithIcon(
+    fav ? classesControlBar.btnFav : classesControlBar.btnWatchlst,
+    classesControlBar.icon,
+    iconPath,
+    fav ? "like icon" : "plus icon"
+  );
+
+  const tooltip = createElementWithProps(
+    "span",
+    fav ? classesControlBar.tooltipFav : classesControlBar.tooltipWatchLst,
+    false,
+    tooltipText
+  );
+
+  btn.append(tooltip);
+  return btn;
 }
