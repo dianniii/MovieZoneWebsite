@@ -129,13 +129,13 @@ function createCastContent(cast) {
       createElementWithProps(
         "span",
         classesInfo.hiddenCast,
-        idS.hiddenCastPart,
+        castIds.hiddenCastPart,
         secondPart + " "
       ),
       createElementWithProps(
         "button",
         classesInfo.castBtn,
-        idS.castBtn,
+        castIds.castBtn,
         "see more..."
       )
     );
