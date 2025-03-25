@@ -81,3 +81,10 @@
   font-size: $font-size-basic;
   font-style: normal;
 }
+
+@mixin font-tooltips {
+  @include font-base;
+  font-weight: $font-weight-400;
+  font-size: $font-size-toolTips;
+  font-style: normal;
+}

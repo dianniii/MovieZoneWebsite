@@ -33,9 +33,8 @@
     border: 1px solid $mediun-grey;
     border-radius: $borderRadiusMain;
     background-color: $dark-black;
-    @include font-basic;
+    @include font-tooltips;
     color: $textColor;
-    font-size: $font-size-toolTips;
   }
 
   &__tooltip::after {
@@ -43,7 +42,7 @@
     content: "";
     top: 100%;
     left: 10%;
-    border-top: 5px solid $mediun-grey;
+    border-top: 5px solid $dark-black;
     border-right: 5px solid transparent;
     border-bottom: 5px solid transparent;
     border-left: 5px solid transparent;
