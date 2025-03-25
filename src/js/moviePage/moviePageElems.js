@@ -231,7 +231,7 @@ function createLinksContent(movieDescription) {
     const homepageLinkElem = createLinkWithIcon(
       classesInfo.link,
       classesInfo.linkIcon,
-      homepageUrl,
+      movieDescription.homepage,
       filmIconPath,
       "film icon"
     );
