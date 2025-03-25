@@ -211,6 +211,12 @@ function createLinksElem(movieDescription) {
   const featureElem = createElementWithProps("div", classesInfo.feature);
   const subtitleElem = createFeatureNameElem("Links:");
 
+  const parElem = createLinksContent(movieDescription);
+  featureElem.append(subtitleElem, parElem);
+  return featureElem;
+}
+
+function createLinksContent(movieDescription) {
   const parElem = createFeatureValElem(true, false);
   const tmbdLinkElem = createLinkWithIcon(
     classesInfo.link,
@@ -220,8 +226,8 @@ function createLinksElem(movieDescription) {
     "TMBD icon"
   );
   parElem.append(tmbdLinkElem);
-  const homepageUrl = movieDescription.homepage;
-  if (homepageUrl) {
+
+  if (movieDescription.homepage) {
     const homepageLinkElem = createLinkWithIcon(
       classesInfo.link,
       classesInfo.linkIcon,
@@ -231,8 +237,7 @@ function createLinksElem(movieDescription) {
     );
     parElem.append(homepageLinkElem);
   }
-  featureElem.append(subtitleElem, parElem);
-  return featureElem;
+  return parElem;
 }
 
 function createFactsSection(movieDescription) {
