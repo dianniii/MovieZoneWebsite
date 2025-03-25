@@ -12,7 +12,7 @@ export function createElementWithProps(
     ? className.forEach((name) => element.classList.add(name))
     : element.classList.add(className);
 
-  id && element.setAttribute("id", id); //&& возвращает первое ложное или, если оба истины, последнее истинное
+  id && element.setAttribute("id", id); //&& возвращает первое ложное или, если оба истины, последнее истинное. То есть если id = false, то дальше код выполнятся не будет, а если истинное - то id добавится в качестве атрибута
 
   if (text) element.textContent = text;
 
@@ -54,10 +54,10 @@ export function extractNames(arr, key) {
   return arr.map((item) => item[key]);
 }
 
-export function isMovieStored(movie_id, propName) {
-  const moviesStored = JSON.parse(window.localStorage.getItem(propName)) || [];
-  return moviesStored.some((movie) => movie.id === movie_id);
-}
+// export function isMovieStored(movie_id, propName) {
+//   const moviesStored = JSON.parse(window.localStorage.getItem(propName)) || [];
+//   return moviesStored.some((movie) => movie.id === movie_id);
+// }
 
 export function createControlBarBtn() {
   return;

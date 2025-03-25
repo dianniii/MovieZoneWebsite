@@ -12,8 +12,8 @@ export const basePosterUrl =
 export const movieBlockName = "full-movie__";
 
 export const iconPaths = {
-  TMBDIcon: "./public/icons/TMBD.svg",
-  filmIcon: "./public/icons/filmIcon.svg",
+  TMBDIcon: "/icons/TMBD.svg",
+  filmIcon: "/icons/filmIcon.svg",
 };
 
 export const propertyNames = [
@@ -57,10 +57,10 @@ export const classesControlBar = {
 };
 
 export const controlBarIconPaths = {
-  likeIcon: "./public/icons/likeIcon.svg",
-  dislikeIcon: "./public/icons/dislikeIcon.svg",
-  addIcon: "./public/icons/addIcon.svg",
-  removeIcon: "./public/icons/removeIcon.svg",
+  likeIcon: "/icons/likeIcon.svg",
+  dislikeIcon: "/icons/dislikeIcon.svg",
+  addIcon: "/icons/addIcon.svg",
+  removeIcon: "/icons/removeIcon.svg",
 };
 
 export const lstClasses = {
