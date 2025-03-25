@@ -1,4 +1,4 @@
-//стили example-container не используем
+//стили example-container не используем на своих страницах, нужны для теста, чтобы видеть подсказки
 .example-container {
   margin-top: 100px;
   margin-left: 50px;
@@ -14,8 +14,8 @@
     width: 56px;
     height: 56px;
     border-radius: 8px;
-    border: 1px solid #262626;
-    background: #0f0f0f;
+    border: 1px solid $mediun-grey;
+    background: $dark-black;
   }
 
   &__icon {
@@ -25,14 +25,14 @@
   }
 
   &__tooltip {
-    padding: 4px;
+    padding: 4px 10px;
     display: none;
     position: absolute;
     bottom: 110%;
     left: 10%;
     border: 1px solid $mediun-grey;
     border-radius: $borderRadiusMain;
-    background-color: $dark-grey;
+    background-color: $dark-black;
     @include font-basic;
     color: $textColor;
     font-size: $font-size-toolTips;
