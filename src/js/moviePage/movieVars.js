@@ -32,10 +32,7 @@ export const propertyNames = [
   "directors", // (array)
 ];
 
-export const idS = {
-  likeBtnId: "likeMovieBtn",
-  addBtnId: "addMovieBtn",
-  shownCastPart: "castMainPart",
+export const castIds = {
   hiddenCastPart: "castAdditionalPart",
   castBtn: "castMovieBtn",
 };
@@ -47,6 +44,17 @@ export const classesBanner = {
   controlBar: `${movieBlockName}control-bar`,
   button: `${movieBlockName}banner-btn`,
   icon: `${movieBlockName}banner-icon`,
+};
+
+export const classesControlBar = {
+  controlBar: "control-bar",
+  button: "control-bar__btn",
+  icon: "control-bar__icon",
+};
+
+export const controlBarIds = {
+  likeBtnId: "likeMovieBtn",
+  addBtnId: "addMovieBtn",
 };
 
 export const lstClasses = {
