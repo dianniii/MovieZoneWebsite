@@ -12,10 +12,6 @@ export const basePosterUrl =
 export const movieBlockName = "full-movie__";
 
 export const iconPaths = {
-  likeIcon: "./public/icons/likeIcon.svg",
-  dislikeIcon: "./public/icons/dislikeIcon.svg",
-  addIcon: "./public/icons/addIcon.svg",
-  removeIcon: "./public/icons/removeIcon.svg",
   TMBDIcon: "./public/icons/TMBD.svg",
   filmIcon: "./public/icons/filmIcon.svg",
 };
@@ -53,18 +49,18 @@ export const classesBanner = {
 
 export const classesControlBar = {
   controlBar: "control-bar",
-  btnWatched: ["control-bar__btn", "watched-btn"],
+  btnFav: ["control-bar__btn", "fav-btn"],
   btnWatchlst: ["control-bar__btn", "watchlst-btn"],
-  tooltipWatched: ["control-bar__tooltip", "watched-tooltip"],
+  tooltipFav: ["control-bar__tooltip", "fav-tooltip"],
   tooltipWatchLst: ["control-bar__tooltip", "watchlst-tooltip"],
   icon: "control-bar__icon",
 };
 
-export const controlBarIds = {
-  likeBtnId: "likeMovieBtn",
-  addBtnId: "addMovieBtn",
-  watchTooltipId: "watchedTooltip",
-  watchListTooltipId: "watchListTooltip",
+export const controlBarIconPaths = {
+  likeIcon: "./public/icons/likeIcon.svg",
+  dislikeIcon: "./public/icons/dislikeIcon.svg",
+  addIcon: "./public/icons/addIcon.svg",
+  removeIcon: "./public/icons/removeIcon.svg",
 };
 
 export const lstClasses = {
