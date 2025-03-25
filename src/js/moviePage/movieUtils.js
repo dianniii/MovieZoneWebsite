@@ -19,8 +19,8 @@ export function createElementWithProps(
   return element;
 }
 
-export function createButtonWithIcon(id, classBtn, classIcon, iconSrc, alt) {
-  const btn = createElementWithProps("button", classBtn, id);
+export function createButtonWithIcon(classBtn, classIcon, iconSrc, alt) {
+  const btn = createElementWithProps("button", classBtn);
   btn.append(createImgElem(classIcon, iconSrc, alt));
   return btn;
 }
@@ -49,10 +49,6 @@ function createImgElem(className, src, alt) {
   imgElem.setAttribute("alt", alt);
   return imgElem;
 }
-
-// export function getMovieId() {
-//   return sessionStorage.getItem("movie_id");
-// }
 
 export function extractNames(arr, key) {
   return arr.map((item) => item[key]);
