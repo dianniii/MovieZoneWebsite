@@ -16,6 +16,7 @@ import {
   createListElem,
   createLinkWithIcon,
   getMovieId,
+  extractNames,
 } from "./movieUtils";
 
 export function createMovieBannerElem(movieDescription) {
@@ -322,8 +323,4 @@ function createFeatureValElem(ifLinks = false, text = false) {
   }
   const classNames = ifLinks ? classesInfo.links : classesInfo.featureVal;
   return createElementWithProps("p", classNames);
-}
-
-function extractNames(arr, key) {
-  return arr.map((item) => item[key]);
 }

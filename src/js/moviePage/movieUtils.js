@@ -53,3 +53,7 @@ function createImgElem(className, src, alt) {
 export function getMovieId() {
   return sessionStorage.getItem("movie_id");
 }
+
+export function extractNames(arr, key) {
+  return arr.map((item) => item[key]);
+}
