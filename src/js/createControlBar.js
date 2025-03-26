@@ -1,7 +1,10 @@
-import { controlBarIconPaths, classesControlBar } from "./movieVars";
-import { isMovieStored } from "../localStorage";
+import { controlBarIconPaths, classesControlBar } from "./moviePage/movieVars";
+import { isMovieStored } from "./localStorage";
 
-import { createElementWithProps, createButtonWithIcon } from "./movieUtils";
+import {
+  createElementWithProps,
+  createButtonWithIcon,
+} from "./moviePage/movieUtils";
 
 export function createControlBarElem(movieData) {
   // test();
@@ -15,6 +18,7 @@ export function createControlBarElem(movieData) {
   const favIconPath = watched
     ? controlBarIconPaths.dislikeIcon
     : controlBarIconPaths.likeIcon;
+
   const favBtnElem = createBtnWitTip(
     true,
     favIconPath,
@@ -23,9 +27,11 @@ export function createControlBarElem(movieData) {
 
   //проверить есть ли в localStorage в watchlist этот фильм (по movie_id)
   const inWatchList = isMovieStored(movieData.id, "watchlist");
+
   const watchlstIconPath = inWatchList
     ? controlBarIconPaths.removeIcon
     : controlBarIconPaths.addIcon;
+
   const watchListBtnElem = createBtnWitTip(
     false,
     watchlstIconPath,
