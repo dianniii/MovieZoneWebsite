@@ -62,6 +62,7 @@ export const classesControlBar = {
   btnWatchlst: ["control-bar__btn", "watchlst-btn"],
   tooltipFav: ["control-bar__tooltip", "fav-tooltip"],
   tooltipWatchLst: ["control-bar__tooltip", "watchlst-tooltip"],
+  tooltip: "control-bar__tooltip",
   icon: "control-bar__icon",
 };
 

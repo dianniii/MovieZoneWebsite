@@ -8,15 +8,20 @@ import {
 
 import { saveShortMovieInfo } from "./moviePage/getMovieData";
 
+import { handleFavBtnClick } from "./controlBarBtnHandlers";
+
 export function createControlBarElem(movieData) {
   // test();
+  // window.localStorage.clear();
   const controlBarElem = createElementWithProps(
     "div",
     classesControlBar.controlBar
   );
-  saveShortMovieInfo(controlBarElem, saveShortMovieInfo);
+  saveShortMovieInfo(controlBarElem, movieData);
+  console.log();
 
   const favBtnElem = createFavoriteBtn(movieData);
+  favBtnElem.addEventListener("click", handleFavBtnClick);
   const watchListBtnElem = createWatchListBtn(movieData);
 
   controlBarElem.append(favBtnElem, watchListBtnElem);
@@ -25,17 +30,18 @@ export function createControlBarElem(movieData) {
 }
 
 function createFavoriteBtn(movieData) {
-  const watched = isMovieStored(movieData.id, "favorites");
+  const favorite = isMovieStored(movieData.id, "favorites");
 
-  const favIconPath = watched
+  const favIconPath = favorite
     ? controlBarIconPaths.dislikeIcon
     : controlBarIconPaths.likeIcon;
 
   const favBtnElem = createBtnWitTip(
     true,
     favIconPath,
-    watched ? "remove from favorites" : "add to favorites"
+    favorite ? "remove from favorites" : "add to favorites"
   );
+  favBtnElem.dataset.state = favorite ? "on" : "off";
   return favBtnElem;
 }
 
@@ -51,6 +57,7 @@ function createWatchListBtn(movieData) {
     watchlstIconPath,
     inWatchList ? "remove from watchlist" : "add to watchlist"
   );
+  watchListBtnElem.dataset.state = inWatchList ? "on" : "off";
   return watchListBtnElem;
 }
 
