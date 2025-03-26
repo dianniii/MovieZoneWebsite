@@ -88,3 +88,10 @@
   font-size: $font-size-toolTips;
   font-style: normal;
 }
+
+@mixin font-main-errorMsg {
+  @include font-base;
+  font-weight: $font-weight-800;
+  font-size: $font-size-erMsg;
+  font-style: normal;
+}

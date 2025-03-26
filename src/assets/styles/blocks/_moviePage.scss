@@ -152,5 +152,5 @@ body {
 
 .error-msg {
   text-align: center;
-  font-size: 70px;
+  @include font-main-errorMsg;
 }
