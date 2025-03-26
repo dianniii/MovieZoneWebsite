@@ -5,18 +5,14 @@ import {
   basePosterUrl,
 } from "./movieVars";
 
-import { isValidUrl } from "./movieUtils";
+import { isValidUrl, getIdFromWindowLocation } from "../getCheckUrlData";
 
-import {
-  fetchMovieObj,
-  filterMovieData,
-  getMovieIdFromURL,
-} from "./getMovieData";
+import { fetchMovieObj, filterMovieData } from "./getMovieData";
 import { createMovieBannerElem, createInfoBlock } from "./createMoviePageElems";
 
 export async function loadMoviePage() {
   try {
-    const movie_id = getMovieIdFromURL();
+    const movie_id = getIdFromWindowLocation();
     const rawMovieData = await fetchMovieObj(movie_id);
 
     if (!rawMovieData) {
