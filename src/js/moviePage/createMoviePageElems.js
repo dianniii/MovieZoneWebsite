@@ -14,7 +14,9 @@ import {
   extractNames,
 } from "./movieUtils";
 
-import { createControlBarElem } from "./createControlBar";
+import { createControlBarElem } from "../createControlBar";
+
+import { toggleCastElementLength } from "./setUpMovieCastBtn";
 
 export function createMovieBannerElem(movieDescription) {
   const bannerElem = createElementWithProps("div", `${movieBlockName}banner`);
@@ -117,26 +119,26 @@ function createCastContent(cast) {
 
   if (cast.length > 5) {
     const [firstPart, secondPart] = splitAndJoinCastArr(cast);
-    parElem.append(
-      createElementWithProps(
-        "span",
-        classesInfo.shownCast,
-        false,
-        firstPart + ", "
-      ),
-      createElementWithProps(
-        "span",
-        classesInfo.hiddenCast,
-        castIds.hiddenCastPart,
-        secondPart + " "
-      ),
-      createElementWithProps(
-        "button",
-        classesInfo.castBtn,
-        castIds.castBtn,
-        "see more..."
-      )
+    const shownPart = createElementWithProps(
+      "span",
+      classesInfo.shownCast,
+      false,
+      firstPart + ", "
     );
+    const hiddenPart = createElementWithProps(
+      "span",
+      classesInfo.hiddenCast,
+      castIds.hiddenCastPart,
+      secondPart + " "
+    );
+    const btn = createElementWithProps(
+      "button",
+      classesInfo.castBtn,
+      castIds.castBtn,
+      "see more..."
+    );
+    btn.addEventListener("click", toggleCastElementLength);
+    parElem.append(shownPart, hiddenPart, btn);
   } else {
     parElem.textContent = cast.join(", ");
   }
