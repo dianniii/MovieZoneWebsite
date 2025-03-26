@@ -28,16 +28,16 @@ export function handleFavBtnClick(evt) {
   console.log(btn);
   const movieInfo = getDataSetMovieInfo(btn);
   console.log(movieInfo);
-  // const btnState = btn.dataset.state;
-  // if (btnState === "on") {
-  //   changeBtnIcon(btn, controlBarIconPaths.dislikeIcon);
-  //   changeTooltipText(btn, "add to favorites");
-  //   deleteMovieFromStorage(movieInfo.id, "favorites");
-  //   btn.dataset.state = "off";
-  // } else if (btnState === "off") {
-  //   changeBtnIcon(btn, controlBarIconPaths.likeIcon);
-  //   changeTooltipText(btn, "remove from favorites");
-  //   addMovieToStorage(movieInfo, "favorites");
-  //   btn.dataset.state = "on";
-  // }
+  const btnState = btn.dataset.state;
+  if (btnState === "on") {
+    changeBtnIcon(btn, controlBarIconPaths.dislikeIcon);
+    changeTooltipText(btn, "add to favorites");
+    deleteMovieFromStorage(movieInfo.id, "favorites");
+    btn.dataset.state = "off";
+  } else if (btnState === "off") {
+    changeBtnIcon(btn, controlBarIconPaths.likeIcon);
+    changeTooltipText(btn, "remove from favorites");
+    addMovieToStorage(movieInfo, "favorites");
+    btn.dataset.state = "on";
+  }
 }
