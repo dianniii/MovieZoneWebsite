@@ -46,11 +46,6 @@ export function filterMovieData(movieData) {
   return movieDescriptionObj;
 }
 
-export function getMovieIdFromURL() {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get("id");
-}
-
 export function makeShortMovieData(movieData) {
   const shortMovieData = {};
   const movieKeyValArr = Object.entries(movieData);
