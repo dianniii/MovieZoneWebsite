@@ -1,7 +1,5 @@
 export const movieContainer = document.getElementById("movie");
 
-export const shortMovieData = {};
-
 export const domenPartUrl = "https://movies.gila.workers.dev";
 export const pathForFullMovieDescription = "/search/movie/description?";
 

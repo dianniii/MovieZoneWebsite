@@ -51,7 +51,7 @@ export function getMovieIdFromURL() {
   return urlParams.get("id");
 }
 
-export function saveShortMovieData(movieData) {
+export function makeShortMovieData(movieData) {
   const shortMovieData = {};
   const movieKeyValArr = Object.entries(movieData);
   for (const [key, value] of movieKeyValArr) {
@@ -60,4 +60,9 @@ export function saveShortMovieData(movieData) {
     }
   }
   return shortMovieData;
+}
+
+export function saveShortMovieInfo(elem, movieData) {
+  const shortMovieData = makeShortMovieData(movieData);
+  elem.dataset.movie = JSON.stringify(shortMovieData);
 }

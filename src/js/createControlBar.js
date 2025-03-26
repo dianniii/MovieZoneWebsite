@@ -6,13 +6,25 @@ import {
   createButtonWithIcon,
 } from "./moviePage/movieUtils";
 
+import { saveShortMovieInfo } from "./moviePage/getMovieData";
+
 export function createControlBarElem(movieData) {
   // test();
   const controlBarElem = createElementWithProps(
     "div",
     classesControlBar.controlBar
   );
+  saveShortMovieInfo(controlBarElem, saveShortMovieInfo);
 
+  const favBtnElem = createFavoriteBtn(movieData);
+  const watchListBtnElem = createWatchListBtn(movieData);
+
+  controlBarElem.append(favBtnElem, watchListBtnElem);
+
+  return controlBarElem;
+}
+
+function createFavoriteBtn(movieData) {
   const watched = isMovieStored(movieData.id, "favorites");
 
   const favIconPath = watched
@@ -24,8 +36,10 @@ export function createControlBarElem(movieData) {
     favIconPath,
     watched ? "remove from favorites" : "add to favorites"
   );
+  return favBtnElem;
+}
 
-  //проверить есть ли в localStorage в watchlist этот фильм (по movie_id)
+function createWatchListBtn(movieData) {
   const inWatchList = isMovieStored(movieData.id, "watchlist");
 
   const watchlstIconPath = inWatchList
@@ -37,9 +51,7 @@ export function createControlBarElem(movieData) {
     watchlstIconPath,
     inWatchList ? "remove from watchlist" : "add to watchlist"
   );
-
-  controlBarElem.append(favBtnElem, watchListBtnElem);
-  return controlBarElem;
+  return watchListBtnElem;
 }
 
 function createBtnWitTip(fav = true, iconPath, tooltipText) {

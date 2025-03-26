@@ -25,6 +25,7 @@ export async function loadMoviePage() {
     }
 
     const movieData = filterMovieData(rawMovieData);
+
     if (!movieData) {
       showErrorMessage();
       console.warn("Movie object is empty. Cannot filter movie info");
