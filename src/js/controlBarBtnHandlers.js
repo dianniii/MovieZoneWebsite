@@ -25,15 +25,9 @@ export function handleFavBtnClick(evt) {
   const movieInfo = getDataSetMovieInfo(btn);
   const btnState = btn.dataset.state;
   if (btnState === "on") {
-    changeBtnIcon(btn, controlBarIconPaths.likeIcon);
-    changeTooltipText(btn, "add to favorites");
-    deleteMovieFromStorage(movieInfo.id, "favorites");
-    btn.dataset.state = "off";
+    turnOffBtn(btn, true, controlBarIconPaths.likeIcon, movieInfo.id);
   } else if (btnState === "off") {
-    changeBtnIcon(btn, controlBarIconPaths.dislikeIcon);
-    changeTooltipText(btn, "remove from favorites");
-    addMovieToStorage(movieInfo, "favorites");
-    btn.dataset.state = "on";
+    turnOnBtn(btn, true, controlBarIconPaths.dislikeIcon, movieInfo);
   }
 }
 
@@ -42,14 +36,25 @@ export function handleWatchlstBtnClick(evt) {
   const movieInfo = getDataSetMovieInfo(btn);
   const btnState = btn.dataset.state;
   if (btnState === "on") {
-    changeBtnIcon(btn, controlBarIconPaths.addIcon);
-    changeTooltipText(btn, "add to watchlist");
-    deleteMovieFromStorage(movieInfo.id, "watchlist");
-    btn.dataset.state = "off";
+    turnOffBtn(btn, false, controlBarIconPaths.addIcon, movieInfo.id);
   } else if (btnState === "off") {
-    changeBtnIcon(btn, controlBarIconPaths.removeIcon);
-    changeTooltipText(btn, "remove from watchlist");
-    addMovieToStorage(movieInfo, "watchlist");
-    btn.dataset.state = "on";
+    turnOnBtn(btn, false, controlBarIconPaths.removeIcon, movieInfo);
   }
+}
+
+function turnOffBtn(btn, favBtn, iconPath, movie_id) {
+  changeBtnIcon(btn, iconPath);
+  changeTooltipText(btn, favBtn ? "add to favorites" : "add to watchlist");
+  deleteMovieFromStorage(movie_id, favBtn ? "favorites" : "watchlist");
+  btn.dataset.state = "off";
+}
+
+function turnOnBtn(btn, favBtn, iconPath, movieInfo) {
+  changeBtnIcon(btn, iconPath);
+  changeTooltipText(
+    btn,
+    favBtn ? "remove from favorites" : "remove from watchlist"
+  );
+  addMovieToStorage(movieInfo, favBtn ? "favorites" : "watchlist");
+  btn.dataset.state = "on";
 }
