@@ -1,0 +1,79 @@
+.footer{
+    background-color: black;
+    color: white;
+}
+
+.footer__container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    padding: 100px 162px 10px 162px;
+}
+
+.footer__logo{
+display: grid;
+grid-row: 1;
+align-content: end;
+}
+
+.footer__menu{
+    display: grid;
+    grid-row: 1;
+    align-content: center;
+}
+
+.footer__menu-link{
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    justify-self: center;
+    color:white;
+}
+.footer__contact{
+    display: grid;
+    grid-column: 5;
+    grid-row: 2;
+}
+    
+.footer__social-list{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    gap: 20px;
+    list-style-type: none;
+}
+
+.footer__policy{
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    padding: 50px 162px 40px 162px;
+}
+
+.footer__rights{
+    display: grid;
+    grid-column: 1/4;
+  
+    }
+
+.footer__terms{
+    display: grid;
+    grid-column: 7;
+    }
+
+.footer__privacy-policy{
+    display: grid;
+    grid-column: 8;
+    }
+
+.footer__cookie-policy{
+    display: grid;
+    grid-column: 9;
+    }
+
+.footer__policy-link{
+    text-decoration: none;
+    color: white;
+    justify-content: center;
+}
