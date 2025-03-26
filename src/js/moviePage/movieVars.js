@@ -1,5 +1,7 @@
 export const movieContainer = document.getElementById("movie");
 
+export const shortMovieData = {};
+
 export const domenPartUrl = "https://movies.gila.workers.dev";
 export const pathForFullMovieDescription = "/search/movie/description?";
 
@@ -16,11 +18,12 @@ export const iconPaths = {
   filmIcon: "/icons/filmIcon.svg",
 };
 
-export const propertyNames = [
+export const fullPropertylist = [
   "id",
   "title",
   "tagline",
   "backdrop_path",
+  "poster_path",
   "genres", // (array)
   "homepage",
   "origin_country", // (array)
@@ -31,6 +34,14 @@ export const propertyNames = [
   "runtime",
   "cast", // (array)
   "directors", // (array)
+];
+
+export const shortPropertyList = [
+  "id",
+  "title",
+  "poster_path",
+  "overview",
+  "release_date",
 ];
 
 export const castIds = {

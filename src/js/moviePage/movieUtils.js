@@ -54,11 +54,11 @@ export function extractNames(arr, key) {
   return arr.map((item) => item[key]);
 }
 
-// export function isMovieStored(movie_id, propName) {
-//   const moviesStored = JSON.parse(window.localStorage.getItem(propName)) || [];
-//   return moviesStored.some((movie) => movie.id === movie_id);
-// }
-
-export function createControlBarBtn() {
-  return;
+export function isValidUrl(url) {
+  try {
+    new URL(url);
+    return true;
+  } catch (e) {
+    return false;
+  }
 }
