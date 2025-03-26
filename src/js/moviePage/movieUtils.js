@@ -53,12 +53,3 @@ function createImgElem(className, src, alt) {
 export function extractNames(arr, key) {
   return arr.map((item) => item[key]);
 }
-
-export function isValidUrl(url) {
-  try {
-    new URL(url);
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
