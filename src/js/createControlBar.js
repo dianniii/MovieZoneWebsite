@@ -8,7 +8,10 @@ import {
 
 import { saveShortMovieInfo } from "./moviePage/getMovieData";
 
-import { handleFavBtnClick } from "./controlBarBtnHandlers";
+import {
+  handleFavBtnClick,
+  handleWatchlstBtnClick,
+} from "./controlBarBtnHandlers";
 
 export function createControlBarElem(movieData) {
   // test();
@@ -18,14 +21,14 @@ export function createControlBarElem(movieData) {
     classesControlBar.controlBar
   );
   saveShortMovieInfo(controlBarElem, movieData);
-  console.log();
 
   const favBtnElem = createFavoriteBtn(movieData);
   favBtnElem.addEventListener("click", handleFavBtnClick);
+
   const watchListBtnElem = createWatchListBtn(movieData);
+  watchListBtnElem.addEventListener("click", handleWatchlstBtnClick);
 
   controlBarElem.append(favBtnElem, watchListBtnElem);
-
   return controlBarElem;
 }
 
