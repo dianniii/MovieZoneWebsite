@@ -1,7 +1,8 @@
 import {
   domenPartUrl,
   pathForFullMovieDescription,
-  propertyNames,
+  fullPropertylist,
+  shortPropertyList,
 } from "./movieVars";
 
 export async function fetchMovieObj(movie_id) {
@@ -37,8 +38,26 @@ export function filterMovieData(movieData) {
   }
 
   const movieDescriptionObj = Object.fromEntries(
-    Object.entries(movieData).filter((arr) => propertyNames.includes(arr[0]))
+    Object.entries(movieData).filter(([key, value]) =>
+      fullPropertylist.includes(key)
+    )
   );
 
   return movieDescriptionObj;
+}
+
+export function getMovieIdFromURL() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get("id");
+}
+
+export function saveShortMovieData(movieData) {
+  const shortMovieData = {};
+  const movieKeyValArr = Object.entries(movieData);
+  for (const [key, value] of movieKeyValArr) {
+    if (shortPropertyList.includes(key)) {
+      shortMovieData[key] = value;
+    }
+  }
+  return shortMovieData;
 }
