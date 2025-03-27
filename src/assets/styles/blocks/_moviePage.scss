@@ -12,7 +12,7 @@ body {
     margin-bottom: 50px;
     padding-top: 50px;
     padding-bottom: 20px;
-    @include padding-left-right;
+    @include margins-left-right;
     height: 20vh;
     min-height: 700px;
     display: flex;
