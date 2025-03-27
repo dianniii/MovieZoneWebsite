@@ -8,6 +8,9 @@ if (getPathFromWindowLocation() === "/movie.html") {
   document.addEventListener("DOMContentLoaded", loadMoviePage);
 }
 
+import {searchMedia} from ".js/header.js";
+import {searchHandle} from ".js/header.js";
+
 // import javascriptLogo from "./javascript.svg";
 // import viteLogo from "/vite.svg";
 // import { setupCounter } from "./counter.js";
