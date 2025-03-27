@@ -17,12 +17,7 @@ export async function fetchMovieObj(movie_id) {
       throw new Error("HTTP Error: " + response.status);
     }
 
-    let movieData;
-    try {
-      movieData = await response.json();
-    } catch (jsonError) {
-      throw new Error("Cannot parse JSON: " + jsonError.message);
-    }
+    const movieData = await response.json();
 
     return movieData;
   } catch (error) {
