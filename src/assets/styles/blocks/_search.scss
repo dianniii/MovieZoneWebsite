@@ -1,0 +1,54 @@
+.movies{
+    @include margins-left-right;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: $light-black;
+    color: $textColor;
+}
+
+.movie-card{
+    margin-top: 30px;
+    width: 75vw;
+    padding: 20px;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    background-color: $dark-grey;
+    height: 350px;
+    font-family: $font-family;
+    font-size: $font-size-text;
+    line-height: 140%;
+    border-radius: $borderRadiusMain;
+}
+
+.movieTitle{
+    font-size: $font-size-h2;
+}
+
+.poster-container{
+width: 35%;
+
+    &.poster{
+        object-fit: cover;
+        width: 220px;
+        height: 330px;
+    }
+}
+
+.text-container{
+    width: 65%;
+    
+}
+
+.movie-info{
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.errorMessage{
+    padding-top: 50px;
+    font-size: 70px;
+}
