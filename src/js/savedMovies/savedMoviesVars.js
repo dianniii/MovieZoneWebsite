@@ -1,12 +1,11 @@
-const movieContainerClass = "movie__";
-const savedMoviesClss = {
-  movieContainer: movieContainerClass,
+export const movieContainerClass = "movie-card__";
+export const savedMoviesClss = {
+  posterCont: `${movieContainerClass}poster-container`,
+  poster: `${movieContainerClass}poster`,
   title: `${movieContainerClass}title`,
-  imgContainer: `${movieContainerClass}img-container`,
-  img: `${movieContainerClass}img`,
   year: `${movieContainerClass}year`,
   overview: `${movieContainerClass}description`,
-  linkContainer: `${movieContainerClass}link-container`,
+  linkCont: `${movieContainerClass}link-container`,
   link: `${movieContainerClass}link`,
   linkIcon: `${movieContainerClass}link-icon`,
 };
