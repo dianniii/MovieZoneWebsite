@@ -34,13 +34,22 @@ function filterMoviesProps(data){
 }
 
 async function mainSearchFunction(){
-    const title = searchTitle();
-    if(!title) return;
+    try{
+        const title = searchTitle();
+        if(!title) return;
     // const title_search = searchMedia(title);
-    const movies = await fetchMovies(title);
-    const filtered_results= filterMoviesProps(movies);
-    createCards(filtered_results);
-
+        const movies = await fetchMovies(title);
+        if(movies &&movies.results && movies.results.length > 0){
+        const filtered_results= filterMoviesProps(movies);
+        createCards(filtered_results);
+        } else{
+            movie_container.classList.add('errorMessage');
+            movie_container.textContent = "No results found 😔";
+        }
+    } catch(error) {
+        console.error("Error in mainSearchFunction: ", error)
+        movie_container.textContent = `An error occured: ${error.message}.`
+    }
 } 
 
 function createCards(arrayOfObjs){
