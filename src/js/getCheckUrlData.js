@@ -7,6 +7,11 @@ export function getPathFromWindowLocation() {
   return window.location.pathname;
 }
 
+export function getPageName() {
+  const path = getPathFromWindowLocation();
+  return path.replace(/^\//, "").replace(".html", "");
+}
+
 export function isValidUrl(url) {
   try {
     new URL(url);
