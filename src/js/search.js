@@ -33,7 +33,7 @@ function filterMoviesProps(data){
     return propsArray;
 }
 
-async function mainSearchFunction(){
+export async function mainSearchFunction(){
     try{
         const title = searchTitle();
         if(!title) return;
@@ -42,6 +42,14 @@ async function mainSearchFunction(){
         if(movies &&movies.results && movies.results.length > 0){
         const filtered_results= filterMoviesProps(movies);
         createCards(filtered_results);
+        movie_container.addEventListener("click", (evt) => { 
+            ()=> clickCard(evt)
+            const movieElem = evt.target.closest(".movie-card");
+            if (movieElem) { 
+                const movie_id = movieElem.getAttribute("data-id");
+                window.location.href = `movie.html?id=${movie_id}`;
+            }
+        });
         } else{
             movie_container.classList.add('errorMessage');
             movie_container.textContent = "No results found 😔";
@@ -75,13 +83,6 @@ function createCard(movie){
     return movieCard;
 }
 
-movie_container.addEventListener("click", (evt) => { 
-    const movieElem = evt.target.closest(".movie-card");
-    if (movieElem) { 
-        const movie_id = movieElem.getAttribute("data-id");
-        window.location.href = `movie.html?id=${movie_id}`;
-    }
-});
 
 
 mainSearchFunction();
