@@ -7,7 +7,7 @@ import {
 import { movieContainerClass, savedMoviesClss } from "./savedMoviesVars";
 import { tmbdUrl, iconPaths } from "../moviePage/movieVars";
 import { getMoviesFromStorage } from "../localStorage";
-import { createControlCloseBar } from "../createControlBar";
+import { createControlRemBar } from "../createControlBar";
 
 const moviesContainer = document.querySelector(".movie-cards");
 
@@ -26,7 +26,7 @@ function createMovieElem(movieData, storageProperty) {
   const movieCard = createElementWithProps("div", movieContainerClass);
   movieCard.dataset.id = movieData.id;
 
-  const closeBtnContainer = createControlCloseBar(storageProperty);
+  const closeBtnContainer = createControlRemBar(storageProperty);
   movieCard.append(closeBtnContainer);
 
   const posterElem = createPosterElem(movieData.poster_path);
