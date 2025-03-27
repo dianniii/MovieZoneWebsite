@@ -13,7 +13,7 @@ const moviesContainer = document.querySelector(".movie-cards");
 
 export function loadSavedMovies(storageProperty) {
   const moviesArr = getMoviesFromStorage(storageProperty);
-  appendMovies(moviesArr);
+  appendMovies(moviesArr, storageProperty);
 }
 
 function appendMovies(movieArr, storageProperty) {
