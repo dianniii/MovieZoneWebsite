@@ -10,5 +10,6 @@ export const controlBarIconPaths = {
   likeIcon: "/icons/likeIcon.svg",
   dislikeIcon: "/icons/dislikeIcon.svg",
   addIcon: "/icons/addIcon.svg",
+  addedIcon: "/icons/addedIcon.svg",
   removeIcon: "/icons/removeIcon.svg",
 };

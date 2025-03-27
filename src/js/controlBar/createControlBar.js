@@ -61,7 +61,7 @@ function createWatchListBtn(movieData) {
   const inWatchList = isMovieStored(movieData.id, "watchlist");
 
   const watchlstIconPath = inWatchList
-    ? controlBarIconPaths.removeIcon
+    ? controlBarIconPaths.addedIcon
     : controlBarIconPaths.addIcon;
 
   const watchListBtnElem = createBtnWithTip(
@@ -76,7 +76,7 @@ function createWatchListBtn(movieData) {
 function createRemoveBtn(storageProperty) {
   let tooltipText;
 
-  storageProperty == "favorites"
+  storageProperty === "favorites"
     ? (tooltipText = "Remove from favorites")
     : (tooltipText = "Remove from watchlist");
 

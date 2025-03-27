@@ -37,7 +37,7 @@ export function handleWatchlstBtnClick(evt) {
   if (btnState === "on") {
     turnOffBtn(btn, false, controlBarIconPaths.addIcon, movieInfo.id);
   } else if (btnState === "off") {
-    turnOnBtn(btn, false, controlBarIconPaths.removeIcon, movieInfo);
+    turnOnBtn(btn, false, controlBarIconPaths.addedIcon, movieInfo);
   }
 }
 
