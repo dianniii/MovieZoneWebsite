@@ -6,15 +6,23 @@ import {
 } from "../utils";
 import { movieContainerClass, savedMoviesClss } from "./savedMoviesVars";
 import { tmbdUrl, iconPaths } from "../moviePage/movieVars";
+import { getMoviesFromStorage } from "../localStorage";
 import { createControlBarElem } from "../createControlBar";
 
 const moviesContainer = document.querySelector(".movie-cards");
 
-function getSavedMovies(listName) {
-  return JSON.parse(window.localStorage.getItem(listName));
+export function loadSavedMovies(storageProperty) {
+  const moviesArr = getMoviesFromStorage(storageProperty);
+  appendMovies(moviesArr);
 }
 
-function createMovieElems(movieData) {
+function appendMovies(movieArr) {
+  movieArr.forEach((movieObj) =>
+    moviesContainer.append(createMovieElem(movieObj))
+  );
+}
+
+function createMovieElem(movieData) {
   const moviesContainer = createElementWithProps("div", movieContainerClass);
   moviesContainer.dataset.id = movieData.id;
 
