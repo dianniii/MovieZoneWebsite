@@ -6,6 +6,114 @@
     <title>Document</title>
   </head>
   <body>
+    <header class="header" id="header">
+      <div class="logo">
+        <img
+          src="./src/assets/icons/iconExample.png"
+          class="logo__icon"
+          alt="Icon Example"
+        />
+      </div>
+      <nav class="nav">
+        <ul class="nav__menu">
+          <li class="nav__menu-item">Home</li>
+          <li class="nav__menu-item">WatchList</li>
+          <li class="nav__menu-item">Watched</li>
+        </ul>
+      </nav>
+      <div class="search">
+        <input
+          type="text"
+          id="search__input"
+          class="search__input"
+          placeholder="Search for a movie"
+        />
+        <img
+          src="./src/assets/icons/icons8-magnifying-glass.svg"
+          class="search__icon"
+          alt="Magnifying glass icon"
+        />
+      </div>
+    </header>
+    <main class="main">
+      <div class="movies"></div>
+    </main>
+    <footer class="footer">
+      <div class="footer__container">
+        <div class="footer__logo">
+          <a class="footer__logo-link" href="/index.html">
+            <img
+              class="logo-icon"
+              src="src/assets/icons/LOGO 4.svg"
+              alt="LOGO"
+            />
+          </a>
+        </div>
+        <div class="footer__menu">
+          <a class="footer__menu-link" href="#">Home</a>
+        </div>
+
+        <div class="footer__menu">
+          <a class="footer__menu-link" href="#">WatchList</a>
+        </div>
+
+        <div class="footer__menu">
+          <a class="footer__menu-link" href="#">Favorites</a>
+        </div>
+
+        <div class="footer__menu">
+          <a class="footer__menu-link" href="#">Useful links</a>
+        </div>
+
+        <div class="footer__contact">
+          <ul class="footer__social-list">
+            <li class="footer__social-item">
+              <a class="footer__social-link" href="#">
+                <img
+                  class="footer__social-icon"
+                  src="src/assets/icons/TBDB.svg"
+                  alt="TMDB"
+                />
+              </a>
+            </li>
+
+            <li class="footer__social-item">
+              <a class="footer__social-link" href="#">
+                <img
+                  class="footer__social-icon"
+                  src="src/assets/icons/Netflix.svg"
+                  alt="Netflix"
+                />
+              </a>
+            </li>
+
+            <li class="footer__social-item">
+              <a class="footer__social-link" href="#">
+                <img
+                  class="footer__social-icon"
+                  src="src/assets/icons/Disney.svg"
+                  alt="Disney"
+                />
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer__policy">
+        <div class="footer__rights">
+          <a class="footer__policy-link" href="#">@2025 All Rights Reserved</a>
+        </div>
+        <div class="footer__terms">
+          <a class="footer__policy-link" href="#">Terms of Use</a>
+        </div>
+        <div class="footer__privacy-policy">
+          <a class="footer__policy-link" href="#">Privacy Policy</a>
+        </div>
+        <div class="footer__cookie-policy">
+          <a class="footer__policy-link" href="#">Cookie Policy</a>
+        </div>
+      </div>
+    </footer>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
