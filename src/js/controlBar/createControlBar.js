@@ -4,7 +4,7 @@ import { isMovieStored } from "../localStorage";
 import {
   createElementWithProps,
   createButtonWithIcon,
-} from "../elememtCreation";
+} from "../elementCreation";
 
 import { saveShortMovieInfo } from "../moviePage/getMovieData";
 
