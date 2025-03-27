@@ -1,9 +1,7 @@
 export const classesControlBar = {
   controlBar: "control-bar",
-  btnFav: ["control-bar__btn", "fav-btn"],
-  btnWatchlst: ["control-bar__btn", "watchlst-btn"],
-  tooltipFav: ["control-bar__tooltip", "fav-tooltip"],
-  tooltipWatchLst: ["control-bar__tooltip", "watchlst-tooltip"],
+  btn: "control-bar__btn",
+  btnRemove: ["control-bar__btn", "control-bar__btn--rem"],
   tooltip: "control-bar__tooltip",
   icon: "control-bar__icon",
 };
