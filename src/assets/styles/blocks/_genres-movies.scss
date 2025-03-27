@@ -1,68 +1,67 @@
-.main{
-    background-color: $light-black;
-    padding: 50px 40px;
+.main {
+  background-color: $light-black;
+  padding: 50px 40px;
 }
 .movies-list {
-    padding: 20px;
-    &__container {
-        margin-bottom: 70px;
-        position: relative; 
-    }
+  padding: 20px;
+  &__container {
+    margin-bottom: 70px;
+    position: relative;
+  }
 
-    &__title {
-        font-weight: 600;
-        margin-bottom: 30px;
-        position: sticky; 
-        top: 0; 
-        color: $textColor;
-        z-index: 10; 
-    }
+  &__title {
+    font-weight: 600;
+    margin-bottom: 30px;
+    position: sticky;
+    top: 0;
+    color: $textColor;
+    z-index: 10;
+  }
 
-    &__scrollable {
-        display: flex;
-        gap: 25px;
-        overflow-x: auto;
-        overflow-y: hidden;
-        white-space: nowrap;
-        padding-bottom: 10px;
-        scrollbar-width: none;
-    }
-    &__info {
-        position: absolute;
-        bottom: 10px;
-        left: 0;
-        right: 0;
-        background-color: rgba(0, 0, 0, 0.6); 
-        color: $textColor;
-        text-align: center;
-        padding: 5px;
-        border-radius: 0 0 5px 5px;
-    }
-    &__info-title {
-        margin: 0;
-    }
+  &__scrollable {
+    display: flex;
+    gap: 25px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    padding-bottom: 10px;
+    scrollbar-width: none;
+  }
+  &__info {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: $textColor;
+    text-align: center;
+    padding: 5px;
+    border-radius: 0 0 5px 5px;
+  }
+  &__info-title {
+    margin: 0;
+  }
 
-    &__info-year {
-        margin: 0;
-    }
+  &__info-year {
+    margin: 0;
+  }
 
-    &__movie {
-        flex: 0 0 auto;
-        width: 244px;
-        height: 280px;
-        position: relative;
-    }
-}   
-    .img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 5px;
-        position: relative;
-        display: block; 
-        background-color: $light-black; // Задний фон для рамки
-        border-radius: 10px; // 
-        padding: 20px; // Расстояние между картинкой и рамкой
-        box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5); // Тень для объёмности
-    }
-
+  &__movie {
+    flex: 0 0 auto;
+    width: 244px;
+    height: 280px;
+    position: relative;
+  }
+}
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 5px;
+  position: relative;
+  display: block;
+  background-color: $light-black; // Задний фон для рамки
+  border-radius: 10px; //
+  padding: 20px; // Расстояние между картинкой и рамкой
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5); // Тень для объёмности
+}
