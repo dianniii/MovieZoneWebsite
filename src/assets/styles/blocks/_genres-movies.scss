@@ -1,14 +1,14 @@
-.movie {
+.main {
   background-color: $light-black;
   padding: 50px 40px;
 }
-.movies-list {
+.genres {
   padding: 20px;
-  &__container {
+}
+  .genre {
     margin-bottom: 70px;
     position: relative;
-  }
-
+  
   &__title {
     font-weight: 600;
     margin-bottom: 30px;
@@ -27,41 +27,44 @@
     padding-bottom: 10px;
     scrollbar-width: none;
   }
-  &__info {
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    color: $textColor;
-    text-align: center;
-    padding: 5px;
-    border-radius: 0 0 5px 5px;
-  }
-  &__info-title {
-    margin: 0;
-  }
+}
 
-  &__info-year {
-    margin: 0;
-  }
-
-  &__movie {
+.movie {
     flex: 0 0 auto;
     width: 244px;
     height: 280px;
     position: relative;
-  }
-}
-.img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 5px;
-  position: relative;
-  display: block;
-  background-color: $light-black; // Задний фон для рамки
-  border-radius: 10px; //
-  padding: 20px; // Расстояние между картинкой и рамкой
-  box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5); // Тень для объёмности
+
+    &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    position: relative;
+    display: block;
+    background-color: $light-black; // Задний фон для рамки
+    border-radius: 10px; //
+    padding: 20px; // Расстояние между картинкой и рамкой
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5); // Тень для объёмности
+    }
+
+    &__info {
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      right: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: $textColor;
+      text-align: center;
+      padding: 5px;
+      border-radius: 0 0 5px 5px;
+    }
+
+    &__title {
+      margin: 0;
+    }
+
+    &__year {
+      margin: 0;
+    }
 }
