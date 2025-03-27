@@ -1,7 +1,6 @@
 .movies{
     margin-top: 30px;
     margin-bottom: 30px;
-    @include margins-left-right;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -13,7 +12,6 @@
 
 .movie-card{
     margin-top: 30px;
-    width: 75vw;
     padding: 20px;
     display: flex;
     gap: 30px;

@@ -1,8 +1,6 @@
 .header{
-    width: 95%;
     height: 70px;
     border-radius: 10px;
-    @include margins-left-right;
     padding-top: 15px;
     padding-bottom: 15px;
     background-color: $light-black;
