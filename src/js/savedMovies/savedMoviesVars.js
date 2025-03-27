@@ -1,4 +1,5 @@
 export const movieContainerClass = "movie-card__";
+
 export const savedMoviesClss = {
   posterCont: `${movieContainerClass}poster-container`,
   poster: `${movieContainerClass}poster`,
