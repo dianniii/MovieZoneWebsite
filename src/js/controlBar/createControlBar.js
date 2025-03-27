@@ -35,7 +35,9 @@ export function createControlRemBar(storageProperty) {
     "div",
     classesControlBar.controlBar
   );
-  controlBarElem.append(createRemoveBtn(storageProperty));
+  const remBtn = createRemoveBtn(storageProperty);
+  // add eventListener
+  controlBarElem.append(remBtn);
   return controlBarElem;
 }
 

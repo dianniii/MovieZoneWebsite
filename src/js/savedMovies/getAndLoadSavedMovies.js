@@ -3,11 +3,11 @@ import {
   createElementWithProps,
   createLinkWithIcon,
   createImgElem,
-} from "../utils";
+} from "../elementCreation";
 import { movieContainerClass, savedMoviesClss } from "./savedMoviesVars";
-import { tmbdUrl, iconPaths } from "../moviePage/movieVars";
+import { tmbdUrl, iconPaths } from "../commonVars";
 import { getMoviesFromStorage } from "../localStorage";
-import { createControlRemBar } from "../createControlBar";
+import { createControlRemBar } from "../controlBar/createControlBar";
 
 const moviesContainer = document.querySelector(".movie-cards");
 
@@ -16,7 +16,7 @@ export function loadSavedMovies(storageProperty) {
   appendMovies(moviesArr);
 }
 
-function appendMovies(movieArr) {
+function appendMovies(movieArr, storageProperty) {
   movieArr.forEach((movieObj) =>
     moviesContainer.append(createMovieElem(movieObj, storageProperty))
   );
@@ -27,13 +27,9 @@ function createMovieElem(movieData, storageProperty) {
   movieCard.dataset.id = movieData.id;
 
   const closeBtnContainer = createControlRemBar(storageProperty);
-  movieCard.append(closeBtnContainer);
-
   const posterElem = createPosterElem(movieData.poster_path);
-  movieCard.append(posterElem);
-
   const titleElem = createTitleElem(movieData.title);
-  movieCard.append(titleElem);
+  movieCard.append(closeBtnContainer, posterElem, titleElem);
 
   if (movieData.release_date) {
     const yearElem = createParElem(
@@ -53,8 +49,6 @@ function createMovieElem(movieData, storageProperty) {
 
   const tmbdLinkElem = createTMBDlinkElem(movieData.id);
   movieCard.append(tmbdLinkElem);
-
-  movieCard.append(createControlBarElem(movieData));
 
   return movieCard;
 }

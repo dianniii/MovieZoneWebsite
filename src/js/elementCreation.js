@@ -41,7 +41,7 @@ export function createLinkWithIcon(classLink, classIcon, href, iconSrc, alt) {
   return linkElem;
 }
 
-function createImgElem(className, src, alt) {
+export function createImgElem(className, src, alt) {
   const imgElem = createElementWithProps("img", className);
   imgElem.setAttribute("src", src);
   imgElem.setAttribute("alt", alt);
