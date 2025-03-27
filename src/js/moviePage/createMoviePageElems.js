@@ -11,7 +11,7 @@ import {
   createListElem,
   createLinkWithIcon,
   extractNames,
-} from "../elememtCreation";
+} from "../elementCreation";
 
 import { tmbdUrl, iconPaths } from "../commonVars";
 
