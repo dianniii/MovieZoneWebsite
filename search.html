@@ -41,7 +41,7 @@
     <div class="movies" id="movies"></div>
 </body>
 <!-- <script type="module" src="/src/main.js"></script> -->
-<script src="./src/search.js"></script>
+<script src="./src/js/search.js"></script>
 <script type="module" src="/src/main.js"></script>
     <script>
         const searchBtn = document.querySelector('.search__icon');
@@ -53,6 +53,7 @@
             let searchRequest = document.getElementById('search__input').value.trim();
             if(!searchRequest){return}
             const searchResults = searchMedia(searchRequest);
+            console.log(`search.html?title=${searchResults}`);
             window.location.href = `search.html?title=${searchResults}`
         });
 

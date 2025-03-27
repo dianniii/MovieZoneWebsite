@@ -1,4 +1,6 @@
 .movies{
+    margin-top: 30px;
+    margin-bottom: 30px;
     @include margins-left-right;
     display: flex;
     align-items: center;
@@ -26,26 +28,33 @@
 
 .movieTitle{
     font-size: $font-size-h2;
+    padding-bottom: 20px;
+    line-height: 150%;
 }
 
 .poster-container{
 width: 35%;
+}
 
-    &.poster{
+poster{
         object-fit: cover;
         width: 220px;
         height: 330px;
     }
-}
+
 
 .text-container{
-    width: 65%;
+    flex-grow: 1;
+    padding-right: 40px;
     
 }
 
 .movie-info{
     overflow: hidden;
     text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 7; 
+    -webkit-box-orient: vertical;
 }
 
 .errorMessage{

@@ -70,7 +70,7 @@ function createCard(movie){
     movieCard.innerHTML=` <div class="poster-container"> <img class="poster" src="${posterPath}" alt ="${movie.title} Poster"> </div>
     <div class="text-container"> <h3 class="movieTitle">${movie.title}</h3>
     <p>${movie.release_date ? movie.release_date.slice(0, 4): ''}</p>
-    <p class="movie-info>${movie.overview}</p> </div>
+    <p class="movie-info">${movie.overview}</p> </div>
     `
     return movieCard;
 }

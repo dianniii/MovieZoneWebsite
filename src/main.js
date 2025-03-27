@@ -8,14 +8,14 @@ if (getPathFromWindowLocation() === "/movie.html") {
   document.addEventListener("DOMContentLoaded", loadMoviePage);
 }
 
-import {searchMedia, searchHandle} from "./js/header.js";
+// import {searchMedia, searchHandle} from "./js/header.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-    searchHandle();
-    const searchInput = document.getElementById('search__input'); 
-      searchInput.addEventListener('input', searchMedia); 
-    }
-);
+// document.addEventListener("DOMContentLoaded", () => {
+//     searchHandle();
+//     const searchInput = document.getElementById('search__input'); 
+//       searchInput.addEventListener('input', searchMedia); 
+//     }
+// );
 
 // import javascriptLogo from "./javascript.svg";
 // import viteLogo from "/vite.svg";
