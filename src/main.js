@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.getElementById('search__input'); 
       searchInput.addEventListener('input', searchMedia); 
     }
-});
+);
 
 // import javascriptLogo from "./javascript.svg";
 // import viteLogo from "/vite.svg";
