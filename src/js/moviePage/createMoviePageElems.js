@@ -4,19 +4,19 @@ import {
   castIds,
   classesInfo,
   tmbdUrl,
-  TMBDIconPath,
-  filmIconPath,
+  iconPaths,
 } from "./movieVars";
 
 import {
   createElementWithProps,
   createListElem,
   createLinkWithIcon,
-  getMovieId,
   extractNames,
 } from "./movieUtils";
 
-import { createControlBarElem } from "./createControlBar";
+import { createControlBarElem } from "../createControlBar";
+
+import { toggleCastElementLength } from "./setUpMovieCastBtn";
 
 export function createMovieBannerElem(movieDescription) {
   const bannerElem = createElementWithProps("div", `${movieBlockName}banner`);
@@ -35,7 +35,7 @@ export function createMovieBannerElem(movieDescription) {
     bannerElem.append(taglineElem);
   }
 
-  bannerElem.append(createControlBarElem());
+  bannerElem.append(createControlBarElem(movieDescription));
   return bannerElem;
 }
 
@@ -119,26 +119,26 @@ function createCastContent(cast) {
 
   if (cast.length > 5) {
     const [firstPart, secondPart] = splitAndJoinCastArr(cast);
-    parElem.append(
-      createElementWithProps(
-        "span",
-        classesInfo.shownCast,
-        false,
-        firstPart + ", "
-      ),
-      createElementWithProps(
-        "span",
-        classesInfo.hiddenCast,
-        castIds.hiddenCastPart,
-        secondPart + " "
-      ),
-      createElementWithProps(
-        "button",
-        classesInfo.castBtn,
-        castIds.castBtn,
-        "see more..."
-      )
+    const shownPart = createElementWithProps(
+      "span",
+      classesInfo.shownCast,
+      false,
+      firstPart + ", "
     );
+    const hiddenPart = createElementWithProps(
+      "span",
+      classesInfo.hiddenCast,
+      castIds.hiddenCastPart,
+      secondPart + " "
+    );
+    const btn = createElementWithProps(
+      "button",
+      classesInfo.castBtn,
+      castIds.castBtn,
+      "see more..."
+    );
+    btn.addEventListener("click", toggleCastElementLength);
+    parElem.append(shownPart, hiddenPart, btn);
   } else {
     parElem.textContent = cast.join(", ");
   }
@@ -193,8 +193,8 @@ function createLinksContent(movieDescription) {
   const tmbdLinkElem = createLinkWithIcon(
     classesInfo.link,
     classesInfo.linkIcon,
-    tmbdUrl + getMovieId,
-    TMBDIconPath,
+    tmbdUrl + movieDescription.id,
+    iconPaths.TMBDIcon,
     "TMBD icon"
   );
   parElem.append(tmbdLinkElem);
@@ -204,7 +204,7 @@ function createLinksContent(movieDescription) {
       classesInfo.link,
       classesInfo.linkIcon,
       movieDescription.homepage,
-      filmIconPath,
+      iconPaths.filmIcon,
       "film icon"
     );
     parElem.append(homepageLinkElem);

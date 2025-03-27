@@ -1,6 +1,13 @@
 import "./assets/styles/normalize.css";
 import "./main.css";
 
+import { getPathFromWindowLocation } from "./js/getCheckUrlData";
+import { loadMoviePage } from "./js/moviePage/loadMoviePage.js";
+
+if (getPathFromWindowLocation() === "/movie.html") {
+  document.addEventListener("DOMContentLoaded", loadMoviePage);
+}
+
 // import javascriptLogo from "./javascript.svg";
 // import viteLogo from "/vite.svg";
 // import { setupCounter } from "./counter.js";

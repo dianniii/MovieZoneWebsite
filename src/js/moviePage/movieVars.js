@@ -10,16 +10,18 @@ export const basePosterUrl =
   "https://media.themoviedb.org/t/p/w220_and_h330_face";
 
 export const movieBlockName = "full-movie__";
-export const likeIconPath = "./public/icons/likeIcon.svg";
-export const addIconPath = "./public/icons/plusIcon.svg";
-export const TMBDIconPath = "./public/icons/TMBD.svg";
-export const filmIconPath = "./public/icons/filmIcon.svg";
 
-export const propertyNames = [
+export const iconPaths = {
+  TMBDIcon: "/icons/TMBD.svg",
+  filmIcon: "/icons/filmIcon.svg",
+};
+
+export const fullPropertylist = [
   "id",
   "title",
   "tagline",
   "backdrop_path",
+  "poster_path",
   "genres", // (array)
   "homepage",
   "origin_country", // (array)
@@ -30,6 +32,14 @@ export const propertyNames = [
   "runtime",
   "cast", // (array)
   "directors", // (array)
+];
+
+export const shortPropertyList = [
+  "id",
+  "title",
+  "poster_path",
+  "overview",
+  "release_date",
 ];
 
 export const castIds = {
@@ -48,13 +58,19 @@ export const classesBanner = {
 
 export const classesControlBar = {
   controlBar: "control-bar",
-  button: "control-bar__btn",
+  btnFav: ["control-bar__btn", "fav-btn"],
+  btnWatchlst: ["control-bar__btn", "watchlst-btn"],
+  tooltipFav: ["control-bar__tooltip", "fav-tooltip"],
+  tooltipWatchLst: ["control-bar__tooltip", "watchlst-tooltip"],
+  tooltip: "control-bar__tooltip",
   icon: "control-bar__icon",
 };
 
-export const controlBarIds = {
-  likeBtnId: "likeMovieBtn",
-  addBtnId: "addMovieBtn",
+export const controlBarIconPaths = {
+  likeIcon: "/icons/likeIcon.svg",
+  dislikeIcon: "/icons/dislikeIcon.svg",
+  addIcon: "/icons/addIcon.svg",
+  removeIcon: "/icons/removeIcon.svg",
 };
 
 export const lstClasses = {
