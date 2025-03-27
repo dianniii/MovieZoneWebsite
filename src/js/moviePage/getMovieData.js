@@ -1,7 +1,8 @@
 import {
   domenPartUrl,
   pathForFullMovieDescription,
-  propertyNames,
+  fullPropertylist,
+  shortPropertyList,
 } from "./movieVars";
 
 export async function fetchMovieObj(movie_id) {
@@ -16,12 +17,7 @@ export async function fetchMovieObj(movie_id) {
       throw new Error("HTTP Error: " + response.status);
     }
 
-    let movieData;
-    try {
-      movieData = await response.json();
-    } catch (jsonError) {
-      throw new Error("Cannot parse JSON: " + jsonError.message);
-    }
+    const movieData = await response.json();
 
     return movieData;
   } catch (error) {
@@ -37,8 +33,26 @@ export function filterMovieData(movieData) {
   }
 
   const movieDescriptionObj = Object.fromEntries(
-    Object.entries(movieData).filter((arr) => propertyNames.includes(arr[0]))
+    Object.entries(movieData).filter(([key, value]) =>
+      fullPropertylist.includes(key)
+    )
   );
 
   return movieDescriptionObj;
+}
+
+export function makeShortMovieData(movieData) {
+  const shortMovieData = {};
+  const movieKeyValArr = Object.entries(movieData);
+  for (const [key, value] of movieKeyValArr) {
+    if (shortPropertyList.includes(key)) {
+      shortMovieData[key] = value;
+    }
+  }
+  return shortMovieData;
+}
+
+export function saveShortMovieInfo(elem, movieData) {
+  const shortMovieData = makeShortMovieData(movieData);
+  elem.dataset.movie = JSON.stringify(shortMovieData);
 }

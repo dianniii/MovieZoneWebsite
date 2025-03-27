@@ -1,0 +1,55 @@
+//стили example-container не используем на своих страницах, нужны для теста, чтобы видеть подсказки
+.example-container {
+  margin-top: 100px;
+  margin-left: 50px;
+}
+
+.control-bar {
+  display: flex;
+  gap: 10px;
+
+  &__btn {
+    position: relative;
+    padding: 14px;
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    border: 1px solid $mediun-grey;
+    background: $dark-black;
+  }
+
+  &__icon {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+  }
+
+  &__tooltip {
+    padding: 4px 10px;
+    width: 120px;
+    display: none;
+    position: absolute;
+    bottom: 110%;
+    left: 10%;
+    border: 1px solid $mediun-grey;
+    border-radius: $borderRadiusMain;
+    background-color: $dark-black;
+    @include font-tooltips;
+    color: $textColor;
+  }
+
+  &__tooltip::after {
+    position: absolute;
+    content: "";
+    top: 100%;
+    left: 10%;
+    border-top: 5px solid $dark-black;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid transparent;
+  }
+
+  &__btn:hover > &__tooltip {
+    display: block;
+  }
+}

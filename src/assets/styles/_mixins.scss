@@ -1,36 +1,97 @@
 // миксины для
 @mixin padding-left-right {
-    padding-left: 50px;
-    padding-right: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
+@mixin lateral-margins {
+  margin-left: 125px;
+  margin-right: 125px;
+}
 
 @mixin bebas-400-largeTitle {
-    font-family: $font-family-bebasNeue;
-    font-weight: $font-weight-400;
-    font-size: $font-size-movieTitle;
+  font-family: $font-family-bebasNeue;
+  font-weight: $font-weight-400;
+  font-size: $font-size-movieTitle;
 }
 
 @mixin urbanist-400-mivieDiscription {
-    font-family: $font-family-urbanist;
-    font-weight: $font-weight-400;
-    font-size: $font-size-text;
-} 
+  font-family: $font-family-urbanist;
+  font-weight: $font-weight-400;
+  font-size: $font-size-text;
+}
 
 @mixin montserrat-500-generalText {
-    font-family: $font-family-montserrat;
-    font-weight: $font-weight-500;
-    font-size: $font-size-text;
+  font-family: $font-family-montserrat;
+  font-weight: $font-weight-500;
+  font-size: $font-size-text;
 }
 
 @mixin montserrat-500-menuItem {
-    font-family: $font-family-montserrat;
-    font-weight: $font-weight-500;
-    font-size: $font-size-menuItem;
+  font-family: $font-family-montserrat;
+  font-weight: $font-weight-500;
+  font-size: $font-size-menuItem;
 }
 
 @mixin montserrat-800-genreTitle {
-    font-family: $font-family-montserrat;
-    font-weight: $font-weight-800;
-    font-size: $font-size-h2;
+  font-family: $font-family-montserrat;
+  font-weight: $font-weight-800;
+  font-size: $font-size-h2;
+}
+
+//new mixins for fonts
+
+@mixin font-base {
+  font-family: $font-family;
+  line-height: $line-height;
+}
+
+@mixin font-h1 {
+  @include font-base;
+  font-weight: $font-weight-700;
+  font-size: $font-size-h1;
+  font-style: normal;
+}
+
+@mixin font-h2 {
+  @include font-base;
+  font-weight: $font-weight-700;
+  font-size: $font-size-h2;
+  font-style: normal;
+}
+
+@mixin font-h3 {
+  @include font-base;
+  font-weight: $font-weight-500;
+  font-size: $font-size-basic;
+  font-style: normal;
+  color: $greyTextColor;
+}
+
+@mixin font-tagline {
+  @include font-base;
+  font-weight: $font-weight-500;
+  font-size: $font-size-basic;
+  font-style: italic;
+}
+
+@mixin font-basic {
+  @include font-base;
+  font-weight: $font-weight-500;
+  font-size: $font-size-basic;
+  font-style: normal;
+}
+
+@mixin font-tooltips {
+  @include font-base;
+  font-weight: $font-weight-400;
+  font-size: $font-size-toolTips;
+  font-style: normal;
+}
+
+@mixin font-main-errorMsg {
+  @include font-base;
+  font-weight: $font-weight-800;
+  font-size: $font-size-erMsg;
+  font-style: normal;
 }

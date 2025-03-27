@@ -12,15 +12,15 @@ export function createElementWithProps(
     ? className.forEach((name) => element.classList.add(name))
     : element.classList.add(className);
 
-  id && element.setAttribute("id", id); //&& возвращает первое ложное или, если оба истины, последнее истинное
+  id && element.setAttribute("id", id); //&& возвращает первое ложное или, если оба истины, последнее истинное. То есть если id = false, то дальше код выполнятся не будет, а если истинное - то id добавится в качестве атрибута
 
   if (text) element.textContent = text;
 
   return element;
 }
 
-export function createButtonWithIcon(id, classBtn, classIcon, iconSrc, alt) {
-  const btn = createElementWithProps("button", classBtn, id);
+export function createButtonWithIcon(classBtn, classIcon, iconSrc, alt) {
+  const btn = createElementWithProps("button", classBtn);
   btn.append(createImgElem(classIcon, iconSrc, alt));
   return btn;
 }
@@ -50,6 +50,6 @@ function createImgElem(className, src, alt) {
   return imgElem;
 }
 
-export function getMovieId() {
-  return sessionStorage.getItem("movie_id");
+export function extractNames(arr, key) {
+  return arr.map((item) => item[key]);
 }

@@ -1,12 +1,17 @@
 //colors
-$dark-black: #0F0F0F;
-$light-black: #141414;
-$dark-grey:#1A1A1A;
-$red: #E50000;
+$dark-black: #0f0f0f; //цвет фона like and add icons
+$light-black: #141414; //цвет фона всей страницы и некоторых элементов
+$dark-grey: #1a1a1a; //цвет фона основных элементов страницы (карточки с фильмами например)
+$mediun-grey: #262626; //цвет границы элементов
+$red: #e50000;
 $tomato: tomato;
 $textColor: white;
+$greyTextColor: #999;
 
-//breakpoints
+$borderRadiusMain: 12px;
+$borderRadiusIcons: 8px;
+
+$marginBottom: 80px; //for header and main
 
 //fonts
 $font-family-bebasNeue: "Bebas Neue", sans-serif;
@@ -25,3 +30,18 @@ $font-size-h2: 31px;
 $font-size-text: 18px;
 $font-size-year: 20px; //может это не надо так уж выделять?
 $font-size-menuItem: 20px;
+
+//new font
+$font-family: "Manrope", sans-serif;
+$line-height: 150%;
+
+$font-weight-700: 700;
+$font-weight-600: 600;
+$font-weight-500: 500;
+$font-weight-400: 400;
+
+$font-size-h1: 48px;
+$font-size-h2: 38px;
+$font-size-basic: 24px; //???  для всего остального
+$font-size-toolTips: 14px;
+$font-size-erMsg: 60px;
