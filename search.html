@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./src/main.css">
+</head>
+<body>
+    <header class="header" id="header">
+        <div class="logo">
+            <a class="logo" href="index.html"><img
+            src="./src/assets/icons/iconExample.png"
+            class="logo__icon"
+            alt="Icon Example"
+          />
+          </a>
+        </div>
+        <nav class="nav">
+          <ul class="nav__menu">
+            <li class="nav__menu-item"><a href="index.html">Home</a></li>
+            <li class="nav__menu-item"><a href=" watchList.html">WatchList</a></li>
+            <li class="nav__menu-item"><a href="favourites.html">Favourites</a></li>
+          </ul>
+        </nav>
+        <div class="search">
+          <input
+            type="text"
+            id="search__input"
+            class="search__input"
+            placeholder="Search for a movie"
+          />
+          <img
+            src="./src/assets/icons/icons8-magnifying-glass.svg"
+            class="search__icon"
+            alt="Magnifying glass icon"
+          />
+        </div>
+      </header>
+    <h2></h2>
+    <div class="movies" id="movies"></div>
+</body>
+<!-- <script type="module" src="/src/main.js"></script> -->
+<script src="./src/search.js"></script>
+<script type="module" src="/src/main.js"></script>
+    <script>
+        const searchBtn = document.querySelector('.search__icon');
+        function searchMedia(searchRequest){
+            return searchRequest.replaceAll(" ", "+");
+        }
+
+        searchBtn.addEventListener('click', ()=>{
+            let searchRequest = document.getElementById('search__input').value.trim();
+            if(!searchRequest){return}
+            const searchResults = searchMedia(searchRequest);
+            window.location.href = `search.html?title=${searchResults}`
+        });
+
+        document.getElementById('search__input').addEventListener('keyup', function(event){
+            if(event.key === 'Enter'){
+                searchBtn.click()
+            }
+        })
+    </script>
+</html>
