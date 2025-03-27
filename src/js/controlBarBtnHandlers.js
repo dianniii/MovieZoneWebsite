@@ -17,7 +17,6 @@ function getDataSetMovieInfo(btn) {
     const movieInfo = JSON.parse(parent.dataset.movie);
     return movieInfo;
   }
-  return;
 }
 
 export function handleFavBtnClick(evt) {
