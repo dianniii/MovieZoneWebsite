@@ -1,0 +1,109 @@
+// Оверлэй для popup: занимает весь экран и скрыт по умолчанию
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(20px);
+  z-index: 10;
+
+  &.active {
+    display: flex;
+  }
+}
+
+// Контейнер popup с отступами и скруглением
+.popup-content {
+  background: $dark-grey;
+  border-radius: 8px;
+  padding: 20px;
+  width: 700px;
+  max-width: 90%;
+  position: fixed;
+  top: 179px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    grid-template-rows: repeat(5, min-content);
+    gap: 50px 20px;
+    grid-template-areas:
+      "poster title"
+      "poster year"
+      "poster overview"
+      "poster tmdb"
+      "poster icons";
+      z-index: 20px;
+}
+
+// Кнопка закрытия popup
+.close-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Grid-контейнер для двух колонок: левая (220px) и правая (остальная ширина)
+.popup-grid {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  grid-gap: 1rem;
+} */
+
+// Стили для левой колонки: постер
+.popup-image img {
+  grid-area: poster;
+  width: 100%;
+  border-radius: 4px;
+}
+
+// Стили для правой колонки: информация о фильме
+.popup-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-title {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.popup-year {
+  font-size: 1rem;
+  color: #666;
+}
+
+.popup-link {
+  margin: 0.5rem 0;
+  text-decoration: none;
+  color: #007bff;
+}
+
+.popup-icon {
+  width: 3%;
+  height: 5%;
+}
+
+.popup-overview {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+// Стили для маленькой картинки, по которой открывается popup
+.movie {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.movie img {
+  width: 150px; /* размер миниатюры */
+  border-radius: 4px;
+}

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/assets/styles/normalize.css" />
+    <link rel="stylesheet" href="./src/main.css" />
+    <title>Popup</title>
+  </head>
+  <body>
+    <header class="header"></header>
+    <main class="main">
+      <!-- Маленькая картинка фильма для вызова popup.
+      data-id содержит ID фильма, который будет подставлен в запрос. -->
+      <div id="movie" class="movie" data-id="19995">
+        <img
+          src="https://image.tmdb.org/t/p/w220_and_h330_face/kyeqWdyUXW608qlYkRqosgbbJyK.jpg"
+          alt="mini-poster"
+        />
+      </div>
+
+      <!-- Popup-оверлей (скрыт по умолчанию) -->
+      <div id="movie-popup" class="popup-overlay">
+        <div class="popup-content">
+          <!-- Кнопка закрытия popup -->
+          <button class="close-btn" id="close-popup-btn">
+            <img src="./public/icons/x-mark.svg" alt="close-icon" />
+          </button>
+          <!-- Grid-контейнер для содержимого popup -->
+          <div class="popup-grid">
+            <!-- Левая колонка: картинка фильма -->
+            <div class="popup-image">
+              <img src="" alt="film poster" class="popup-poster" />
+            </div>
+            <!-- Правая колонка: информация о фильме -->
+            <div class="popup-info">
+              <div class="popup-title__container">
+              <h2 class="popup-title"></h2>
+              </div>
+              <div class="popup-year__container">
+              <p class="popup-year"></p>
+              </div>
+              <div class="popup-overview__container">
+              <p class="popup-overview"></p>
+              </div>
+              <!-- Ссылка на TMDB -->
+              <div class="tmdb-container">
+              <a href="https://www.themoviedb.org/" class="popup-link" target="_blank"><img src="./public/icons/TMBD.svg" class="popup-icon" alt="tmdb icon"></a>
+            </div>
+            <div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="footer"></footer>
+    <!-- Подключаем скрипт -->
+    <script type="module" src="./src/js/popup.js"></script>
+  </body>
+</html>
