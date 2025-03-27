@@ -1,5 +1,3 @@
-import { lstClasses } from "./movieVars";
-
 export function createElementWithProps(
   tag,
   className,
@@ -25,10 +23,10 @@ export function createButtonWithIcon(classBtn, classIcon, iconSrc, alt) {
   return btn;
 }
 
-export function createListElem(arr) {
-  const lstElem = createElementWithProps("ul", lstClasses.lst);
+export function createListElem(arr, ulClass, liClass) {
+  const lstElem = createElementWithProps("ul", ulClass);
   arr.forEach((item) => {
-    const liElem = createElementWithProps("li", lstClasses.items, false, item);
+    const liElem = createElementWithProps("li", liClass, false, item);
     lstElem.append(liElem);
   });
   return lstElem;

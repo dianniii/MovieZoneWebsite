@@ -3,8 +3,7 @@ import {
   classesBanner,
   castIds,
   classesInfo,
-  tmbdUrl,
-  iconPaths,
+  lstClasses,
 } from "./movieVars";
 
 import {
@@ -12,7 +11,9 @@ import {
   createListElem,
   createLinkWithIcon,
   extractNames,
-} from "./movieUtils";
+} from "../utils";
+
+import { tmbdUrl, iconPaths } from "../commonVars";
 
 import { createControlBarElem } from "../createControlBar";
 
@@ -174,7 +175,7 @@ function createGenresElem(movieDescription) {
     genres = extractNames(movieDescription.genres, "name");
   }
 
-  const genreLstElem = createListElem(genres);
+  const genreLstElem = createListElem(genres, lstClasses.lst, lstClasses.items);
   featureElem.append(subtitleElem, genreLstElem);
   return featureElem;
 }
@@ -271,7 +272,11 @@ function createLanguageElem(movieDescription) {
     languageNamesArr.length < 2 ? "Language:" : "Languages:"
   );
 
-  const listElem = createListElem(languageNamesArr);
+  const listElem = createListElem(
+    languageNamesArr,
+    lstClasses.lst,
+    lstClasses.items
+  );
   featureElem.append(subtitleElem, listElem);
   return featureElem;
 }

@@ -1,10 +1,7 @@
 import { controlBarIconPaths, classesControlBar } from "./moviePage/movieVars";
 import { isMovieStored } from "./localStorage";
 
-import {
-  createElementWithProps,
-  createButtonWithIcon,
-} from "./moviePage/movieUtils";
+import { createElementWithProps, createButtonWithIcon } from "./utils";
 
 import { saveShortMovieInfo } from "./moviePage/getMovieData";
 

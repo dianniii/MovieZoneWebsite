@@ -1,14 +1,5 @@
 export const movieContainer = document.getElementById("movie");
 
-export const domenPartUrl = "https://movies.gila.workers.dev";
-export const pathForFullMovieDescription = "/search/movie/description?";
-
-export const tmbdUrl = `https://www.themoviedb.org/movie/`;
-
-export const baseBackdropUrl = "https://image.tmdb.org/t/p/original";
-export const basePosterUrl =
-  "https://media.themoviedb.org/t/p/w220_and_h330_face";
-
 export const movieBlockName = "full-movie__";
 
 export const iconPaths = {
