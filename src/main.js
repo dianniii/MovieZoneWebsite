@@ -1,11 +1,21 @@
 import "./assets/styles/normalize.css";
 import "./main.css";
 
-import { getPathFromWindowLocation } from "./js/getCheckUrlData";
+import { getPathFromWindowLocation, getPageName } from "./js/getCheckUrlData";
 import { loadMoviePage } from "./js/moviePage/loadMoviePage.js";
+import { loadSavedMovies } from "./js/savedMovies/getAndLoadSavedMovies.js";
 
 if (getPathFromWindowLocation() === "/movie.html") {
   document.addEventListener("DOMContentLoaded", loadMoviePage);
+}
+
+if (
+  getPathFromWindowLocation() === "/favorites.html" ||
+  getPathFromWindowLocation() === "/watchlist.html"
+) {
+  document.addEventListener("DOMContentLoaded", () =>
+    loadSavedMovies(getPageName())
+  );
 }
 
 // import javascriptLogo from "./javascript.svg";
