@@ -7,7 +7,7 @@ import {
 import { movieContainerClass, savedMoviesClss } from "./savedMoviesVars";
 import { tmbdUrl, iconPaths } from "../moviePage/movieVars";
 import { getMoviesFromStorage } from "../localStorage";
-import { createControlBarElem } from "../createControlBar";
+import { createControlCloseBar } from "../createControlBar";
 
 const moviesContainer = document.querySelector(".movie-cards");
 
@@ -18,26 +18,29 @@ export function loadSavedMovies(storageProperty) {
 
 function appendMovies(movieArr) {
   movieArr.forEach((movieObj) =>
-    moviesContainer.append(createMovieElem(movieObj))
+    moviesContainer.append(createMovieElem(movieObj, storageProperty))
   );
 }
 
-function createMovieElem(movieData) {
-  const moviesContainer = createElementWithProps("div", movieContainerClass);
-  moviesContainer.dataset.id = movieData.id;
+function createMovieElem(movieData, storageProperty) {
+  const movieCard = createElementWithProps("div", movieContainerClass);
+  movieCard.dataset.id = movieData.id;
+
+  const closeBtnContainer = createControlCloseBar(storageProperty);
+  movieCard.append(closeBtnContainer);
 
   const posterElem = createPosterElem(movieData.poster_path);
-  moviesContainer.append(posterElem);
+  movieCard.append(posterElem);
 
   const titleElem = createTitleElem(movieData.title);
-  moviesContainer.append(titleElem);
+  movieCard.append(titleElem);
 
   if (movieData.release_date) {
     const yearElem = createParElem(
       savedMoviesClss.year,
       movieData.release_date.slice(0, 4)
     );
-    moviesContainer.append(yearElem);
+    movieCard.append(yearElem);
   }
 
   if (movieData.overview) {
@@ -45,15 +48,15 @@ function createMovieElem(movieData) {
       savedMoviesClss.overview,
       movieData.overview
     );
-    moviesContainer.append(descriptionElem);
+    movieCard.append(descriptionElem);
   }
 
   const tmbdLinkElem = createTMBDlinkElem(movieData.id);
-  moviesContainer.append(tmbdLinkElem);
+  movieCard.append(tmbdLinkElem);
 
-  moviesContainer.append(createControlBarElem(movieData));
+  movieCard.append(createControlBarElem(movieData));
 
-  return moviesContainer;
+  return movieCard;
 }
 
 function createPosterElem(posterPath) {
