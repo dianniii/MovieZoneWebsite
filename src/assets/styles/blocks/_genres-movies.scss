@@ -10,7 +10,6 @@
     }
 
     &__title {
-        @include montserrat-800-genreTitle;
         font-weight: 600;
         margin-bottom: 30px;
         position: sticky; 
@@ -41,12 +40,10 @@
     }
     &__info-title {
         margin: 0;
-        @include montserrat-500-generalText;
     }
 
     &__info-year {
         margin: 0;
-        @include montserrat-500-generalText;
     }
 
     &__movie {
