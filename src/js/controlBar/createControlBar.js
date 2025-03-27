@@ -1,9 +1,9 @@
-import { controlBarIconPaths, classesControlBar } from "./moviePage/movieVars";
-import { isMovieStored } from "./localStorage";
+import { controlBarIconPaths, classesControlBar } from "./controlBarVars";
+import { isMovieStored } from "../localStorage";
 
-import { createElementWithProps, createButtonWithIcon } from "./utils";
+import { createElementWithProps, createButtonWithIcon } from "../utils";
 
-import { saveShortMovieInfo } from "./moviePage/getMovieData";
+import { saveShortMovieInfo } from "../moviePage/getMovieData";
 
 import {
   handleFavBtnClick,

@@ -1,5 +1,5 @@
-import { classesControlBar, controlBarIconPaths } from "./moviePage/movieVars";
-import { deleteMovieFromStorage, addMovieToStorage } from "./localStorage";
+import { classesControlBar, controlBarIconPaths } from "./controlBarVars";
+import { deleteMovieFromStorage, addMovieToStorage } from "../localStorage";
 
 function changeTooltipText(btn, text) {
   const tooltipElem = btn.querySelector("." + classesControlBar.tooltip);

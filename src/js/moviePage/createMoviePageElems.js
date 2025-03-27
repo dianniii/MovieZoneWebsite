@@ -15,7 +15,7 @@ import {
 
 import { tmbdUrl, iconPaths } from "../commonVars";
 
-import { createControlBarElem } from "../createControlBar";
+import { createControlBarElem } from "../controlBar/createControlBar";
 
 import { toggleCastElementLength } from "./setUpMovieCastBtn";
 
