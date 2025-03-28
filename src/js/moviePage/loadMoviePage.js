@@ -1,12 +1,7 @@
-import {
-  movieBlockName,
-  movieContainer,
-  baseBackdropUrl,
-  basePosterUrl,
-} from "./movieVars";
+import { movieBlockName, movieContainer } from "./movieVars";
+import { baseBackdropUrl, basePosterUrl } from "../commonVars";
 
 import { isValidUrl, getIdFromWindowLocation } from "../getCheckUrlData";
-
 import { fetchMovieObj, filterMovieData } from "./getMovieData";
 import { createMovieBannerElem, createInfoBlock } from "./createMoviePageElems";
 

@@ -25,3 +25,7 @@ export function addMovieToStorage(movieObj, property) {
     window.localStorage.setItem(property, JSON.stringify(moviesStored));
   }
 }
+
+export function getMoviesFromStorage(storageProperty) {
+  return JSON.parse(window.localStorage.getItem(storageProperty));
+}
