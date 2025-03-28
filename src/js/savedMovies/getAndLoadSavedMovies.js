@@ -13,6 +13,7 @@ import {
 import { tmbdUrl, iconPaths } from "../commonVars";
 import { getMoviesFromStorage } from "../localStorage";
 import { createControlRemBar } from "./createRemBtn";
+import { movieCardClickHandler } from "./movieCardClickHandler";
 
 const movieCards = document.querySelector("." + moviesContainerClass);
 
@@ -45,6 +46,7 @@ export function showMsgLstIsEmpty(movieCards) {
 function createMovieElem(movieData, storageProperty) {
   const movieCard = createElementWithProps("div", savedMoviesClss.movieCard);
   movieCard.dataset.id = movieData.id;
+  addMovieCardHandler(movieCard, storageProperty);
 
   const closeBtnContainer = createControlRemBar(storageProperty);
   const posterElem = createPosterElem(movieData.poster_path);
@@ -71,6 +73,12 @@ function createMovieElem(movieData, storageProperty) {
   movieCard.append(tmbdLinkElem);
 
   return movieCard;
+}
+
+function addMovieCardHandler(movieCard, storageProperty) {
+  movieCard.addEventListener("click", (evt) =>
+    movieCardClickHandler(evt, storageProperty)
+  );
 }
 
 function createPosterElem(posterPath) {
