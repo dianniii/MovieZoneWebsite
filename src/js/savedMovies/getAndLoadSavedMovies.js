@@ -4,26 +4,46 @@ import {
   createLinkWithIcon,
   createImgElem,
 } from "../elementCreation";
-import { movieContainerClass, savedMoviesClss } from "./savedMoviesVars";
+import {
+  savedMoviesClss,
+  moviesContainerClass,
+  infoMsgClass,
+  numOfMovies,
+} from "./savedMoviesVars";
 import { tmbdUrl, iconPaths } from "../commonVars";
 import { getMoviesFromStorage } from "../localStorage";
-import { createControlRemBar } from "../controlBar/createControlBar";
+import { createControlRemBar } from "./createRemBtn";
 
-const moviesContainer = document.querySelector(".movie-cards");
+const movieCards = document.querySelector("." + moviesContainerClass);
 
 export function loadSavedMovies(storageProperty) {
   const moviesArr = getMoviesFromStorage(storageProperty);
+  numOfMovies.num = moviesArr.length;
   appendMovies(moviesArr, storageProperty);
 }
 
 function appendMovies(movieArr, storageProperty) {
+  if (movieArr.length === 0) {
+    showMsgLstIsEmpty(movieCards);
+    return;
+  }
   movieArr.forEach((movieObj) =>
-    moviesContainer.append(createMovieElem(movieObj, storageProperty))
+    movieCards.append(createMovieElem(movieObj, storageProperty))
   );
 }
 
+export function showMsgLstIsEmpty(movieCards) {
+  const msg = createElementWithProps(
+    "p",
+    infoMsgClass,
+    false,
+    "Nothing on the list"
+  );
+  movieCards.append(msg);
+}
+
 function createMovieElem(movieData, storageProperty) {
-  const movieCard = createElementWithProps("div", movieContainerClass);
+  const movieCard = createElementWithProps("div", savedMoviesClss.movieCard);
   movieCard.dataset.id = movieData.id;
 
   const closeBtnContainer = createControlRemBar(storageProperty);
