@@ -5,8 +5,8 @@
 }
 
 @mixin footer-later-padding {
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-left: 150px;
+  padding-right: 150px;
 }
 
 @mixin lateral-margins {
@@ -69,4 +69,19 @@
   font-weight: $font-weight-800;
   font-size: $font-size-erMsg;
   font-style: normal;
+}
+
+@mixin font-movie-title-mainPg {
+  @include font-base;
+  font-weight: $font-weight-500;
+  font-size: $font-size-basic;
+  font-style: normal;
+}
+
+@mixin font-movie-year-mainPg {
+  @include font-base;
+  font-weight: $font-weight-400;
+  font-size: $font-size-basic-smaller;
+  font-style: normal;
+  color: $greyTextColor;
 }
