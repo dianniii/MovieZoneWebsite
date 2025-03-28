@@ -1,14 +1,11 @@
 .genres {
   @include padding-left-right;
-  padding-top: 50px;
-  padding-bottom: 50px;
-  // border-radius: $borderRadiusMain;
-  // border: 1px solid $mediun-grey;
 
   &__title {
     display: none;
   }
 }
+
 .genre {
   margin-bottom: 70px;
   position: relative;
