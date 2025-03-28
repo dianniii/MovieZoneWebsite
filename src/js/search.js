@@ -73,7 +73,7 @@ function createCard(movie){
     movieCard.classList.add('movie-card');
     movieCard.setAttribute('data-id', movie.id);
 
-    const posterPath = movie.poster_path ? `https://media.themoviedb.org/t/p/w220_and_h330_face${movie.poster_path}` : 'assets/images/no-Image-Placeholder.svg';
+    const posterPath = movie.poster_path ? `https://media.themoviedb.org/t/p/w220_and_h330_face${movie.poster_path}` : './assets/images/no-Image-Placeholder.svg';
 
     movieCard.innerHTML=` <div class="poster-container"> <img class="poster" src="${posterPath}" alt ="${movie.title} Poster"> </div>
     <div class="text-container"> <h3 class="movieTitle">${movie.title}</h3>
