@@ -39,5 +39,8 @@ a {
 
 .header, .main, .footer{
   @include lateral-margins;
+  }
+  
+  .header, .main {
   margin-bottom: $marginBottom;
-}
+  }
