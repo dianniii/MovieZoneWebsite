@@ -37,7 +37,7 @@ a {
   cursor: pointer;
 }
 
-.header, .main{
+.header, .main, .footer{
   @include lateral-margins;
   margin-bottom: $marginBottom;
 }
