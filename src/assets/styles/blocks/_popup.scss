@@ -17,16 +17,16 @@
 }
 
 // Контейнер popup с отступами и скруглением
-.popup-content {
+.movie-card {
   background: $dark-grey;
   border-radius: 8px;
-  padding: 20px;
+  padding-top: 50px;
+  @include padding-left-right;
   width: 700px;
   max-width: 90%;
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translateX(-50%, -50%);
+  justify-content: center;
+  align-content: center;
   display: grid;
   grid-template-columns: 220px 1fr;
   grid-template-rows: repeat(5, min-content);
@@ -36,7 +36,7 @@
     "poster year"
     "poster overview"
     "poster tmdb"
-    "poster icons";
+    "poster control-bar";
   z-index: 20px;
 }
 
@@ -51,12 +51,11 @@
   cursor: pointer;
 }
 
-/* Grid-контейнер для двух колонок: левая (220px) и правая (остальная ширина)
+/*Grid-контейнер для двух колонок: левая (220px) и правая (остальная ширина)
 .popup-grid {
   display: grid;
   grid-template-columns: 220px 1fr;
-  grid-gap: 1rem;
-} */
+}*/
 
 // Стили для левой колонки: постер
 .popup-image img {
@@ -66,10 +65,10 @@
 }
 
 // Стили для правой колонки: информация о фильме
-.popup-info {
+/*.popup-info {
   display: flex;
-  /*flex-direction: column;*/
-}
+  flex-direction: column;
+}*/
 
 .popup-title__container {
   grid-area: title;
@@ -98,13 +97,33 @@
 }
 
 .popup-icon {
-  width: 3%;
-  height: 5%;
+  width: 12%;
+  height: 9%;
+}
+
+.popup-overview__container {
+  grid-area: overview;
+  width: 100%;
 }
 
 .popup-overview {
   font-size: 1rem;
   line-height: 1.4;
+}
+
+.tmdb__container {
+  grid-area: tmdb;
+  width: 100%;
+}
+
+.popup-year__container {
+  grid-area: year;
+  width: 100%;
+}
+
+.control-bar__container {
+  grid-area: control-bar;
+  width: 100%;
 }
 
 // Стили для маленькой картинки, по которой открывается popup

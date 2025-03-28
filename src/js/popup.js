@@ -1,3 +1,4 @@
+import { createControlBarElem } from "./createControlBar";
 import { domenPartUrl, basePosterUrl, controlBarIconPaths } from "./moviePage/movieVars"
 /**
 * Функция для запроса данных о фильме по ID (19995 = «Аватар»).
@@ -60,6 +61,9 @@ document.getElementById("movie").addEventListener("click", async (evt) => {
     // Краткое описание фильма
     document.querySelector(".popup-overview").textContent =
       movieData.overview || "Описание недоступно";
+
+    const controlBar = createControlBarElem(movieData);
+    document.querySelector(".control-bar__container").append(controlBar);
 
     // Отображаем popup, добавляя класс "active" (в CSS это делает popup видимым)
     document.getElementById("movie-popup").classList.add("active");
