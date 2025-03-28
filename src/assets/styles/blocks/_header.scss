@@ -3,6 +3,7 @@
     border-radius: 10px;
     padding-top: 15px;
     padding-bottom: 15px;
+    @include padding-left-right;
     background-color: $light-black;
     position: sticky;
     display: flex;
