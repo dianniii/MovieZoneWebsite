@@ -1,5 +1,11 @@
 import { classesControlBar, controlBarIconPaths } from "./controlBarVars";
 import { deleteMovieFromStorage, addMovieToStorage } from "../localStorage";
+import {
+  moviesContainerClass,
+  savedMoviesClss,
+  numOfMovies,
+} from "../savedMovies/savedMoviesVars";
+import { showMsgLstIsEmpty } from "../savedMovies/getAndLoadSavedMovies";
 
 function changeTooltipText(btn, text) {
   const tooltipElem = btn.querySelector("." + classesControlBar.tooltip);

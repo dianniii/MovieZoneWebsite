@@ -30,17 +30,6 @@ export function createControlBarElem(movieData) {
   return controlBarElem;
 }
 
-export function createControlRemBar(storageProperty) {
-  const controlBarElem = createElementWithProps(
-    "div",
-    classesControlBar.controlBar
-  );
-  const remBtn = createRemoveBtn(storageProperty);
-  // add eventListener
-  controlBarElem.append(remBtn);
-  return controlBarElem;
-}
-
 function createFavoriteBtn(movieData) {
   const favorite = isMovieStored(movieData.id, "favorites");
 
@@ -73,17 +62,7 @@ function createWatchListBtn(movieData) {
   return watchListBtnElem;
 }
 
-function createRemoveBtn(storageProperty) {
-  let tooltipText;
-
-  storageProperty === "favorites"
-    ? (tooltipText = "Remove from favorites")
-    : (tooltipText = "Remove from watchlist");
-
-  return createBtnWithTip(true, controlBarIconPaths.removeIcon, tooltipText);
-}
-
-function createBtnWithTip(rem, iconPath, tooltipText) {
+export function createBtnWithTip(rem, iconPath, tooltipText) {
   const btn = createButtonWithIcon(
     rem ? classesControlBar.btnRemove : classesControlBar.btn,
     classesControlBar.icon,
