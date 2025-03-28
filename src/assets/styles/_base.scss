@@ -36,3 +36,11 @@ button,
 a {
   cursor: pointer;
 }
+
+.header, .main, .footer{
+  @include lateral-margins;
+  }
+  
+  .header, .main {
+  margin-bottom: $marginBottom;
+  }
