@@ -17,18 +17,16 @@
     color: $textColor;
     z-index: 10;
   }
-
-  &__scrollable {
-    display: flex;
-    gap: 25px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-    padding-bottom: 10px;
-    scrollbar-width: none;
-  }
 }
-
+.movies__scrollable {
+  display: flex;
+  gap: 25px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  padding-bottom: 10px;
+  scrollbar-width: none;
+}
 .movie {
     flex: 0 0 auto;
     width: 244px;
