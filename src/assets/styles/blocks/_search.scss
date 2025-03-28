@@ -1,0 +1,63 @@
+.movies{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: $light-black;
+    color: $textColor;
+}
+
+.movie-card{
+    margin-top: 30px;
+    padding: 20px;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    background-color: $dark-grey;
+    width: calc(100% - 100px);
+    height: 400px;
+    @include font-basic;
+    line-height: 140%;
+    border-radius: $borderRadiusMain;
+}
+
+.movieTitle{
+    font-size: $font-size-h2;
+    padding-bottom: 20px;
+    line-height: 150%;
+}
+
+.poster-container{
+    padding-left: 40px;;
+    width: 35%;
+    flex-shrink: 0;
+}
+
+.poster{
+        object-fit: cover;
+        width: 220px;
+        height: 330px;
+ }
+
+
+.text-container{
+    flex-shrink: 1;
+    padding-right: 40px;
+    text-align: start;
+}
+
+.movie-info{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 7; 
+    -webkit-box-orient: vertical;
+}
+
+.errorMessage{
+    padding-top: 50px;
+    font-size: 70px;
+}

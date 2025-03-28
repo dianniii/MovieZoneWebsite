@@ -9,6 +9,20 @@ if (getPathFromWindowLocation() === "/movie.html") {
   document.addEventListener("DOMContentLoaded", loadMoviePage);
 }
 
+import { searchMedia, searchHandle } from "./js/header.js";
+
+document.addEventListener("DOMContentLoaded", () => {
+  searchHandle();
+  const searchInput = document.getElementById("search__input");
+  searchInput.addEventListener("input", searchMedia);
+});
+
+import { mainSearchFunction } from "./js/search.js";
+
+if (getPathFromWindowLocation() === "/search.html") {
+  document.addEventListener("DOMContentLoaded", mainSearchFunction());
+}
+
 if (
   getPathFromWindowLocation() === "/favorites.html" ||
   getPathFromWindowLocation() === "/watchlist.html"
