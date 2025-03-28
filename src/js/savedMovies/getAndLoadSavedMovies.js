@@ -80,7 +80,9 @@ function createPosterElem(posterPath) {
   );
   const posterElem = createImgElem(
     savedMoviesClss.poster,
-    basePosterUrl + posterPath,
+    posterPath
+      ? basePosterUrl + posterPath
+      : "./src/assets/images/no-Image-Placeholder.svg",
     "movie poster"
   );
   posterContainer.append(posterElem);
