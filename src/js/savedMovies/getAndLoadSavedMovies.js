@@ -106,6 +106,10 @@ function createTitleElem(title) {
   );
 }
 
+// function createOverviewElem(overview) {
+// если длина текста больше
+// }
+
 function createParElem(className, text) {
   return createElementWithProps("p", className, false, text);
 }
