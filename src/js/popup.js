@@ -55,7 +55,7 @@ document.getElementById("movie").addEventListener("click", async (evt) => {
     document.querySelector(".popup-year").textContent =
       "Год: " + (movieData.release_date ? movieData.release_date.slice(0, 4) : "не указан");
     // Ссылка на страницу фильма на TMDB (используем movie_id для формирования URL)
-    document.querySelector(".tmdb-link").href =
+    document.querySelector(".popup-link").href =
       "https://www.themoviedb.org/movie/" + movie_id;
     // Краткое описание фильма
     document.querySelector(".popup-overview").textContent =

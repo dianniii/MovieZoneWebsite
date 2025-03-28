@@ -24,20 +24,20 @@
   width: 700px;
   max-width: 90%;
   position: fixed;
-  top: 179px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    grid-template-rows: repeat(5, min-content);
-    gap: 50px 20px;
-    grid-template-areas:
-      "poster title"
-      "poster year"
-      "poster overview"
-      "poster tmdb"
-      "poster icons";
-      z-index: 20px;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%, -50%);
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  grid-template-rows: repeat(5, min-content);
+  gap: 50px 20px;
+  grid-template-areas:
+    "poster title"
+    "poster year"
+    "poster overview"
+    "poster tmdb"
+    "poster icons";
+  z-index: 20px;
 }
 
 // Кнопка закрытия popup
@@ -68,12 +68,22 @@
 // Стили для правой колонки: информация о фильме
 .popup-info {
   display: flex;
-  flex-direction: column;
+  /*flex-direction: column;*/
+}
+
+.popup-title__container {
+  grid-area: title;
+  width: 100%;
 }
 
 .popup-title {
   font-size: 1.5rem;
   margin: 0;
+}
+
+.popup-year__container {
+  grid-area: year;
+  width: 100%;
 }
 
 .popup-year {
