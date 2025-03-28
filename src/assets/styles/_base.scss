@@ -37,10 +37,12 @@ a {
   cursor: pointer;
 }
 
-.header, .main, .footer{
+.footer {
+  @include footer-later-padding;
+}
+
+.header,
+.main {
   @include lateral-margins;
-  }
-  
-  .header, .main {
   margin-bottom: $marginBottom;
-  }
+}

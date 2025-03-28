@@ -4,9 +4,14 @@
   padding-right: 50px;
 }
 
+@mixin footer-later-padding {
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
 @mixin lateral-margins {
-  margin-left: 125px;
-  margin-right: 125px;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
 //new mixins for fonts
