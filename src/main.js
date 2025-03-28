@@ -1,26 +1,35 @@
 import "./assets/styles/normalize.css";
 import "./main.css";
 
-import { getPathFromWindowLocation } from "./js/getCheckUrlData";
+import { getPathFromWindowLocation, getPageName } from "./js/getCheckUrlData";
 import { loadMoviePage } from "./js/moviePage/loadMoviePage.js";
+import { loadSavedMovies } from "./js/savedMovies/getAndLoadSavedMovies.js";
 
 if (getPathFromWindowLocation() === "/movie.html") {
   document.addEventListener("DOMContentLoaded", loadMoviePage);
 }
 
-import {searchMedia, searchHandle} from "./js/header.js";
+import { searchMedia, searchHandle } from "./js/header.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-    searchHandle();
-    const searchInput = document.getElementById('search__input'); 
-      searchInput.addEventListener('input', searchMedia); 
-    }
-);
+  searchHandle();
+  const searchInput = document.getElementById("search__input");
+  searchInput.addEventListener("input", searchMedia);
+});
 
-import {mainSearchFunction} from "./js/search.js";
+import { mainSearchFunction } from "./js/search.js";
 
 if (getPathFromWindowLocation() === "/search.html") {
   document.addEventListener("DOMContentLoaded", mainSearchFunction());
+}
+
+if (
+  getPathFromWindowLocation() === "/favorites.html" ||
+  getPathFromWindowLocation() === "/watchlist.html"
+) {
+  document.addEventListener("DOMContentLoaded", () =>
+    loadSavedMovies(getPageName())
+  );
 }
 
 // import javascriptLogo from "./javascript.svg";

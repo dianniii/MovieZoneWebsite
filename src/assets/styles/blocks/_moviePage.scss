@@ -5,7 +5,8 @@ body {
 
 .full-movie {
   margin-bottom: $marginBottom;
-  @include lateral-margins;
+  // @include lateral-margins;
+  @include padding-left-right;
 
   // styles for banner
   &__banner {
