@@ -49,11 +49,11 @@ export async function mainSearchFunction(){
             ()=> clickCard(evt);
         const controlBar = evt.target.closest(
             "." + classesControlBar.controlBar
-          );
-          const clickOnbtns =
+        );
+        const clickOnbtns =
             controlBar &&
             controlBar.classList.contains(classesControlBar.controlBar);
-          if (!clickOnbtns) {
+        if (!clickOnbtns) {
             const movieElem = evt.target.closest(".movie-card");
             if (movieElem) { 
                 const movie_id = movieElem.getAttribute("data-id");
