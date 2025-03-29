@@ -1,3 +1,13 @@
+
+// Подключаем обработчик события click после загрузки страницы
+document.addEventListener('DOMContentLoaded', function() {
+  const mainContainer = document.getElementById("main");
+  if (mainContainer) { 
+    mainContainer.addEventListener("click", handleItemClick);
+  } else {
+    console.warn("Элемент <main> не найден.");
+  }
+});
 //запрос на добавление жанров 
 async function getGenres() {
     try {
@@ -14,7 +24,7 @@ async function getGenres() {
             throw new Error("Данные жанров не являются массивом");
         }
         const container = document.getElementById('genres');
-        container.innerHTML = ''; // Очистка контейнера перед вставкой новых данных
+        // container.innerHTML = ''; // Очистка контейнера перед вставкой новых данных
 
         // genresArray.forEach(genre => {
         //     const genreHtml = `
@@ -101,20 +111,13 @@ setTimeout(() => {
 }, 3000);
 
 
+
+
 // Функция для отображения информации о фильмах из genresArray
 function displayMovieInfo(genresArray) {
     genresArray.forEach((genreData) => {
       if (genreData.results && Array.isArray(genreData.results)) {
         console.log(`Жанр: ${genreData.genre_name} (ID: ${genreData.genre_id})`);
-  
-        // Перебираем каждый фильм в result данного жанра
-        genreData.results.forEach((movie) => {
-          const { title, poster_path, release_date } = movie;
-  
-          console.log(`  - Название: ${title}`);
-          console.log(`    Постер: https://image.tmdb.org/t/p/w200${poster_path}`);
-          console.log(`    Дата выхода: ${release_date}`);
-        });
       } else {
         console.warn(`Нет данных о фильмах для жанра ${genreData.genre_name}`);
       }
@@ -198,4 +201,28 @@ function displayMovieInfo(genresArray) {
   setTimeout(() => {
     createMovieMarkup(genresArray);
   }, 3000);
+  
+
+  
+  function handleItemClick(evt) {
+    // Проверяем, кликнул ли пользователь на элемент фильма
+    const movieElement = evt.target.closest(".movie");
+    if (movieElement) {
+      const movieId = movieElement.getAttribute("data-id"); // Получаем ID фильма
+      if (movieId) {
+        window.location.href = `movie.html?id=${movieId}`; // Перенаправляем на страницу фильма
+        return; // Завершаем выполнение, если найден фильм
+      }
+    }
+  
+    // Проверяем, кликнул ли пользователь на элемент жанра
+    const genreElement = evt.target.closest(".genre");
+    if (genreElement) {
+      const genreId = genreElement.getAttribute("data-id"); // Получаем ID жанра
+      if (genreId) {
+        window.location.href = `genre.html?id=${genreId}`; // Перенаправляем на страницу жанра
+        return; // Завершаем выполнение, если найден жанр
+      }
+    }
+  }
   
