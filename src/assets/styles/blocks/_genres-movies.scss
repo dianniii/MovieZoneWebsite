@@ -63,6 +63,7 @@
   &__title {
     margin: 0;
     @include font-movie-title-mainPg;
+    //учесть возможный очень длинный заголовок
   }
 
   &__year {
