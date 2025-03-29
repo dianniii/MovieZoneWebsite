@@ -1,6 +1,7 @@
 const movie_container=document.querySelector('.movies-container');
 const loadMoreButton = document.getElementById('load-more'); 
 let currentPage = 1;
+const moviesByGenre=[];
 
 import { createCards, createCard } from "./search.js";
 
@@ -10,12 +11,20 @@ export function getIdFromWindowLocation(){
   return urlParams.get("id");
 }
 
-const moviesObj= JSON.parse(window.localStorage.getItem());
-console.log(typeof(moviesObj.results[0].genre_id));
+function getLocalStorageData(jsonName){
+const moviesArr= JSON.parse(window.localStorage.getItem(jsonName));
+if(!moviesArr){return};
+return moviesArr;
+// console.log(typeof(moviesArr.results[0].genre_id));
+}
 
-const moviesByGenre = moviesObj.filter((movie) =>{
+function filterMoviesArr(){
+  getLocalStorageData(movies);
+ moviesByGenre = moviesArr.filter((movie) =>{
   movie.genre_id === getIdFromWindowLocation();
 });
+return moviesByGenre;
+}
 
 // const moviesByGenreObj= {
 //     "page": 1,
@@ -345,11 +354,12 @@ const moviesByGenre = moviesObj.filter((movie) =>{
 //     "total_results": 43440
 //   }
 
-  function mainGenrePageFunction(movies){
+  function mainGenrePageFunction(moviesData){
+    filterMoviesArr();
     movie_container.innerHTML='';
 
-    if(movies && movies.length>0){
-        createCards(movies, movie_container);
+    if(moviesData && moviesData.length>0){
+        createCards(moviesData, movie_container);
     }else{
         movie_container.textContent="There are no available results. Please choose another genre";
     }
