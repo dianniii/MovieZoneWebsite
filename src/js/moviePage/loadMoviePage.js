@@ -36,20 +36,17 @@ function renderMovie(movieData) {
 
     movieContainer.setAttribute("data-id", movieData.id);
 
-    const bannerElem = createMovieBannerElem(movieData);
-
-    const infoBlockElem = createInfoBlock(movieData);
+    const bannerElem = createMovieBannerElem(movieData, movieBlockName);
+    const infoBlockElem = createInfoBlock(movieData, movieBlockName);
 
     movieContainer.append(bannerElem, infoBlockElem);
-
-    changeBannerBG(movieData);
+    changeBannerBG(bannerElem, movieData);
   } catch (error) {
     console.error("Error during rendering movie:", error);
   }
 }
 
-function changeBannerBG(movieDescription) {
-  const bannerElem = document.querySelector(`.${movieBlockName}banner`);
+export function changeBannerBG(bannerElem, movieDescription) {
   const currentBg = getComputedStyle(bannerElem).backgroundImage;
   const imagePath =
     movieDescription.backdrop_path || movieDescription.poster_path;
