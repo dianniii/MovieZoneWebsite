@@ -2,9 +2,6 @@
 @import "./assets/styles/mixins";
 @import "./assets/styles/_base.scss";
 
-// import fonts
-@import "./assets/fonts/fonts";
-
 @import "./assets/styles/base";
 
 // import blocks
@@ -16,3 +13,5 @@
 @import "./assets/styles/blocks/_genrePage.scss";
 
 @import "./assets/styles/blocks/savedMovies";
+
+@import "./assets/styles/blocks/genres-movies";
