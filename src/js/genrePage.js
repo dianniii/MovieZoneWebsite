@@ -334,7 +334,7 @@ const moviesByGenreObj= {
     movie_container.innerHTML='';
 
     if(movies && movies.length>0){
-        const cards=createCards(movies);
+        const cards=createCards(movies, movie_container);
         movie_container.appendChild(cards);
     }else{
         const noMoviesMessage = movie_container.textContent="There are no available results. Please choose another genre";

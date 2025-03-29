@@ -44,7 +44,7 @@ export async function mainSearchFunction(){
         const movies = await fetchMovies(title);
         if(movies &&movies.results && movies.results.length > 0){
         const filtered_results= filterMoviesProps(movies);
-        createCards(filtered_results);
+        createCards(filtered_results, movie_container);
         movie_container.addEventListener("click", (evt) => { 
             ()=> clickCard(evt);
         const controlBar = evt.target.closest(
@@ -71,12 +71,15 @@ export async function mainSearchFunction(){
     }
 } 
 
-export function createCards(arrayOfObjs){
-    
-    arrayOfObjs.forEach((movie)=> {movie_container.append(createCard(movie))
-    })
+export function createCards(arrayOfObjs, container){
+    container.innerHTML='';
+    if (Array.isArray(arrayOfObjs)){
+    arrayOfObjs.forEach((movie)=> {
+        const card = createCard(movie);
+        container.appendChild(card);
+    });
 }
-
+}
 
 
 export function createCard(movie){
@@ -84,7 +87,7 @@ export function createCard(movie){
     movieCard.classList.add('movie-card');
     movieCard.setAttribute('data-id', movie.id);
 
-    const posterPath = movie.poster_path ? `https://media.themoviedb.org/t/p/w220_and_h330_face${movie.poster_path}` : './assets/images/no-Image-Placeholder.svg';
+    const posterPath = movie.poster_path ? `https://image.tmdb.org/t/p/w220_and_h330_face${movie.poster_path}` : './assets/images/no-Image-Placeholder.svg'
 
     movieCard.innerHTML=` <div class="poster-container"> <img class="poster" src="${posterPath}" alt ="${movie.title} Poster"> </div>
     <div class="text-container"> <h3 class="movieTitle">${movie.title}</h3>
@@ -102,4 +105,3 @@ export function createCard(movie){
 
 
 mainSearchFunction();
-
