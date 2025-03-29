@@ -1,4 +1,6 @@
 const movie_container=document.querySelector('.movies-container');
+const loadMoreButton = document.getElementById('load-more'); 
+let currentPage = 1;
 
 import { createCards, createCard } from "./search.js";
 
@@ -334,13 +336,29 @@ const moviesByGenreObj= {
     movie_container.innerHTML='';
 
     if(movies && movies.length>0){
-        const cards=createCards(movies, movie_container);
-        movie_container.appendChild(cards);
+        createCards(movies, movie_container);
     }else{
-        const noMoviesMessage = movie_container.textContent="There are no available results. Please choose another genre";
+        movie_container.textContent="There are no available results. Please choose another genre";
     }
   }
 
+function loadMoreAddHide(){
+    if (moviesByGenreObj.page < moviesByGenreObj.total_pages) {
+        loadMoreButton.style.display = 'block'; 
+        loadMoreButton.addEventListener('click', () => {
+            currentPage++;
+            mainGenrePageFunction(currentPage);
+            if (currentPage === moviesByGenreObj.total_pages) {
+                loadMoreButton.style.display = 'none'; 
+            }
+        },{once: true});
+    } else {
+        loadMoreButton.style.display = 'none';
+    }
+}
+
+
 document.addEventListener("DOMContentLoaded", ()=>{
     mainGenrePageFunction(moviesByGenreObj.results);
- })
+    loadMoreAddHide();
+})

@@ -20,7 +20,13 @@ document.addEventListener("DOMContentLoaded", () => {
 import { mainSearchFunction } from "./js/search.js";
 
 if (getPathFromWindowLocation() === "/search.html") {
-  document.addEventListener("DOMContentLoaded", mainSearchFunction());
+  document.addEventListener("DOMContentLoaded", async() => {
+    try{
+      await mainSearchFunction();
+    }catch(error){
+      console.error("Error in mainSearchFunction:", error);
+    }
+  });
 }
 
 if (
