@@ -1,14 +1,5 @@
 export const movieContainer = document.getElementById("movie");
 
-export const domenPartUrl = "https://movies.gila.workers.dev";
-export const pathForFullMovieDescription = "/search/movie/description?";
-
-export const tmbdUrl = `https://www.themoviedb.org/movie/`;
-
-export const baseBackdropUrl = "https://image.tmdb.org/t/p/original";
-export const basePosterUrl =
-  "https://media.themoviedb.org/t/p/w220_and_h330_face";
-
 export const movieBlockName = "full-movie__";
 
 export const iconPaths = {
@@ -54,23 +45,6 @@ export const classesBanner = {
   controlBar: `${movieBlockName}control-bar`,
   button: `${movieBlockName}banner-btn`,
   icon: `${movieBlockName}banner-icon`,
-};
-
-export const classesControlBar = {
-  controlBar: "control-bar",
-  btnFav: ["control-bar__btn", "fav-btn"],
-  btnWatchlst: ["control-bar__btn", "watchlst-btn"],
-  tooltipFav: ["control-bar__tooltip", "fav-tooltip"],
-  tooltipWatchLst: ["control-bar__tooltip", "watchlst-tooltip"],
-  tooltip: "control-bar__tooltip",
-  icon: "control-bar__icon",
-};
-
-export const controlBarIconPaths = {
-  likeIcon: "/icons/likeIcon.svg",
-  dislikeIcon: "/icons/dislikeIcon.svg",
-  addIcon: "/icons/addIcon.svg",
-  removeIcon: "/icons/removeIcon.svg",
 };
 
 export const lstClasses = {

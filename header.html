@@ -8,17 +8,23 @@
   <body>
     <header class="header" id="header">
       <div class="logo">
-        <img
-          src="./src/assets/icons/iconExample.png"
-          class="logo__icon"
-          alt="Icon Example"
-        />
+        <a class="logo" href="index.html"
+          ><img
+            src="./src/assets/icons/LOGO 4.svg"
+            class="logo__icon"
+            alt="TMDB icon"
+          />
+        </a>
       </div>
       <nav class="nav">
         <ul class="nav__menu">
-          <li class="nav__menu-item">Home</li>
-          <li class="nav__menu-item">WatchList</li>
-          <li class="nav__menu-item">Watched</li>
+          <li class="nav__menu-item"><a href="index.html">Home</a></li>
+          <li class="nav__menu-item">
+            <a href="watchlist.html">WatchList</a>
+          </li>
+          <li class="nav__menu-item">
+            <a href="favorites.html">Favorites</a>
+          </li>
         </ul>
       </nav>
       <div class="search">
@@ -36,5 +42,24 @@
       </div>
     </header>
     <script type="module" src="/src/main.js"></script>
+    <!-- <script>
+      const searchBtn = document.querySelector('.search__icon');
+      function searchMedia(searchRequest){
+          return searchRequest.replaceAll(" ", "+");
+      }
+
+      searchBtn.addEventListener('click', ()=>{
+          let searchRequest = document.getElementById('search__input').value.trim();
+          if(!searchRequest){return}
+          const searchResults = searchMedia(searchRequest);
+          window.location.href = `search.html?title=${searchResults}`
+      });
+
+      document.getElementById('search__input').addEventListener('keyup', function(event){
+          if(event.key === 'Enter'){
+              searchBtn.click()
+          }
+      })
+  </script> -->
   </body>
 </html>

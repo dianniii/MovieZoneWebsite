@@ -1,10 +1,9 @@
 .header{
-    width: 95%;
     height: 70px;
     border-radius: 10px;
-    @include padding-left-right;
     padding-top: 15px;
     padding-bottom: 15px;
+    @include padding-left-right;
     background-color: $light-black;
     position: sticky;
     display: flex;
@@ -34,7 +33,7 @@
 &__menu{
     display: flex;
     gap: 5vw;
-    @include montserrat-500-menuItem;
+    @include font-basic;
 }
 
 &__menu-item:hover{

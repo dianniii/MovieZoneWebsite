@@ -1,5 +1,11 @@
-import { classesControlBar, controlBarIconPaths } from "./moviePage/movieVars";
-import { deleteMovieFromStorage, addMovieToStorage } from "./localStorage";
+import { classesControlBar, controlBarIconPaths } from "./controlBarVars";
+import { deleteMovieFromStorage, addMovieToStorage } from "../localStorage";
+import {
+  moviesContainerClass,
+  savedMoviesClss,
+  numOfMovies,
+} from "../savedMovies/savedMoviesVars";
+import { showMsgLstIsEmpty } from "../savedMovies/getAndLoadSavedMovies";
 
 function changeTooltipText(btn, text) {
   const tooltipElem = btn.querySelector("." + classesControlBar.tooltip);
@@ -37,7 +43,7 @@ export function handleWatchlstBtnClick(evt) {
   if (btnState === "on") {
     turnOffBtn(btn, false, controlBarIconPaths.addIcon, movieInfo.id);
   } else if (btnState === "off") {
-    turnOnBtn(btn, false, controlBarIconPaths.removeIcon, movieInfo);
+    turnOnBtn(btn, false, controlBarIconPaths.addedIcon, movieInfo);
   }
 }
 

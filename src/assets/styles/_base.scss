@@ -36,3 +36,13 @@ button,
 a {
   cursor: pointer;
 }
+
+.footer {
+  @include footer-later-padding;
+}
+
+.header,
+.main {
+  @include lateral-margins;
+  margin-bottom: $marginBottom;
+}

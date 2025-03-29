@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="./src/main.css" />
   </head>
   <body>
     <header class="header" id="header">
@@ -42,10 +43,30 @@
       </div>
     </header>
     <main class="main">
-      <div class="movies-container"></div>
-      <button id="load-more" class="load-more" style="display:none;">Load More</button>
+      <div class="movies" id="movies"></div>
     </main>
-    <script type="module" src="./src/js/genrePage.js"></script>
-    <script type="module" src="/src/main.js"></script>
   </body>
+
+  <!-- <script src="./src/js/search.js"></script> -->
+  <script type="module" src="/src/main.js"></script>
+  <!-- <script>
+        const searchBtn = document.querySelector('.search__icon');
+        function searchMedia(searchRequest){
+            return searchRequest.replaceAll(" ", "+");
+        }
+
+        searchBtn.addEventListener('click', ()=>{
+            let searchRequest = document.getElementById('search__input').value.trim();
+            if(!searchRequest){return}
+            const searchResults = searchMedia(searchRequest);
+            console.log(`search.html?title=${searchResults}`);
+            window.location.href = `search.html?title=${searchResults}`
+        });
+
+        document.getElementById('search__input').addEventListener('keyup', function(event){
+            if(event.key === 'Enter'){
+                searchBtn.click()
+            }
+        })
+    </script> -->
 </html>
