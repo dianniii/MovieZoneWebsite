@@ -10,6 +10,30 @@
     color: $textColor;
 }
 
+.movie-card{
+    margin-top: 30px;
+    padding: 20px;
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    background-color: $dark-grey;
+    min-height: 300px;
+    width: calc(100% - 100px);
+    @include font-basic;
+    line-height: 140%;
+    border-radius: $borderRadiusMain;
+    transition: height 0.3s ease;
+    &:hover{
+        height: auto;
+        .movieTitle, .movie-info { 
+            white-space: normal;
+            overflow: visible; 
+            text-overflow: unset;
+            -webkit-line-clamp: unset;
+            line-clamp: unset;
+        }
+    }
+}
 
 .movieTitle{
     font-size: $font-size-h2;
@@ -49,32 +73,6 @@
     line-clamp: 7;
     -webkit-box-orient: vertical;
 }
-
-.movie-card{
-    margin-top: 30px;
-    padding: 20px;
-    display: flex;
-    gap: 30px;
-    align-items: center;
-    background-color: $dark-grey;
-    width: calc(100% - 100px);
-    @include font-basic;
-    line-height: 140%;
-    border-radius: $borderRadiusMain;
-    overflow: hidden;
-    transition: height 0.3s ease;
-    &:hover{
-        height: auto;
-        .movieTitle, .movie-info { 
-            white-space: normal;
-            overflow: visible; 
-            text-overflow: unset;
-            -webkit-line-clamp: unset;
-            line-clamp: unset;
-        }
-    }
-}
-
 
 .errorMessage{
     display: flex;
