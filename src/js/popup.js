@@ -1,10 +1,12 @@
-import { createControlBarElem } from "./createControlBar";
-import { domenPartUrl, basePosterUrl, controlBarIconPaths } from "./moviePage/movieVars"
+import { createControlBarElem } from "./controlBar/createControlBar";
+import { controlBarIconPaths } from "./controlBar/controlBarVars";
+import { domenPartUrl, basePosterUrl } from "./commonVars";
+
 /**
 * Функция для запроса данных о фильме по ID (19995 = «Аватар»).
 * Возвращает объект с информацией о фильме в формате JSON.
 */
-async function fetchMovieById(id) {
+async function fetchMovieDataById(id) {
   // Формируем URL для запроса, используя полученный id
   const url = `${domenPartUrl}/search/movie/byId?movie_id=${id}`;
   try {
@@ -21,7 +23,7 @@ async function fetchMovieById(id) {
     return data; // Возвращаем полученные данные
   } catch (error) {
     // Выводим ошибку в консоль для отладки
-    console.error("Ошибка в fetchMovieById:", error);
+    console.error("Ошибка в fetchMovieDataById:", error);
     // Можем пробросить ошибку дальше, чтобы ее обработал вызывающий код
     throw error;
   }
@@ -41,8 +43,8 @@ document.getElementById("movie").addEventListener("click", async (evt) => {
   const movie_id = movieElem.getAttribute("data-id");
 
   try {
-    // Запрашиваем данные о фильме по ID через нашу функцию fetchMovieById
-    const movieData = await fetchMovieById(movie_id);
+    // Запрашиваем данные о фильме по ID через нашу функцию fetchMovieDataById
+    const movieData = await fetchMovieDataById(movie_id);
 
     // Заполняем левую колонку popup: задаём src для постера
     document.querySelector(".popup-poster").src =
@@ -53,8 +55,7 @@ document.getElementById("movie").addEventListener("click", async (evt) => {
     document.querySelector(".popup-title").textContent =
       movieData.title || "Нет названия";
     // Год выпуска: берём первые 4 символа из release_date (например, "2009" из "2009-12-15")
-    document.querySelector(".popup-year").textContent =
-      "Год: " + (movieData.release_date ? movieData.release_date.slice(0, 4) : "не указан");
+    document.querySelector(".popup-year").textContent = (movieData.release_date ? movieData.release_date.slice(0, 4) : "не указан");
     // Ссылка на страницу фильма на TMDB (используем movie_id для формирования URL)
     document.querySelector(".popup-link").href =
       "https://www.themoviedb.org/movie/" + movie_id;
