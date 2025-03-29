@@ -47,7 +47,7 @@ export async function mainSearchFunction(){
         const filtered_results= filterMoviesProps(movies);
         createCards(filtered_results, movie_container);
         movie_container.addEventListener("click", (evt) => { 
-            ()=> clickCard(evt);
+            
         const controlBar = evt.target.closest(
             "." + classesControlBar.controlBar
         );
