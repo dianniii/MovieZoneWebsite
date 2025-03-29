@@ -1,3 +1,6 @@
+import { classesControlBar } from "./controlBar/controlBarVars";
+import { createControlBarElem } from "./controlBar/createControlBar";
+
 const movie_container = document.getElementById('movies');
 
 function searchTitle(){
@@ -43,12 +46,20 @@ export async function mainSearchFunction(){
         const filtered_results= filterMoviesProps(movies);
         createCards(filtered_results);
         movie_container.addEventListener("click", (evt) => { 
-            ()=> clickCard(evt)
+            ()=> clickCard(evt);
+        const controlBar = evt.target.closest(
+            "." + classesControlBar.controlBar
+          );
+          const clickOnbtns =
+            controlBar &&
+            controlBar.classList.contains(classesControlBar.controlBar);
+          if (!clickOnbtns) {
             const movieElem = evt.target.closest(".movie-card");
             if (movieElem) { 
                 const movie_id = movieElem.getAttribute("data-id");
                 window.location.href = `movie.html?id=${movie_id}`;
             }
+        }
         });
         } else{
             movie_container.classList.add('errorMessage');
@@ -80,6 +91,11 @@ function createCard(movie){
     <p>${movie.release_date ? movie.release_date.slice(0, 4): ''}</p>
     <p class="movie-info">${movie.overview}</p> </div>
     `
+
+    movieCard
+    .querySelector(".text-container")
+    .append(createControlBarElem(movie));
+
     return movieCard;
 }
 
