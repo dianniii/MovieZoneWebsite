@@ -49,14 +49,14 @@
   }
 
   &__info {
+    padding: 20px;
+    height: 75px;
     position: absolute;
     bottom: 10px;
     left: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.6);
-    color: $textColor;
     text-align: center;
-    padding: 5px;
     border-radius: 0 0 5px 5px;
   }
 
@@ -64,6 +64,21 @@
     margin: 0;
     @include font-movie-title-mainPg;
     //учесть возможный очень длинный заголовок
+    white-space: nowrap; // Запрещаем перенос на новую строку
+    overflow: hidden; // Обрезаем текст, если он выходит за границы
+    text-overflow: ellipsis; // Добавляем "..." в конце обрезанного текста
+    transition: white-space 0.3s ease-in-out;
+  }
+
+  &:hover &__info {
+    height: auto; // Увеличенная высота при hover (регулируй по необходимости)
+    padding: 10px;
+  }
+
+  &:hover &__title {
+    white-space: normal; // Позволяет перенести текст на несколько строк
+    overflow: visible;
+    text-overflow: unset;
   }
 
   &__year {

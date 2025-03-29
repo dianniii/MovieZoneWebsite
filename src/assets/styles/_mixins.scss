@@ -99,14 +99,15 @@
 @mixin font-movie-title-mainPg {
   @include font-base;
   font-weight: $font-weight-500;
-  font-size: $font-size-basic;
+  font-size: $font-size-mainPg-title;
   font-style: normal;
+  color: $textColor;
 }
 
 @mixin font-movie-year-mainPg {
   @include font-base;
   font-weight: $font-weight-400;
-  font-size: $font-size-movie-year;
+  font-size: $font-size-mainPg-year;
   font-style: normal;
   color: $greyTextColor;
 }
