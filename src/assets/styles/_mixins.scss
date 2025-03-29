@@ -5,8 +5,8 @@
 }
 
 @mixin footer-later-padding {
-  padding-left: 100px;
-  padding-right: 100px;
+  padding-left: 150px;
+  padding-right: 150px;
   padding-top: 20px;
   padding-bottom: 20px;
 }
@@ -90,10 +90,17 @@
   font-size: $font-size-footer-container;
   font-weight: $font-weight-600;
 }
+
 @mixin font-footer-400 {
   font-family: $font-family;
   font-size: $font-size-footer-policy;
   font-weight: $font-weight-400;
+}
+
+@mixin font-footer-300 {
+  font-family: $font-family;
+  font-size: $font-size-tmdb-link;
+  font-weight: $font-weight-300;
 }
 
 @mixin font-movie-title-mainPg {
