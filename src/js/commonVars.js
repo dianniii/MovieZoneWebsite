@@ -1,7 +1,6 @@
 export const tmbdUrl = `https://www.themoviedb.org/movie/`;
 export const baseBackdropUrl = "https://image.tmdb.org/t/p/original";
-export const basePosterUrl =
-  "https://image.tmdb.org/t/p/w220_and_h330_face";
+export const basePosterUrl = "https://image.tmdb.org/t/p/w220_and_h330_face";
 
 //reverse server
 export const domenPartUrl = "https://movies.gila.workers.dev";
@@ -11,6 +10,7 @@ export const pathForSearchByGenre = " /search/genre";
 export const pathForFullMovieDescription = "/search/movie/description";
 export const pathForSearchByTitle = "/search/movie/byTitle";
 export const pathForSearchById = "/search/movie/byId";
+export const pathForPopularMovies = "/popular";
 
 export const iconPaths = {
   TMBDIcon: "/icons/TMBD.svg",
