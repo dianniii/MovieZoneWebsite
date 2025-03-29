@@ -1,10 +1,4 @@
-import {
-  movieBlockName,
-  classesBanner,
-  castIds,
-  classesInfo,
-  lstClasses,
-} from "./movieVars";
+import { classesBanner, castIds, classesInfo, lstClasses } from "./movieVars";
 
 import {
   createElementWithProps,
@@ -19,7 +13,7 @@ import { createControlBarElem } from "../controlBar/createControlBar";
 
 import { toggleCastElementLength } from "./setUpMovieCastBtn";
 
-export function createMovieBannerElem(movieDescription) {
+export function createMovieBannerElem(movieDescription, movieBlockName) {
   const bannerElem = createElementWithProps("div", `${movieBlockName}banner`);
 
   const titleElem = createTitleBannerElem(movieDescription);
@@ -51,7 +45,7 @@ function createTitleBannerElem(movieDescription) {
   return titleElem;
 }
 
-export function createInfoBlock(movieDescription) {
+export function createInfoBlock(movieDescription, movieBlockName) {
   const infoBlockElem = createElementWithProps("div", `${movieBlockName}info`);
   const contentSectionElem = createContentSection(movieDescription);
   const factsSectionElem = createFactsSection(movieDescription);
