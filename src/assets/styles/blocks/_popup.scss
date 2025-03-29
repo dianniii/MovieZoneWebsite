@@ -18,11 +18,13 @@
 .movie-card {
   background: $dark-grey;
   border-radius: 8px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%; -50%)
   @include padding-left-right;
   width: 700px;
   max-width: 90%;
   position: fixed;
-  justify-content: center;
   align-content: center;
   display: grid;
   grid-template-columns: repeat (2, 1fr);
