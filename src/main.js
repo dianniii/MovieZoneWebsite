@@ -9,13 +9,9 @@ if (getPathFromWindowLocation() === "/movie.html") {
   document.addEventListener("DOMContentLoaded", loadMoviePage);
 }
 
-import { searchMedia, searchHandle } from "./js/header.js";
+import { searchHandle } from "./js/header.js";
 
-document.addEventListener("DOMContentLoaded", () => {
-  searchHandle();
-  const searchInput = document.getElementById("search__input");
-  searchInput.addEventListener("input", searchMedia);
-});
+document.addEventListener("DOMContentLoaded", searchHandle);
 
 import { mainSearchFunction } from "./js/search.js";
 
