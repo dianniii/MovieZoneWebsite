@@ -16,6 +16,10 @@
   margin-right: 100px;
 }
 
+@mixin margins-main-banner {
+  margin: 20px 50px;
+}
+
 @mixin load-moreButton {
   padding: 10px 20px;
   color: $textColor;
