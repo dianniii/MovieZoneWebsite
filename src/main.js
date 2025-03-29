@@ -4,6 +4,11 @@ import "./main.css";
 import { getPathFromWindowLocation, getPageName } from "./js/getCheckUrlData";
 import { loadMoviePage } from "./js/moviePage/loadMoviePage.js";
 import { loadSavedMovies } from "./js/savedMovies/getAndLoadSavedMovies.js";
+import { renderMovieBanner } from "./js/randomMovieBanner/renderMovieBanner.js";
+
+if (getPathFromWindowLocation() === "/index.html") {
+  document.addEventListener("DOMContentLoaded", renderMovieBanner);
+}
 
 if (getPathFromWindowLocation() === "/movie.html") {
   document.addEventListener("DOMContentLoaded", loadMoviePage);

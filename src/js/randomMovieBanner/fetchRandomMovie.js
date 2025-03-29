@@ -2,7 +2,7 @@ import { domenPartUrl, pathForPopularMovies } from "../commonVars";
 
 export async function fetchPopularMovies() {
   //выбираем рандомно страницу из первых 15 страницы популярных фильмов
-  const randomPage = getRandomNum(16);
+  const randomPage = getRandomNum(15);
 
   try {
     const response = await fetch(
@@ -15,7 +15,6 @@ export async function fetchPopularMovies() {
     }
 
     const movies = await response.json();
-
     return movies;
   } catch (error) {
     console.error("Error while loading movie information", error);
@@ -23,14 +22,26 @@ export async function fetchPopularMovies() {
   }
 }
 
-export function getRandomMovie(movies) {
-  if (!movies || Object.keys(movies).length === 0) {
-    console.error("Error: No movies is empty.");
-    return null;
+export function getRandomMovieWithBackdrop(movies) {
+  let movie;
+  let ifBackdrop = false;
+  while (!ifBackdrop) {
+    movie = getRandomMovie(movies);
+    ifBackdrop = hasBackdrop(movie);
   }
-  return movies.results[getRandomMovie(21)];
+  return movie;
 }
 
-function getRandomNum(max) {
-  return Math.floor(Math.random() * max);
+function getRandomMovie(movies) {
+  return movies.results[getRandomNum(movies.results.length + 1, true)];
+}
+
+function hasBackdrop(movie) {
+  return movie && typeof movie.backdrop_path === "string";
+}
+
+function getRandomNum(max, startFromOne = false) {
+  return startFromOne
+    ? Math.floor(Math.random() * max) + 1 // От 1 до max
+    : Math.floor(Math.random() * (max + 1)); // От 0 до max
 }
