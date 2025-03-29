@@ -1,7 +1,7 @@
 const movie_container=document.querySelector('.movies-container');
 const loadMoreButton = document.getElementById('load-more'); 
 let currentPage = 1;
-const moviesByGenre=[];
+const moviesByGenre = [];
 
 import { createCards, createCard } from "./search.js";
 
@@ -21,7 +21,7 @@ return moviesArr;
 function filterMoviesArr(){
   getLocalStorageData(movies);
  moviesByGenre = moviesArr.filter((movie) =>{
-  movie.genre_id === getIdFromWindowLocation();
+  movie.genre_id === Number(getIdFromWindowLocation());
 });
 return moviesByGenre;
 }
