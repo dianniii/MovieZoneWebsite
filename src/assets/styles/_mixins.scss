@@ -16,15 +16,15 @@
   margin-right: 100px;
 }
 
-@mixin load-moreButton{
+@mixin load-moreButton {
   padding: 10px 20px;
   color: $textColor;
   background-color: $dark-grey;
   cursor: pointer;
   border: $dark-black;
 
-  &:hover{
-      transform: scale(1.1);
+  &:hover {
+    transform: scale(1.1);
   }
 }
 
@@ -87,11 +87,27 @@
 
 @mixin font-footer-600 {
   font-family: $font-family;
-    font-size: $font-size-footer-container;   
-    font-weight: $font-weight-600;
+  font-size: $font-size-footer-container;
+  font-weight: $font-weight-600;
 }
 @mixin font-footer-400 {
-    font-family: $font-family;
-    font-size: $font-size-footer-policy;
-    font-weight: $font-weight-400;
-  }
+  font-family: $font-family;
+  font-size: $font-size-footer-policy;
+  font-weight: $font-weight-400;
+}
+
+@mixin font-movie-title-mainPg {
+  @include font-base;
+  font-weight: $font-weight-500;
+  font-size: $font-size-mainPg-title;
+  font-style: normal;
+  color: $textColor;
+}
+
+@mixin font-movie-year-mainPg {
+  @include font-base;
+  font-weight: $font-weight-400;
+  font-size: $font-size-mainPg-year;
+  font-style: normal;
+  color: $greyTextColor;
+}
