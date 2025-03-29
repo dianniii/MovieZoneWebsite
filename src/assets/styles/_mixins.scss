@@ -7,11 +7,25 @@
 @mixin footer-later-padding {
   padding-left: 100px;
   padding-right: 100px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 @mixin lateral-margins {
   margin-left: 100px;
   margin-right: 100px;
+}
+
+@mixin load-moreButton{
+  padding: 10px 20px;
+  color: $textColor;
+  background-color: $dark-grey;
+  cursor: pointer;
+  border: $dark-black;
+
+  &:hover{
+      transform: scale(1.1);
+  }
 }
 
 //new mixins for fonts
@@ -70,3 +84,14 @@
   font-size: $font-size-erMsg;
   font-style: normal;
 }
+
+@mixin font-footer-600 {
+  font-family: $font-family;
+    font-size: $font-size-footer-container;   
+    font-weight: $font-weight-600;
+}
+@mixin font-footer-400 {
+    font-family: $font-family;
+    font-size: $font-size-footer-policy;
+    font-weight: $font-weight-400;
+  }
