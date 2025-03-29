@@ -95,3 +95,18 @@
   font-size: $font-size-footer-policy;
   font-weight: $font-weight-400;
 }
+
+@mixin font-movie-title-mainPg {
+  @include font-base;
+  font-weight: $font-weight-500;
+  font-size: $font-size-basic;
+  font-style: normal;
+}
+
+@mixin font-movie-year-mainPg {
+  @include font-base;
+  font-weight: $font-weight-400;
+  font-size: $font-size-movie-year;
+  font-style: normal;
+  color: $greyTextColor;
+}
