@@ -2,7 +2,7 @@ import { domenPartUrl, pathForPopularMovies } from "../commonVars";
 
 export async function fetchPopularMovies() {
   //выбираем рандомно страницу из первых 15 страницы популярных фильмов
-  const randomPage = getRandomNum(15);
+  const randomPage = getRandomNum(5, true);
 
   try {
     const response = await fetch(
@@ -33,7 +33,7 @@ export function getRandomMovieWithBackdrop(movies) {
 }
 
 function getRandomMovie(movies) {
-  return movies.results[getRandomNum(movies.results.length + 1, true)];
+  return movies.results[getRandomNum(movies.results.length + 1)];
 }
 
 function hasBackdrop(movie) {
