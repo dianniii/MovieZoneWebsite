@@ -60,3 +60,7 @@
     height: 75%;
   }
 }
+
+.header .full-movie__banner {
+  @include margins-main-banner;
+}
