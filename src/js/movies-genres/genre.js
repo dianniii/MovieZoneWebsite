@@ -16,7 +16,6 @@ async function getGenres() {
             throw new Error(`Ошибка запроса: ${response.status}`);
         }
         const data = await response.json();
-        console.log("Полученные данные:", data);
 
         const genresArray = data.genres; 
 
