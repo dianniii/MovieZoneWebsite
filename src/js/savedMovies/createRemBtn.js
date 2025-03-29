@@ -4,7 +4,6 @@ import {
   controlBarIconPaths,
   classesControlBar,
 } from "../controlBar/controlBarVars";
-import { handleRemoveMovieClick } from "./removeBtnHandler";
 
 export function createControlRemBar(storageProperty) {
   const controlBarElem = createElementWithProps(
@@ -12,9 +11,6 @@ export function createControlRemBar(storageProperty) {
     classesControlBar.controlBar
   );
   const remBtn = createRemoveBtn(storageProperty);
-  remBtn.addEventListener("click", (evt) =>
-    handleRemoveMovieClick(evt, storageProperty)
-  );
   controlBarElem.append(remBtn);
   return controlBarElem;
 }
