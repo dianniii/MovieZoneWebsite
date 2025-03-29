@@ -16,6 +16,18 @@
   margin-right: 100px;
 }
 
+@mixin load-moreButton{
+  padding: 10px 20px;
+  color: $textColor;
+  background-color: $dark-grey;
+  cursor: pointer;
+  border: $dark-black;
+
+  &:hover{
+      transform: scale(1.1);
+  }
+}
+
 //new mixins for fonts
 
 @mixin font-base {
