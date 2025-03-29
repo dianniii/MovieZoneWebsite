@@ -1,7 +1,7 @@
 export const tmbdUrl = `https://www.themoviedb.org/movie/`;
 export const baseBackdropUrl = "https://image.tmdb.org/t/p/original";
 export const basePosterUrl =
-  "https://media.themoviedb.org/t/p/w220_and_h330_face";
+  "https://image.tmdb.org/t/p/w220_and_h330_face";
 
 //reverse server
 export const domenPartUrl = "https://movies.gila.workers.dev";
