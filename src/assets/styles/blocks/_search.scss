@@ -18,17 +18,34 @@
     align-items: center;
     background-color: $dark-grey;
     width: calc(100% - 100px);
-    height: 400px;
     @include font-basic;
     line-height: 140%;
     border-radius: $borderRadiusMain;
+    overflow: hidden;
+    transition: height 0.3s ease;
+    &:hover{
+        height: auto;
+        .movieTitle, .movie-info { 
+            white-space: normal;
+            overflow: visible; 
+            text-overflow: unset;
+            -webkit-line-clamp: unset;
+        }
+    }
 }
 
 .movieTitle{
     font-size: $font-size-h2;
     padding-bottom: 20px;
     line-height: 150%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; 
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
 }
+
 
 .poster-container{
     padding-left: 40px;;
@@ -54,10 +71,13 @@
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 7; 
+    line-clamp: 7;
     -webkit-box-orient: vertical;
 }
 
 .errorMessage{
+    display: flex;
+    align-items: center;
     padding-top: 50px;
     font-size: 70px;
 }
