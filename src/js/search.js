@@ -71,7 +71,7 @@ export async function mainSearchFunction(){
     }
 } 
 
-function createCards(arrayOfObjs){
+export function createCards(arrayOfObjs){
     
     arrayOfObjs.forEach((movie)=> {movie_container.append(createCard(movie))
     })
@@ -79,7 +79,7 @@ function createCards(arrayOfObjs){
 
 
 
-function createCard(movie){
+export function createCard(movie){
     const movieCard = document.createElement('div');
     movieCard.classList.add('movie-card');
     movieCard.setAttribute('data-id', movie.id);
