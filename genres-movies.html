@@ -4,31 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport"
     content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./src/main.css">
     <title>Document</title>
 </head>
 <body>
     <header class="header" id="header">
         <div class="logo">
-            <img src="./src/assets/icons/iconExample.png" class="
-    logo__icon" alt="Icon Example">
+        <a class="logo" href="index.html"
+            ><img
+            src="./src/assets/icons/LOGO 4.svg"
+            class="logo__icon"
+            alt="TMDB icon"
+            />
+        </a>
         </div>
         <nav class="nav">
-            <ul class="nav__menu">
-                <li class="nav__menu-item">Home</li>
-                <li class="nav__menu-item">WatchList</li>
-                <li class="nav__menu-item">Watched</li>
-            </ul>
+        <ul class="nav__menu">
+            <li class="nav__menu-item"><a href="index.html">Home</a></li>
+            <li class="nav__menu-item">
+            <a href="watchlist.html">WatchList</a>
+            </li>
+            <li class="nav__menu-item">
+            <a href="favorites.html">Favorites</a>
+            </li>
+        </ul>
         </nav>
         <div class="search">
-            <input type="text" id="search__input" class="search__input" placeholder="Search for a movie">
-            <img src="./src/assets/icons/icons8-magnifying-glass.svg" class="search__icon" alt="Magnifying glass icon">
+        <input
+            type="text"
+            id="search__input"
+            class="search__input"
+            placeholder="Search for a movie"
+        />
+         <img
+            src="./src/assets/icons/icons8-magnifying-glass.svg"
+            class="search__icon"
+            alt="Magnifying glass icon"
+        />
         </div>
-    </header>
+      </header>
 
     <main class="main" id="main" onclick="handleItemClick()">     
     </main>
-    <script src="./src/js/movies-genres/genre.js"></script>
-    <!-- <script type="module" src="/src/js/movies-genres/genre.js"></script> -->
+    <script type="module" src="/src/main.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 
-// Подключаем обработчик события click после загрузки страницы
+// обработчик события click после загрузки страницы
 document.addEventListener('DOMContentLoaded', function() {
   const mainContainer = document.getElementById("main");
   if (mainContainer) { 
@@ -24,18 +24,8 @@ async function getGenres() {
             throw new Error("Данные жанров не являются массивом");
         }
         const container = document.getElementById('genres');
-        // container.innerHTML = ''; // Очистка контейнера перед вставкой новых данных
-
-        // genresArray.forEach(genre => {
-        //     const genreHtml = `
-        //         <div class="genre" data-id="${genre.id}">
-        //              <h2 class="genre__title">${genre.name}</h2>
-        //          </div>`;
-        //      container.innerHTML += genreHtml;
-        //  });
     } catch (error) {
         console.error("Ошибка:", error);
-        // Выводим сообщение об ошибке в интерфейс пользователя, если есть необходимость
         const errorContainer = document.getElementById('error-message');
         if (errorContainer) {
             errorContainer.textContent = `Ошибка при загрузке жанров: ${error.message}`;
@@ -44,8 +34,6 @@ async function getGenres() {
 }
 document.addEventListener('DOMContentLoaded', getGenres);
 
-
-//запрос на жанр
 
 
 // Функция, которая добавляет объект жанра в массив
@@ -95,7 +83,7 @@ async function fetchMoviesByGenre(genreId, genreName) {
     };
 
     genresArray.push(updatedGenre);
-
+    window.localStorage.setItem("movies", JSON.stringify(genresArray));
     } catch (error) {
     console.error("Произошла ошибка:", error.message);
     }
@@ -105,7 +93,6 @@ genresList.forEach(({ genre_id, genre_name }) => {
     fetchMoviesByGenre(genre_id, genre_name);
 });
   
-  // Добавьте задержку для обеспечения выполнения всех асинхронных вызовов
 setTimeout(() => {
     console.log(genresArray);
 }, 3000);
@@ -123,8 +110,6 @@ function displayMovieInfo(genresArray) {
       }
     });
   }
-  
-  // Используем setTimeout для того, чтобы дождаться заполнения массива genresArray
   setTimeout(() => {
     displayMovieInfo(genresArray);
   }, 3000);
@@ -134,76 +119,77 @@ function displayMovieInfo(genresArray) {
     // Основной контейнер для всех жанров
     const genresContainer = document.createElement("div");
     genresContainer.classList.add("genres");
-  
+
     // Проходим по каждому жанру
     genresArray.forEach((genreData) => {
-      if (genreData.results && Array.isArray(genreData.results)) {
-        const { genre_id, genre_name } = genreData;
-  
-        // Создаем контейнер для каждого жанра
-        const genreContainer = document.createElement("div");
-        genreContainer.classList.add("genre");
-        genreContainer.setAttribute("id", "genreContainer");
-        genreContainer.setAttribute("data-id", genre_id);
-  
-        // Добавляем название жанра
-        const genreTitle = document.createElement("h2");
-        genreTitle.classList.add("genre__title");
-        genreTitle.textContent = genre_name;
-  
-        // Создаем контейнер с горизонтальной прокруткой для фильмов
-        const moviesScrollableContainer = document.createElement("div");
-        moviesScrollableContainer.classList.add("movies__scrollable");
-  
-        // Берем только первые 10 фильмов из результатов
-        const top10Movies = genreData.results.slice(0, 10);
-  
-        // Формируем элементы внутри контейнера
-        top10Movies.forEach((movie) => {
-          const { id, title, poster_path, release_date } = movie;
-  
-          // Формируем HTML-разметку для каждого фильма
-          const movieMarkup = `
-            <div class="movie" data-id="${id}">
-                <img src="https://image.tmdb.org/t/p/w200${poster_path}" alt="${title}" class="movie__img">
-                <div class="movie__info">
-                    <h3 class="movie__title">${title}</h3>
-                    <p class="movie__year">${release_date ? release_date.split("-")[0] : "N/A"}</p>
-                </div>
-            </div>
-          `;
-  
-          // Добавляем разметку фильма в контейнер с прокруткой
-          moviesScrollableContainer.innerHTML += movieMarkup;
-        });
-  
-        // Собираем контейнер жанра
-        genreContainer.appendChild(genreTitle); // Добавляем название жанра
-        genreContainer.appendChild(moviesScrollableContainer); // Добавляем контейнер с прокруткой
-  
-        // Добавляем контейнер жанра в общий контейнер
-        genresContainer.appendChild(genreContainer);
-      } else {
-        console.warn(`Нет данных о фильмах для жанра ${genreData.genre_name}`);
-      }
+        if (genreData.results && Array.isArray(genreData.results)) {
+            const { genre_id, genre_name } = genreData;
+
+            // Создаем контейнер для каждого жанра
+            const genreContainer = document.createElement("div");
+            genreContainer.classList.add("genre");
+            genreContainer.setAttribute("data-id", genre_id);
+
+            const genreTitle = document.createElement("h2");
+            genreTitle.classList.add("genre__title");
+            genreTitle.textContent = genre_name;
+
+            // Создаем кнопку Watch All
+            const watchAllButton = document.createElement("button");
+            watchAllButton.classList.add("genre__watch-all");
+            watchAllButton.textContent = "Watch All >";
+
+            genreContainer.appendChild(genreTitle);
+            genreContainer.appendChild(watchAllButton);
+
+            const moviesScrollableContainer = document.createElement("div");
+            moviesScrollableContainer.classList.add("genre__scrollable");
+
+            // Берем только первые 10 фильмов из результатов
+            const top10Movies = genreData.results.slice(0, 10);
+
+            // Формируем элементы внутри контейнера
+            top10Movies.forEach((movie) => {
+                const { id, title, poster_path, release_date } = movie;
+
+                const movieMarkup = `
+                    <div class="movie" data-id="${id}">
+                        <img src="https://image.tmdb.org/t/p/w200${poster_path}" alt="${title}" class="movie__img">
+                        <div class="movie__info">
+                            <h3 class="movie__title">${title}</h3>
+                            <p class="movie__year">${release_date ? release_date.split("-")[0] : "N/A"}</p>
+                        </div>
+                    </div>
+                `;
+
+                moviesScrollableContainer.innerHTML += movieMarkup;
+            });
+
+            // Собираем контейнер жанра
+            genreContainer.appendChild(moviesScrollableContainer); 
+
+            genresContainer.appendChild(genreContainer);
+        } else {
+            console.warn(`Нет данных о фильмах для жанра ${genreData.genre_name}`);
+        }
     });
-  
-    // Находим контейнер <main> и добавляем в начало нашего HTML
+
     const mainContainer = document.querySelector("main");
     if (mainContainer) {
-      mainContainer.prepend(genresContainer);
+        mainContainer.prepend(genresContainer);
     } else {
-      console.warn("Тег <main> не найден на странице.");
+        console.warn("Тег <main> не найден на странице.");
     }
-  }
-  
-  // Используем setTimeout для того, чтобы дождаться заполнения массива genresArray
-  setTimeout(() => {
-    createMovieMarkup(genresArray);
-  }, 3000);
+}
+
+// Используем setTimeout для того, чтобы дождаться заполнения массива genresArray
+setTimeout(() => {
+  createMovieMarkup(genresArray);
+}, 3000);
   
 
-  
+
+//функция клика фильма, жанра и кнопки
   function handleItemClick(evt) {
     // Проверяем, кликнул ли пользователь на элемент фильма
     const movieElement = evt.target.closest(".movie");
@@ -224,5 +210,14 @@ function displayMovieInfo(genresArray) {
         return; // Завершаем выполнение, если найден жанр
       }
     }
+    const buttonElement = evt.target.closest(".genre__watch-all");
+    if (buttonElement) {
+      const genreId = buttonElement.getAttribute("data-id"); // Получаем ID жанра из кнопки
+      if (genreId) {
+        window.location.href = `genre.html?id=${genreId}`; // Перенаправляем на страницу жанра
+        return; // Завершаем выполнение, если найдена кнопка жанра
+      }
+    }
   }
   
+
