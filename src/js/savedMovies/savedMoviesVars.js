@@ -16,3 +16,13 @@ export const savedMoviesClss = {
 
 export const infoMsgClass = `${moviesContainerClass}__info-msg`;
 export const numOfMovies = {};
+
+export const classesControlRemBar = {
+  controlBarElem: ["control-bar", "control-rem-bar"],
+  btn: "control-bar__btn",
+  btnRemove: ["control-bar__btn", "control-bar__btn--rem"],
+  tooltip: "control-bar__tooltip",
+  icon: "control-bar__icon",
+};
+
+export const remBtnIconPath = "/icons/removeIcon.svg";

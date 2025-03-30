@@ -1,14 +1,11 @@
 import { createElementWithProps } from "../elementCreation";
 import { createBtnWithTip } from "../controlBar/createControlBar";
-import {
-  controlBarIconPaths,
-  classesControlBar,
-} from "../controlBar/controlBarVars";
+import { classesControlRemBar, remBtnIconPath } from "./savedMoviesVars";
 
 export function createControlRemBar(storageProperty) {
   const controlBarElem = createElementWithProps(
     "div",
-    classesControlBar.controlBar
+    classesControlRemBar.controlBarElem
   );
   const remBtn = createRemoveBtn(storageProperty);
   controlBarElem.append(remBtn);
@@ -23,8 +20,8 @@ function createRemoveBtn(storageProperty) {
     : (tooltipText = "Remove from watchlist");
 
   return createBtnWithTip(
-    classesControlBar.btnRemove,
-    controlBarIconPaths.removeIcon,
+    classesControlRemBar.btnRemove,
+    remBtnIconPath,
     tooltipText
   );
 }
