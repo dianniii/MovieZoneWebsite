@@ -29,8 +29,7 @@ async function fetchMovieDataById(id) {
   }
 }
 
-// Обработчик клика по элементу с id "movie"
-document.getElementById("movie").addEventListener("click", async (evt) => {
+export async function handleMovieClick(evt) {
   // Проверяем, что клик произошёл именно по элементу с классом "movie" или его потомку
   const movieElem = evt.target.closest(".movie");
   if (!movieElem) {
@@ -78,7 +77,10 @@ document.getElementById("movie").addEventListener("click", async (evt) => {
     // Можно здесь вывести сообщение пользователю (например, через alert)
     alert("Failed to load movie information");
   }
-});
+} 
+
+// Обработчик клика по элементу с id "movie"
+document.getElementById("movie").addEventListener("click", handleMovieClick);
 
 // Обработчик клика по кнопке закрытия popup
 document.getElementById("close-popup-btn").addEventListener("click", () => {
