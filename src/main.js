@@ -21,9 +21,9 @@ import { mainGenrePageFunction, loadMoreAddHide} from "./js/genrePage.js";
 
 if (getPathFromWindowLocation() === "/genre.html") {
   document.addEventListener("DOMContentLoaded", ()=>{
-    mainGenrePageFunction(moviesByGenreObj.results);
-    loadMoreAddHide();
-})
+      mainGenrePageFunction(moviesByGenre.results);
+      loadMoreAddHide(moviesByGenre);
+  })
 }
 
 import { searchHandle } from "./js/header.js";
