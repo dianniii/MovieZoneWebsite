@@ -2,7 +2,8 @@ import { classesControlBar } from "./controlBar/controlBarVars";
 import { createControlBarElem } from "./controlBar/createControlBar";
 import { basePosterUrl } from "./commonVars";
 
-const movie_container = document.getElementById('movies');
+const movie_container = document.getElementById('movie-cards');
+console.log(movie_container);
 
 function searchTitle(){
     const urlParams = new URLSearchParams(window.location.search);
@@ -96,7 +97,7 @@ export function createCard(movie){
     <p class="movie-card__movie-info">${movie.overview}</p> </div>
     `
     movieCard
-    .querySelector(".text-container")
+    .querySelector(".movie-card__text-container")
     .append(createControlBarElem(movie));
 
     return movieCard;
