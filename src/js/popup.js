@@ -48,7 +48,7 @@ document.getElementById("movie").addEventListener("click", async (evt) => {
 
     // Заполняем левую колонку popup: задаём src для постера
     document.querySelector(".popup-poster").src =
-      "https://image.tmdb.org/t/p/w220_and_h330_face" + movieData.poster_path;
+    basePosterUrl + movieData.poster_path;
     
     // Заполняем правую колонку:
     // Название фильма
@@ -63,8 +63,12 @@ document.getElementById("movie").addEventListener("click", async (evt) => {
     document.querySelector(".popup-overview").textContent =
       movieData.overview || "Описание недоступно";
 
+    const controlBarContainer = document.querySelector(".control-bar__container");
+    // Очищаем контейнер перед добавлением новой панели
+    controlBarContainer.innerHTML = "";
+    // делаем новый 
     const controlBar = createControlBarElem(movieData);
-    document.querySelector(".control-bar__container").append(controlBar);
+    controlBarContainer.append(controlBar);
 
     // Отображаем popup, добавляя класс "active" (в CSS это делает popup видимым)
     document.getElementById("movie-popup").classList.add("active");
