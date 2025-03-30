@@ -17,6 +17,15 @@ if (getPathFromWindowLocation() === "/movie.html") {
   document.addEventListener("DOMContentLoaded", loadMoviePage);
 }
 
+import { mainGenrePageFunction, loadMoreAddHide} from "./js/genrePage.js";
+
+if (getPathFromWindowLocation() === "/genre.html") {
+  document.addEventListener("DOMContentLoaded", ()=>{
+    mainGenrePageFunction(moviesByGenreObj.results);
+    loadMoreAddHide();
+})
+}
+
 import { searchHandle } from "./js/header.js";
 
 document.addEventListener("DOMContentLoaded", searchHandle);
