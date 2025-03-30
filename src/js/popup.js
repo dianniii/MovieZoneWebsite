@@ -82,9 +82,9 @@ export async function showPopUp(evt) {
     document.getElementById("movie-popup").classList.add("active");
 
     // Обработчик клика по кнопке закрытия popup или клика на фильм
-    document.getElementById("movie-popup").addEventListener("click", (evt) => {
-      handlePopupClick(evt);
-    });
+    // document.getElementById("movie-popup").addEventListener("click", (evt) => {
+    //   handlePopupClick(evt);
+    // });
   } catch (error) {
     // Если произошла ошибка при запросе или обработке данных, выводим сообщение в консоль
     console.error("Error fetching data:", error);
