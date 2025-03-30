@@ -1,7 +1,8 @@
 const movie_container=document.querySelector('.movies-container');
 const loadMoreButton = document.getElementById('load-more'); 
 let currentPage = 1;
-const moviesByGenre = [];
+let moviesByGenre = [];
+let moviesArr=[];
 
 import { createCards, createCard } from "./search.js";
 
@@ -12,7 +13,7 @@ export function getIdFromWindowLocation(){
 }
 
 function getLocalStorageData(jsonName){
-const moviesArr= JSON.parse(window.localStorage.getItem(jsonName));
+moviesArr = JSON.parse(window.localStorage.getItem(jsonName));
 if(!moviesArr){
   movie_container.textContent ="Oops! Something went wrong. Please try again "
   return;
@@ -22,7 +23,7 @@ return moviesArr;
 }
 
 function filterMoviesArr(){
-  getLocalStorageData(movies);
+  getLocalStorageData('movies');
  moviesByGenre = moviesArr.filter((movie) =>{
   movie.genre_id === Number(getIdFromWindowLocation());
 });
