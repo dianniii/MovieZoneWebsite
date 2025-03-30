@@ -22,5 +22,9 @@ function createRemoveBtn(storageProperty) {
     ? (tooltipText = "Remove from favorites")
     : (tooltipText = "Remove from watchlist");
 
-  return createBtnWithTip(true, controlBarIconPaths.removeIcon, tooltipText);
+  return createBtnWithTip(
+    classesControlBar.btnRemove,
+    controlBarIconPaths.removeIcon,
+    tooltipText
+  );
 }
