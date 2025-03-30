@@ -17,11 +17,13 @@ if (getPathFromWindowLocation() === "/movie.html") {
   document.addEventListener("DOMContentLoaded", loadMoviePage);
 }
 
-import { mainGenrePageFunction, loadMoreAddHide} from "./js/genrePage.js";
+import { getLocalStorageData, filterMoviesArr, mainGenrePageFunction, loadMoreAddHide} from "./js/genrePage.js";
 
 if (getPathFromWindowLocation() === "/genre.html") {
   document.addEventListener("DOMContentLoaded", ()=>{
-      mainGenrePageFunction(moviesByGenre.results);
+      getLocalStorageData('movies');
+      filterMoviesArr();
+      mainGenrePageFunction();
       loadMoreAddHide(moviesByGenre);
   })
 }
