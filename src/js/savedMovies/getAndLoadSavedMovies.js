@@ -50,11 +50,11 @@ function createMovieElem(movieData, storageProperty) {
 
   const posterElem = createPosterElem(movieData.poster_path);
 
-  const closeBtnContainer = createControlRemBar(storageProperty);
+  // const closeBtnContainer = createControlRemBar(storageProperty);
 
-  const textContainer = createTextContainer(movieData);
+  const textContainer = createTextContainer(movieData, storageProperty);
 
-  movieCard.append(posterElem, textContainer, closeBtnContainer);
+  movieCard.append(posterElem, textContainer);
 
   addMovieCardHandler(movieCard);
 
@@ -65,8 +65,12 @@ function addMovieCardHandler(movieCard) {
   movieCard.addEventListener("click", (evt) => movieCardClickHandler(evt));
 }
 
-function createTextContainer(movieData) {
+function createTextContainer(movieData, storageProperty) {
   const textContainer = createElementWithProps("div", savedMoviesClss.textCont);
+
+  const closeBtnContainer = createControlRemBar(storageProperty);
+  textContainer.append(closeBtnContainer);
+
   const titleElem = createTitleElem(movieData.title);
   textContainer.append(titleElem);
 

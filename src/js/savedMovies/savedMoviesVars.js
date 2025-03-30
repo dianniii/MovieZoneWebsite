@@ -5,7 +5,7 @@ export const savedMoviesClss = {
   movieCard: "movie-card",
   posterCont: `${movieContainerClass}poster-container`,
   poster: `${movieContainerClass}poster`,
-  textCont: `${movieContainerClass}text=container`,
+  textCont: `${movieContainerClass}text-container`,
   title: `${movieContainerClass}movieTitle`,
   year: `${movieContainerClass}movie-year`,
   overview: `${movieContainerClass}movie-info`,
