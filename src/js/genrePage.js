@@ -35,7 +35,7 @@ export function mainGenrePageFunction() {
 
   if (moviesByGenre.results && moviesByGenre.results.length > 0) {
     createCards(moviesByGenre.results, movie_container);
-    // !!! ТЕПЕРЬ EVENT HANDLER НАВЕШИВАЕТСЯ НА КАРТОЧКУ ПРЯМ В ФУНКЦИИ createCard и использует функцию из movieCardClickHandler.js
+    // !!! ТЕПЕРЬ EVENT HANDLER НАВЕШИВАЕТСЯ НА КАРТОЧКУ ПРЯМ В ФУНКЦИИ createCard  И ИСПОЛЬЗУЕТ ФУНКЦИЮ ИЗ movieCardClickHandler.js
 
     //    movie_container.addEventListener("click", (evt) => {
 

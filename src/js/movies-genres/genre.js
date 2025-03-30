@@ -185,6 +185,7 @@ setTimeout(() => {
   createMovieMarkup(genresArray);
 }, 3000);
 
+//ФУНКЦИЯ КЛИКА СМОТРИ ВНИЗУ
 //функция клика фильма, жанра и кнопки
 // function handleItemClick(evt) {
 //   console.log("Клик по элементу:", evt.target); // Проверяем, что клики вообще регистрируются

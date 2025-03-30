@@ -55,7 +55,7 @@ export async function mainSearchFunction() {
     if (movies && movies.results && movies.results.length > 0) {
       const filtered_results = filterMoviesProps(movies);
       createCards(filtered_results, movie_container);
-      // !!! ТЕПЕРЬ EVENT HANDLER НАВЕШИВАЕТСЯ НА КАРТОЧКУ ПРЯМ В ФУНКЦИИ createCard и использует функцию из movieCardClickHandler.js
+      // !!! ТЕПЕРЬ EVENT HANDLER НАВЕШИВАЕТСЯ НА КАРТОЧКУ ПРЯМ В ФУНКЦИИ createCard  И ИСПОЛЬЗУЕТ ФУНКЦИЮ ИЗ movieCardClickHandler.js
 
       //   movie_container.addEventListener("click", (evt) => {
       //     const controlBar = evt.target.closest(
