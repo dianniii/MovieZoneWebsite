@@ -40,6 +40,7 @@ export async function showPopUp(evt) {
 
   // Извлекаем ID фильма из data-атрибута
   const movie_id = movieElem.getAttribute("data-id");
+  document.querySelector(".popup__movie").dataset.id = movie_id;
 
   try {
     // Запрашиваем данные о фильме по ID через нашу функцию fetchMovieDataById
@@ -79,9 +80,18 @@ export async function showPopUp(evt) {
     // Отображаем popup, добавляя класс "active" (в CSS это делает popup видимым)
     document.getElementById("movie-popup").classList.add("active");
 
-    // Обработчик клика по кнопке закрытия popup
-    document.getElementById("close-popup-btn").addEventListener("click", () => {
-      document.getElementById("movie-popup").classList.remove("active");
+    // Обработчик клика по кнопке закрытия popup или клика на фильм
+    document.getElementById("movie-popup").addEventListener("click", (evt) => {
+      const popupBtn = evt.target.closest(".popup__close-btn");
+      if (popupBtn) {
+        document.getElementById("movie-popup").classList.remove("active");
+        return;
+      }
+      const popUp = evt.target.closest(".popup__movie");
+      if (popUp) {
+        const movie_id = document.querySelector(".popup__movie").dataset.id;
+        window.location.href = `movie.html?id=${movie_id}`;
+      }
     });
   } catch (error) {
     // Если произошла ошибка при запросе или обработке данных, выводим сообщение в консоль
