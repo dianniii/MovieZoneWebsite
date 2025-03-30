@@ -49,9 +49,39 @@
         </div>
       </div>
     </header>
-    
-    <main class="main" id="main" onclick="handleItemClick()"></main>
 
+    <main class="main" id="main"></main>
+    <div id="movie-popup" class="popup-overlay">
+      <div class="popup__movie">
+        <button class="popup__close-btn" id="close-popup-btn">
+          <img src="./public/icons/x-mark.svg" alt="close-icon" />
+        </button>
+        <div class="popup__poster-container">
+          <img src="" alt="movie poster" class="popup__poster" />
+        </div>
+        <div class="popup__title-container">
+          <h2 class="popup__title"></h2>
+        </div>
+        <div class="popup__year-container">
+          <p class="popup__year"></p>
+        </div>
+        <div class="popup__overview-container">
+          <p class="popup__overview"></p>
+        </div>
+        <div class="popup__tmdb-container">
+          <a
+            href="https://www.themoviedb.org/"
+            class="popup__tmdb-link"
+            target="_blank"
+            ><img
+              src="./public/icons/TMBD.svg"
+              class="popup__tmdb-icon"
+              alt="tmdb icon"
+          /></a>
+        </div>
+        <div class="popup__control-bar-container"></div>
+      </div>
+    </div>
     <footer class="footer">
       <div class="footer__container">
         <div class="footer__logo">
@@ -95,8 +125,7 @@
                 />
               </a>
             </li>
-
-            <li class="footer__social-item">
+<li class="footer__social-item">
               <a
                 class="footer__social-link"
                 href="https://netflix.com/"
@@ -144,7 +173,7 @@
         </div>
       </div>
     </footer>
-    <script src="./src/js/movies-genres/genre.js"></script>
+    <script type="module" src="./src/js/movies-genres/genre.js"></script>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
