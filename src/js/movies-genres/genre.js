@@ -103,7 +103,6 @@ setTimeout(() => {
 function displayMovieInfo(genresArray) {
     genresArray.forEach((genreData) => {
       if (genreData.results && Array.isArray(genreData.results)) {
-        console.log(`Жанр: ${genreData.genre_name} (ID: ${genreData.genre_id})`);
       } else {
         console.warn(`Нет данных о фильмах для жанра ${genreData.genre_name}`);
       }
