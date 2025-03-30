@@ -1,5 +1,6 @@
 import { createControlBarElem } from "./controlBar/createControlBar";
-// import { controlBarIconPaths } from "./controlBar/controlBarVars";
+import { classesControlBar } from "./controlBar/controlBarVars";
+import { handleControlBarClick } from "./controlBar/controlBarBtnHandlers";
 import { domenPartUrl, basePosterUrl } from "./commonVars";
 
 /**
@@ -82,21 +83,28 @@ export async function showPopUp(evt) {
 
     // Обработчик клика по кнопке закрытия popup или клика на фильм
     document.getElementById("movie-popup").addEventListener("click", (evt) => {
-      const popupBtn = evt.target.closest(".popup__close-btn");
-      if (popupBtn) {
-        document.getElementById("movie-popup").classList.remove("active");
-        return;
-      }
-      const popUp = evt.target.closest(".popup__movie");
-      if (popUp) {
-        const movie_id = document.querySelector(".popup__movie").dataset.id;
-        window.location.href = `movie.html?id=${movie_id}`;
-      }
+      handlePopupClick(evt);
     });
   } catch (error) {
     // Если произошла ошибка при запросе или обработке данных, выводим сообщение в консоль
     console.error("Error fetching data:", error);
     // Можно здесь вывести сообщение пользователю (например, через alert)
     alert("Failed to load movie information");
+  }
+}
+
+export function handlePopupClick(evt) {
+  //проверяем кликнул ли пользователь на кнопку закрытия попапа
+  if (evt.target.closest(".popup__close-btn")) {
+    document.getElementById("movie-popup").classList.remove("active"); //закрываем попап
+    //проверяем кликнул ли пользователь на кнопки в control bar
+  } else if (evt.target.closest(`.${classesControlBar.controlBar}`)) {
+    //отправляем к функции которая хэндлит нажатия на кнопки в control bar
+    handleControlBarClick(evt);
+    // проверяем кликнул ли пользователь на что то другое в попапе
+  } else if (evt.target.closest(".popup__movie")) {
+    // перенаправляем на страницу фильма
+    const movie_id = document.querySelector(".popup__movie").dataset.id;
+    window.location.href = `movie.html?id=${movie_id}`;
   }
 }
