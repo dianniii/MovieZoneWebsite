@@ -13,7 +13,10 @@ export function getIdFromWindowLocation(){
 
 function getLocalStorageData(jsonName){
 const moviesArr= JSON.parse(window.localStorage.getItem(jsonName));
-if(!moviesArr){return};
+if(!moviesArr){
+  movie_container.textContent ="Oops! Something went wrong. Please try again "
+  return;
+};
 return moviesArr;
 // console.log(typeof(moviesArr.results[0].genre_id));
 }
