@@ -358,7 +358,7 @@ return moviesByGenre;
 //     "total_results": 43440
 //   }
 
-  function mainGenrePageFunction(moviesData){
+export function mainGenrePageFunction(moviesData){
     filterMoviesArr();
     movie_container.innerHTML='';
 
