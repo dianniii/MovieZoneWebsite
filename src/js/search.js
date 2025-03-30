@@ -2,7 +2,8 @@ import { classesControlBar } from "./controlBar/controlBarVars";
 import { createControlBarElem } from "./controlBar/createControlBar";
 import { basePosterUrl } from "./commonVars";
 
-const movie_container = document.getElementById('movies');
+const movie_container = document.getElementById('movie-cards');
+console.log(movie_container);
 
 function searchTitle(){
     const urlParams = new URLSearchParams(window.location.search);
@@ -90,14 +91,13 @@ export function createCard(movie){
 
     const posterPath = movie.poster_path ? `${basePosterUrl}${movie.poster_path}` : './assets/images/no-Image-Placeholder.svg'
 
-    movieCard.innerHTML=` <div class="poster-container"> <img class="poster" src="${posterPath}" alt ="${movie.title} Poster"> </div>
-    <div class="text-container"> <h3 class="movieTitle">${movie.title}</h3>
+    movieCard.innerHTML=` <div class="movie-card__poster-container"> <img class="movie-card__poster" src="${posterPath}" alt ="${movie.title} Poster"> </div>
+    <div class="movie-card__text-container"> <h3 class="movie-card__movieTitle">${movie.title}</h3>
     <p>${movie.release_date ? movie.release_date.slice(0, 4): ''}</p>
-    <p class="movie-info">${movie.overview}</p> </div>
+    <p class="movie-card__movie-info">${movie.overview}</p> </div>
     `
-
     movieCard
-    .querySelector(".text-container")
+    .querySelector(".movie-card__text-container")
     .append(createControlBarElem(movie));
 
     return movieCard;
