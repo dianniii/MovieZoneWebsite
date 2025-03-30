@@ -8,11 +8,6 @@ import {
 
 import { saveShortMovieInfo } from "../moviePage/getMovieData";
 
-import {
-  handleFavBtnClick,
-  handleWatchlstBtnClick,
-} from "./controlBarBtnHandlers";
-
 export function createControlBarElem(movieData) {
   const controlBarElem = createElementWithProps(
     "div",
@@ -21,10 +16,10 @@ export function createControlBarElem(movieData) {
   saveShortMovieInfo(controlBarElem, movieData);
 
   const favBtnElem = createFavoriteBtn(movieData);
-  favBtnElem.addEventListener("click", handleFavBtnClick);
+  // favBtnElem.addEventListener("click", handleFavBtnClick);
 
   const watchListBtnElem = createWatchListBtn(movieData);
-  watchListBtnElem.addEventListener("click", handleWatchlstBtnClick);
+  // watchListBtnElem.addEventListener("click", handleWatchlstBtnClick);
 
   controlBarElem.append(favBtnElem, watchListBtnElem);
   return controlBarElem;
@@ -38,7 +33,7 @@ function createFavoriteBtn(movieData) {
     : controlBarIconPaths.likeIcon;
 
   const favBtnElem = createBtnWithTip(
-    false,
+    classesControlBar.btnFav,
     favIconPath,
     favorite ? "remove from favorites" : "add to favorites"
   );
@@ -54,7 +49,7 @@ function createWatchListBtn(movieData) {
     : controlBarIconPaths.addIcon;
 
   const watchListBtnElem = createBtnWithTip(
-    false,
+    classesControlBar.btnWatch,
     watchlstIconPath,
     inWatchList ? "remove from watchlist" : "add to watchlist"
   );
@@ -62,9 +57,9 @@ function createWatchListBtn(movieData) {
   return watchListBtnElem;
 }
 
-export function createBtnWithTip(rem, iconPath, tooltipText) {
+export function createBtnWithTip(classNames, iconPath, tooltipText) {
   const btn = createButtonWithIcon(
-    rem ? classesControlBar.btnRemove : classesControlBar.btn,
+    classNames,
     classesControlBar.icon,
     iconPath,
     "button icon"
