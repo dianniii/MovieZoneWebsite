@@ -3,6 +3,7 @@
 
   &__title {
     display: none;
+    cursor: pointer;
   }
 }
 
@@ -27,6 +28,25 @@
     padding-bottom: 10px;
     scrollbar-width: none;
   }
+
+  &__watch-all {
+    position: absolute;
+    top: 50px;
+    right: -5px;
+    background-color: $light-black;
+    color: $greyTextColor;
+    border: none;
+    font-size: 14px;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+
+  &__watch-all:hover {
+    cursor: pointer;
+    font-weight: bold;
+    color: tomato;
+  }
 }
 
 .movie {
@@ -34,6 +54,7 @@
   width: 240px;
   height: 350px;
   position: relative;
+  cursor: pointer;
 
   &__img {
     padding: 20px; // Расстояние между картинкой и рамкой
