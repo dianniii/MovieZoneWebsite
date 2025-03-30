@@ -46,19 +46,34 @@ export function showMsgLstIsEmpty(movieCards) {
 function createMovieElem(movieData, storageProperty) {
   const movieCard = createElementWithProps("div", savedMoviesClss.movieCard);
   movieCard.dataset.id = movieData.id;
-  addMovieCardHandler(movieCard, storageProperty);
+  addMovieCardHandler(movieCard);
+
+  const posterElem = createPosterElem(movieData.poster_path);
 
   const closeBtnContainer = createControlRemBar(storageProperty);
-  const posterElem = createPosterElem(movieData.poster_path);
+
+  const textContainer = createTextContainer(movieData);
+
+  movieCard.append(posterElem, textContainer, closeBtnContainer);
+
+  return movieCard;
+}
+
+function addMovieCardHandler(movieCard) {
+  movieCard.addEventListener("click", (evt) => movieCardClickHandler(evt));
+}
+
+function createTextContainer(movieData) {
+  const textContainer = createElementWithProps("div", savedMoviesClss.textCont);
   const titleElem = createTitleElem(movieData.title);
-  movieCard.append(closeBtnContainer, posterElem, titleElem);
+  textContainer.append(titleElem);
 
   if (movieData.release_date) {
     const yearElem = createParElem(
       savedMoviesClss.year,
       movieData.release_date.slice(0, 4)
     );
-    movieCard.append(yearElem);
+    textContainer.append(yearElem);
   }
 
   if (movieData.overview) {
@@ -66,19 +81,12 @@ function createMovieElem(movieData, storageProperty) {
       savedMoviesClss.overview,
       movieData.overview
     );
-    movieCard.append(descriptionElem);
+    textContainer.append(descriptionElem);
   }
 
   const tmbdLinkElem = createTMBDlinkElem(movieData.id);
-  movieCard.append(tmbdLinkElem);
-
-  return movieCard;
-}
-
-function addMovieCardHandler(movieCard, storageProperty) {
-  movieCard.addEventListener("click", (evt) =>
-    movieCardClickHandler(evt, storageProperty)
-  );
+  textContainer.append(tmbdLinkElem);
+  return textContainer;
 }
 
 function createPosterElem(posterPath) {

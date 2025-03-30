@@ -1,3 +1,4 @@
+import { getPageName } from "../getCheckUrlData";
 import { deleteMovieFromStorage } from "../localStorage";
 import {
   moviesContainerClass,
@@ -6,7 +7,8 @@ import {
 } from "./savedMoviesVars";
 import { showMsgLstIsEmpty } from "./getAndLoadSavedMovies";
 
-export function handleRemoveMovieClick(evt, storageName) {
+export function handleRemoveMovieClick(evt) {
+  const storageName = getPageName();
   const movieCard = evt.target.closest("." + savedMoviesClss.movieCard);
   deleteMovieFromStorage(Number(movieCard.dataset.id), storageName);
   movieCard.remove();
