@@ -13,7 +13,7 @@ import {
 import { tmbdUrl, iconPaths } from "../commonVars";
 import { getMoviesFromStorage } from "../localStorage";
 import { createControlRemBar } from "./createRemBtn";
-import { movieCardClickHandler } from "./movieCardClickHandler";
+import { movieCardClickHandler } from "../movieCardClickHandler";
 
 const movieCards = document.querySelector("." + moviesContainerClass);
 
@@ -55,6 +55,8 @@ function createMovieElem(movieData, storageProperty) {
   const textContainer = createTextContainer(movieData);
 
   movieCard.append(posterElem, textContainer, closeBtnContainer);
+
+  addMovieCardHandler(movieCard);
 
   return movieCard;
 }
@@ -113,10 +115,6 @@ function createTitleElem(title) {
     title || "Unknown"
   );
 }
-
-// function createOverviewElem(overview) {
-// если длина текста больше
-// }
 
 function createParElem(className, text) {
   return createElementWithProps("p", className, false, text);
