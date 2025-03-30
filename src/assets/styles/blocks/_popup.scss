@@ -17,19 +17,19 @@
 // Контейнер popup с отступами и скруглением
 .movie-card {
   background: $dark-grey;
-  border-radius: 8px;
+  border-radius: $borderRadiusMain;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   @include padding-left-right;
-  width: 700px;
+  width: 75vw;
   max-width: 90%;
   position: fixed;
-  align-content: center;
+  align-content: stretch;
   display: grid;
   grid-template-columns: repeat (2, 1fr);
   grid-template-rows: repeat(5, min-content);
-  gap: 0px 10px;
+  gap: 0px 3%;
   grid-template-areas:
     "poster title"
     "poster year"
@@ -37,10 +37,22 @@
     "poster tmdb"
     "poster control-bar";
   z-index: 20px;
+  transition: height 0.3s ease;
+  &:hover{
+      height: auto;
+      .movie-card__title, .movie-card__overview { 
+          white-space: normal;
+          overflow: visible; 
+          text-overflow: unset;
+          -webkit-line-clamp: unset;
+          line-clamp: unset;
+        }
+    }
 }
 
+
 // Кнопка закрытия popup
-.close-btn {
+.movie-card__close-btn {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
@@ -50,73 +62,69 @@
   cursor: pointer;
 }
 
-/*Grid-контейнер для двух колонок: левая (220px) и правая (остальная ширина)
-.popup-grid {
-  display: grid;
-}*/
-
 // Стили для левой колонки: постер
-.popup-image {
+.movie-card__poster-container {
   grid-area: poster;
   width: 100%;
+}
+
+.movie-card__poster {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 4px;
 }
 
-// Стили для правой колонки: информация о фильме
-/*.popup-info {
-  display: flex;
-  flex-direction: column;
-}*/
-
-.popup-title__container {
+.movie-card__title-container {
   grid-area: title;
   width: 100%;
 }
 
-.popup-title {
-  font-size: 1.5rem;
-  margin: 0;
+.movie-card__title {
+  @include font-h2;
+  color: $textColor;
+  line-height: 150%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; 
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
-.popup-year__container {
+.movie-card__year-container {
   grid-area: year;
   width: 100%;
 }
 
-.popup-year {
-  font-size: 1rem;
-  color: #666;
+.movie-card__year {
+  @include font-h3;
+  color: $textColor;
 }
 
-.popup-link {
-  margin: 0.5rem 0;
-  text-decoration: none;
-  color: #007bff;
+.movie-card__tmdb-icon {
+  width: 9%;
+  height: 6%;
 }
 
-.popup-icon {
-  width: 12%;
-  height: 9%;
-}
-
-.popup-overview__container {
+.movie-card__overview-container {
   grid-area: overview;
   width: 100%;
 }
 
-.popup-overview {
-  font-size: 1rem;
-  line-height: 1.4;
+.movie-card__overview {
+  @include font-base;
+  color: $textColor;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 7; 
+  line-clamp: 7;
+  -webkit-box-orient: vertical;
 }
 
-.tmdb-container {
+.movie-card__tmdb-container {
   grid-area: tmdb;
-  width: 100%;
-}
-
-.popup-year__container {
-  grid-area: year;
   width: 100%;
 }
 

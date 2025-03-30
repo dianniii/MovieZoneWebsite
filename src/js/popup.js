@@ -23,7 +23,7 @@ async function fetchMovieDataById(id) {
     return data; // Возвращаем полученные данные
   } catch (error) {
     // Выводим ошибку в консоль для отладки
-    console.error("Ошибка в fetchMovieDataById:", error);
+    console.error("Failed to load movie information:", error);
     // Можем пробросить ошибку дальше, чтобы ее обработал вызывающий код
     throw error;
   }
@@ -47,20 +47,20 @@ document.getElementById("movie").addEventListener("click", async (evt) => {
     const movieData = await fetchMovieDataById(movie_id);
 
     // Заполняем левую колонку popup: задаём src для постера
-    document.querySelector(".popup-poster").src =
+    document.querySelector(".movie-card__poster").src =
     basePosterUrl + movieData.poster_path;
     
     // Заполняем правую колонку:
     // Название фильма
-    document.querySelector(".popup-title").textContent =
+    document.querySelector(".movie-card__title").textContent =
       movieData.title || "Нет названия";
     // Год выпуска: берём первые 4 символа из release_date (например, "2009" из "2009-12-15")
-    document.querySelector(".popup-year").textContent = (movieData.release_date ? movieData.release_date.slice(0, 4) : "не указан");
+    document.querySelector(".movie-card__year").textContent = (movieData.release_date ? movieData.release_date.slice(0, 4) : "не указан");
     // Ссылка на страницу фильма на TMDB (используем movie_id для формирования URL)
-    document.querySelector(".popup-link").href =
+    document.querySelector(".movie-card__tmdb-link").href =
       "https://www.themoviedb.org/movie/" + movie_id;
     // Краткое описание фильма
-    document.querySelector(".popup-overview").textContent =
+    document.querySelector(".movie-card__overview").textContent =
       movieData.overview || "Описание недоступно";
 
     const controlBarContainer = document.querySelector(".control-bar__container");
