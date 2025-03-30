@@ -35,7 +35,7 @@ export function mainGenrePageFunction(){
     filterMoviesArr();
     movie_container.innerHTML='';
 
-    if(moviesByGenre.results && moviesByGenre.length >0){
+    if(moviesByGenre.results && moviesByGenre.results.length >0){
         createCards(moviesByGenre.results, movie_container);
     }else{
         movie_container.textContent="There are no available results. Please choose another genre";
