@@ -1,21 +1,17 @@
 import { classesBanner, castIds, classesInfo, lstClasses } from "./movieVars";
-
 import {
   createElementWithProps,
   createListElem,
   createLinkWithIcon,
   extractNames,
 } from "../elementCreation";
-
 import { tmbdUrl, iconPaths } from "../commonVars";
-
 import { createControlBarElem } from "../controlBar/createControlBar";
-
 import { toggleCastElementLength } from "./setUpMovieCastBtn";
 
 export function createMovieBannerElem(movieDescription, movieBlockName) {
   const bannerElem = createElementWithProps("div", `${movieBlockName}banner`);
-
+  bannerElem.dataset.id = movieDescription.id;
   const titleElem = createTitleBannerElem(movieDescription);
   bannerElem.append(titleElem);
 
@@ -41,7 +37,6 @@ function createTitleBannerElem(movieDescription) {
     false,
     movieDescription.title || "Unknown"
   );
-  titleElem.setAttribute("data-id", movieDescription.id);
   return titleElem;
 }
 
