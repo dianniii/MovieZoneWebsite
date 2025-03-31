@@ -168,7 +168,7 @@ function createGenresElem(movieDescription) {
   const genreLstElem = createListElem(
     genres,
     lstClasses.lst,
-    lstClasses.items,
+    lstClasses.genreItems,
     true
   );
   featureElem.append(subtitleElem, genreLstElem);

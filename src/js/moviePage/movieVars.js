@@ -50,6 +50,7 @@ export const classesBanner = {
 export const lstClasses = {
   lst: [`${movieBlockName}lst`, `${movieBlockName}feature-value`],
   items: `${movieBlockName}lst-item`,
+  genreItems: [`${movieBlockName}lst-item`, `${movieBlockName}genre`],
 };
 
 export const classesInfo = {
@@ -58,6 +59,7 @@ export const classesInfo = {
   feature: `${movieBlockName}feature`,
   featureName: `${movieBlockName}feature-name`,
   featureVal: `${movieBlockName}feature-value`,
+  genre: `${movieBlockName}genre`,
   shownCast: `${movieBlockName}feature-value--shown`,
   hiddenCast: `${movieBlockName}feature-value--hidden`,
   castBtn: `${movieBlockName}cast-btn`,
