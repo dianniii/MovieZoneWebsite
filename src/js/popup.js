@@ -2,6 +2,7 @@ import { createControlBarElem } from "./controlBar/createControlBar";
 import { classesControlBar } from "./controlBar/controlBarVars";
 import { handleControlBarClick } from "./controlBar/controlBarBtnHandlers";
 import { domenPartUrl, basePosterUrl } from "./commonVars";
+import { moveToPage } from "./moveToPage";
 
 /**
  * Функция для запроса данных о фильме по ID (19995 = «Аватар»).
@@ -31,7 +32,7 @@ async function fetchMovieDataById(id) {
 }
 
 // Обработчик клика по элементу с id "movie"
-export async function showPopUp(evt) {
+export async function showPopUp(evt, movie_id) {
   // Проверяем, что клик произошёл именно по элементу с классом "movie" или его потомку
   const movieElem = evt.target.closest(".movie");
   // if (!movieElem) {
@@ -40,7 +41,6 @@ export async function showPopUp(evt) {
   // }
 
   // Извлекаем ID фильма из data-атрибута
-  const movie_id = movieElem.getAttribute("data-id");
   document.querySelector(".popup__movie").dataset.id = movie_id;
 
   try {
@@ -105,8 +105,7 @@ export function handlePopupClick(evt) {
     // проверяем кликнул ли пользователь на что то другое в попапе
   } else if (evt.target.closest(".popup__movie")) {
     // перенаправляем на страницу фильма
-    const movie_id = document.querySelector(".popup__movie").dataset.id;
-    window.location.href = `movie.html?id=${movie_id}`;
+    moveToPage(document.querySelector(".popup__movie"), "movie");
   }
 }
 

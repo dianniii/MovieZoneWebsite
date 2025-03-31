@@ -1,4 +1,5 @@
 import { showPopUp, handlePopupClick } from "../popup";
+import { moveToPage } from "../moveToPage";
 // обработчик события click после загрузки страницы
 document.addEventListener("DOMContentLoaded", function () {
   const mainContainer = document.getElementById("main");
@@ -229,15 +230,17 @@ function handleItemClick(evt) {
     handlePopupClick(evt);
   } else if (evt.target.closest(".movie")) {
     //пользователь нажал на фильм, открываем попап
-    showPopUp(evt);
+    const id = evt.target.closest(".movie").dataset.id;
+    showPopUp(evt, id);
   } else if (evt.target.closest(".genre")) {
     // Проверяем, кликнул ли пользователь на сам блок жанра или на кнопку в блоке жанра (выделять отдельно кнопку и жанр не надо, тк у них у обоих в closest будет .genre)
-    const genreElement = evt.target.closest(".genre");
-    const genreId = genreElement.getAttribute("data-id");
-    if (genreId) {
-      console.log("Переход на страницу жанра (по контейнеру):", genreId);
-      window.location.href = `genre.html?id=${genreId}`;
-    }
+    // const genreElement = evt.target.closest(".genre");
+    // const genreId = genreElement.getAttribute("data-id");
+    // if (genreId) {
+    //   console.log("Переход на страницу жанра (по контейнеру):", genreId);
+    //   window.location.href = `genre.html?id=${genreId}`;
+    // }
+    moveToPage(evt.target.closest(".genre"), "genre");
   }
 }
 
