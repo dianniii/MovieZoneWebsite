@@ -1,13 +1,14 @@
-import { classesBanner, castIds, classesInfo, lstClasses } from "./movieVars";
+import { classesBanner, classesInfo, lstClasses } from "./movieVars";
 import {
   createElementWithProps,
   createListElem,
   createLinkWithIcon,
   extractNames,
+  exctractValues,
 } from "../elementCreation";
 import { tmbdUrl, iconPaths } from "../commonVars";
 import { createControlBarElem } from "../controlBar/createControlBar";
-import { toggleCastElementLength } from "./setUpMovieCastBtn";
+// import { toggleCastElementLength } from "./moviePageClickHandlers";
 
 export function createMovieBannerElem(movieDescription, movieBlockName) {
   const bannerElem = createElementWithProps("div", `${movieBlockName}banner`);
@@ -118,16 +119,16 @@ function createCastContent(cast) {
     const hiddenPart = createElementWithProps(
       "span",
       classesInfo.hiddenCast,
-      castIds.hiddenCastPart,
+      false,
       secondPart + " "
     );
     const btn = createElementWithProps(
       "button",
       classesInfo.castBtn,
-      castIds.castBtn,
+      false,
       "see more..."
     );
-    btn.addEventListener("click", toggleCastElementLength);
+    // btn.addEventListener("click", toggleCastElementLength);
     parElem.append(shownPart, hiddenPart, btn);
   } else {
     parElem.textContent = cast.join(", ");
@@ -159,12 +160,17 @@ function createGenresElem(movieDescription) {
   const featureElem = createElementWithProps("div", classesInfo.feature);
   const subtitleElem = createFeatureNameElem("Genres:");
 
-  let genres = ["Unknown"];
+  let genres = ["", "Unknown"];
   if (movieDescription.genres && movieDescription.genres.length) {
-    genres = extractNames(movieDescription.genres, "name");
+    genres = exctractValues(movieDescription.genres);
   }
 
-  const genreLstElem = createListElem(genres, lstClasses.lst, lstClasses.items);
+  const genreLstElem = createListElem(
+    genres,
+    lstClasses.lst,
+    lstClasses.items,
+    true
+  );
   featureElem.append(subtitleElem, genreLstElem);
   return featureElem;
 }

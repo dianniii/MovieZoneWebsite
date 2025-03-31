@@ -32,17 +32,13 @@ export async function loadMoviePage() {
 }
 
 function renderMovie(movieData) {
-  try {
-    const movieContainer = document.getElementById("movie");
-    const bannerElem = createMovieBannerElem(movieData, movieBlockName);
-    const infoBlockElem = createInfoBlock(movieData, movieBlockName);
-    movieContainer.append(bannerElem, infoBlockElem);
+  const movieContainer = document.getElementById("movie");
+  const bannerElem = createMovieBannerElem(movieData, movieBlockName);
+  const infoBlockElem = createInfoBlock(movieData, movieBlockName);
+  movieContainer.append(bannerElem, infoBlockElem);
 
-    changeBannerBG(bannerElem, movieData);
-    bannerElem.addEventListener("click", (evt) => movieCardClickHandler(evt));
-  } catch (error) {
-    console.error("Error during rendering movie:", error);
-  }
+  changeBannerBG(bannerElem, movieData);
+  bannerElem.addEventListener("click", (evt) => movieCardClickHandler(evt));
 }
 
 export function changeBannerBG(bannerElem, movieDescription) {
