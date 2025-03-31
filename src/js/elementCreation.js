@@ -23,17 +23,17 @@ export function createButtonWithIcon(classBtn, classIcon, iconSrc, alt) {
   return btn;
 }
 
-export function createListElem(arr, ulClass, liClass, ids = false) {
+export function createListElem(arr, ulClass, liClass, nestedArr = false) {
   const lstElem = createElementWithProps("ul", ulClass);
   arr.forEach((item) => {
     const liElem = createElementWithProps(
       "li",
       liClass,
       false,
-      ids ? item[1] : item
+      nestedArr ? item[1] : item
     );
     lstElem.append(liElem);
-    if (ids) liElem.dataset.id = item[0];
+    if (nestedArr) liElem.dataset.id = item[0];
   });
   return lstElem;
 }
