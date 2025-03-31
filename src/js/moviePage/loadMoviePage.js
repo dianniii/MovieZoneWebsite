@@ -4,6 +4,7 @@ import { baseBackdropUrl, basePosterUrl } from "../commonVars";
 import { isValidUrl, getIdFromWindowLocation } from "../getCheckUrlData";
 import { fetchMovieObj, filterMovieData } from "./getMovieData";
 import { createMovieBannerElem, createInfoBlock } from "./createMoviePageElems";
+import { movieCardClickHandler } from "../movieCardClickHandler";
 
 export async function loadMoviePage() {
   try {
@@ -33,14 +34,12 @@ export async function loadMoviePage() {
 function renderMovie(movieData) {
   try {
     const movieContainer = document.getElementById("movie");
-
-    movieContainer.setAttribute("data-id", movieData.id);
-
     const bannerElem = createMovieBannerElem(movieData, movieBlockName);
     const infoBlockElem = createInfoBlock(movieData, movieBlockName);
-
     movieContainer.append(bannerElem, infoBlockElem);
+
     changeBannerBG(bannerElem, movieData);
+    bannerElem.addEventListener("click", (evt) => movieCardClickHandler(evt));
   } catch (error) {
     console.error("Error during rendering movie:", error);
   }

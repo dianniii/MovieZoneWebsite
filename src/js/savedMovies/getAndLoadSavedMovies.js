@@ -50,8 +50,6 @@ function createMovieElem(movieData, storageProperty) {
 
   const posterElem = createPosterElem(movieData.poster_path);
 
-  // const closeBtnContainer = createControlRemBar(storageProperty);
-
   const textContainer = createTextContainer(movieData, storageProperty);
 
   movieCard.append(posterElem, textContainer);
