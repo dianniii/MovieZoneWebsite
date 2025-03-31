@@ -1,10 +1,13 @@
-import { classesBanner, classesInfo } from "./movieVars";
+import { classesInfo, castIds } from "./movieVars";
+import { classesBanner } from "../movieBanner/bannerVars";
 import { moveToPage } from "../moveToPage";
+import { movieCardClickHandler } from "../movieCardClickHandler";
 
 function toggleCastElementLength(evtTarget) {
-  const hiddenPart = evtTarget.closest("." + classesInfo.hiddenCast);
-  const btnElem = evtTarget.closest("." + classesInfo.castBtn);
-  hiddenPart.classList.toggle(castHiddenClassName);
+  const btnElem = evtTarget;
+  const hiddenPart = document.getElementById(castIds.hidden);
+
+  hiddenPart.classList.toggle(classesInfo.hiddenCast);
 
   if (hiddenPart.classList.contains(classesInfo.hiddenCast)) {
     btnElem.textContent = "see more...";
@@ -15,12 +18,12 @@ function toggleCastElementLength(evtTarget) {
 
 function showOtherMovies(evtTarget) {
   const genreId = evtTarget.dataset.id;
-  if (!genreId) {
+  if (genreId) {
     moveToPage(evtTarget, "genre");
   }
 }
 
-export function handleMovieInfoClick(evt) {
+export function handleFullMovieClick(evt) {
   if (evt.target.closest("a")) {
     return;
   }

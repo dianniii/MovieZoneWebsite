@@ -6,6 +6,7 @@ import {
   createMovieBannerElem,
   changeBannerBG,
 } from "../movieBanner/movieBannerSetUp";
+import { handleFullMovieClick } from "./moviePageClickHadlers";
 
 export async function loadMoviePage() {
   try {
@@ -39,7 +40,8 @@ function renderMovie(movieData) {
   movieContainer.append(bannerElem, infoBlockElem);
 
   changeBannerBG(bannerElem, movieData);
-  // bannerElem.addEventListener("click", (evt) => movieCardClickHandler(evt));
+
+  movieContainer.addEventListener("click", handleFullMovieClick);
 }
 
 function showErrorMessage() {
