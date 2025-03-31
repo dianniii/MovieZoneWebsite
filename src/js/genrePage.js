@@ -32,7 +32,7 @@ export function filterMoviesArr() {
 export function mainGenrePageFunction() {
   moviesByGenre = filterMoviesArr();
   movie_container.innerHTML = "";
-
+console.log(moviesByGenre);
   if (moviesByGenre.results && moviesByGenre.results.length > 0) {
     createCards(moviesByGenre.results, movie_container);
     // !!! ТЕПЕРЬ EVENT HANDLER НАВЕШИВАЕТСЯ НА КАРТОЧКУ ПРЯМ В ФУНКЦИИ createCard  И ИСПОЛЬЗУЕТ ФУНКЦИЮ ИЗ movieCardClickHandler.js
@@ -66,7 +66,10 @@ export function loadMoreAddHide(results) {
       "click",
       () => {
         currentPage++;
-        mainGenrePageFunction(currentPage);
+        results.page = currentPage;
+        console.log(results);
+        movie_container.innerHTML += createCards(results.results, movie_container)
+        // mainGenrePageFunction();
         if (currentPage === results.total_pages) {
           loadMoreButton.style.display = "none";
         }
