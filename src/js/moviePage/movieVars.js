@@ -37,14 +37,16 @@ export const castIds = {
   hiddenCastPart: "castAdditionalPart",
   castBtn: "castMovieBtn",
 };
+const movieBanner = "movie-banner";
+const bannerBlockName = movieBanner + "__";
 
 export const classesBanner = {
-  banner: `${movieBlockName}banner`,
-  title: `${movieBlockName}title`,
-  tagline: [`${movieBlockName}tagline`, `${movieBlockName}feature`],
-  controlBar: `${movieBlockName}control-bar`,
-  button: `${movieBlockName}banner-btn`,
-  icon: `${movieBlockName}banner-icon`,
+  banner: `${movieBanner}`,
+  title: `${bannerBlockName}title`,
+  tagline: [`${bannerBlockName}tagline`, `${movieBlockName}feature`],
+  controlBar: `${bannerBlockName}control-bar`,
+  button: `${bannerBlockName}banner-btn`,
+  icon: `${bannerBlockName}banner-icon`,
 };
 
 export const lstClasses = {

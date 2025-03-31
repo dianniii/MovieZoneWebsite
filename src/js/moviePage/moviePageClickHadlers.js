@@ -1,9 +1,11 @@
-import { classesInfo } from "./movieVars";
+import { classesBanner, classesInfo } from "./movieVars";
+import { moveToPage } from "../moveToPage";
 
-export function toggleCastElementLength(evtTarget) {
-  const hiddenPart = document.querySelector("." + classesInfo.hiddenCast);
-  const btnElem = evtTarget;
+function toggleCastElementLength(evtTarget) {
+  const hiddenPart = evtTarget.closest("." + classesInfo.hiddenCast);
+  const btnElem = evtTarget.closest("." + classesInfo.castBtn);
   hiddenPart.classList.toggle(castHiddenClassName);
+
   if (hiddenPart.classList.contains(classesInfo.hiddenCast)) {
     btnElem.textContent = "see more...";
     return;
@@ -11,6 +13,29 @@ export function toggleCastElementLength(evtTarget) {
   btnElem.textContent = "see less";
 }
 
-export function showOtherMovies(evt) {
-  return;
+function showOtherMovies(evtTarget) {
+  const genreId = evtTarget.dataset.id;
+  if (!genreId) {
+    moveToPage(evtTarget, "genre");
+  }
+}
+
+export function handleMovieInfoClick(evt) {
+  if (evt.target.closest("a")) {
+    return;
+  }
+
+  if (evt.target.closest("." + classesBanner.banner)) {
+    return movieCardClickHandler(evt);
+  }
+
+  if (evt.target.closest("." + classesInfo.castBtn)) {
+    return toggleCastElementLength(
+      evt.target.closest("." + classesInfo.castBtn)
+    );
+  }
+
+  if (evt.target.closest("." + classesInfo.genre)) {
+    return showOtherMovies(evt.target.closest("." + classesInfo.genre));
+  }
 }
