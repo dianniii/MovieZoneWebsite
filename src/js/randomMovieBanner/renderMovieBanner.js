@@ -21,6 +21,5 @@ export async function renderMovieBanner() {
     changeBannerBG(bannerElem, movie);
   } catch (error) {
     console.error(error);
-    return;
   }
 }
