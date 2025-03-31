@@ -1,11 +1,15 @@
 .movie-cards {
   margin-top: 30px;
   margin-bottom: 30px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  flex-wrap: wrap;
-  justify-content: center;
+  // display: flex;
+  // align-items: center;
+  // align-items: stretch;
+  // flex-direction: column;
+  // flex-wrap: wrap;
+  // justify-content: center;
+  display: grid;
+  grid-auto-rows: 1fr; //added by Nastya
+  gap: 20px; //added by Nastya
   background-color: $light-black;
   color: $textColor;
 }
@@ -17,16 +21,18 @@
   gap: 30px;
   align-items: center;
   background-color: $dark-grey;
-  min-height: 300px;
+  // min-height: 300px; //commented by Nastya
   width: calc(100% - 100px);
   @include font-basic;
   line-height: 140%;
   border-radius: $borderRadiusMain;
   transition: height 0.3s ease;
+
   &:hover {
     height: auto;
-    .movieTitle,
-    .movie-info {
+
+    &__movieTitle,
+    &__movie-info {
       white-space: normal;
       overflow: visible;
       text-overflow: unset;
@@ -46,13 +52,18 @@
     height: 330px;
   }
   &__text-container {
+    display: flex; //added by Nastya
+    flex-direction: column; //added by Nastya
+    gap: 10px; //added by Nastya
+    align-items: flex-start;
     flex-shrink: 1;
     padding-right: 40px;
-    text-align: start;
+    // text-align: start;
   }
   &__movieTitle {
     font-size: $font-size-h2;
-    padding-bottom: 20px;
+    // padding-bottom: 20px; //commented by Nastya
+    padding-bottom: 10px; //added by Nastya
     line-height: 150%;
     overflow: hidden;
     text-overflow: ellipsis;
