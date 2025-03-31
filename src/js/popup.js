@@ -1,5 +1,6 @@
 import { createControlBarElem } from "./controlBar/createControlBar";
-// import { controlBarIconPaths } from "./controlBar/controlBarVars";
+import { classesControlBar } from "./controlBar/controlBarVars";
+import { handleControlBarClick } from "./controlBar/controlBarBtnHandlers";
 import { domenPartUrl, basePosterUrl } from "./commonVars";
 
 /**
@@ -81,18 +82,9 @@ export async function showPopUp(evt) {
     document.getElementById("movie-popup").classList.add("active");
 
     // Обработчик клика по кнопке закрытия popup или клика на фильм
-    document.getElementById("movie-popup").addEventListener("click", (evt) => {
-      const popupBtn = evt.target.closest(".popup__close-btn");
-      if (popupBtn) {
-        document.getElementById("movie-popup").classList.remove("active");
-        return;
-      }
-      const popUp = evt.target.closest(".popup__movie");
-      if (popUp) {
-        const movie_id = document.querySelector(".popup__movie").dataset.id;
-        window.location.href = `movie.html?id=${movie_id}`;
-      }
-    });
+    // document.getElementById("movie-popup").addEventListener("click", (evt) => {
+    //   handlePopupClick(evt);
+    // });
   } catch (error) {
     // Если произошла ошибка при запросе или обработке данных, выводим сообщение в консоль
     console.error("Error fetching data:", error);
@@ -100,3 +92,46 @@ export async function showPopUp(evt) {
     alert("Failed to load movie information");
   }
 }
+
+//Эта функция импортирована в movies-genres/genres.js
+export function handlePopupClick(evt) {
+  //проверяем кликнул ли пользователь на кнопку закрытия попапа
+  if (evt.target.closest(".popup__close-btn")) {
+    document.getElementById("movie-popup").classList.remove("active"); //закрываем попап
+    //проверяем кликнул ли пользователь на кнопки в control bar
+  } else if (evt.target.closest(`.${classesControlBar.controlBar}`)) {
+    //отправляем к функции которая хэндлит нажатия на кнопки в control bar
+    handleControlBarClick(evt);
+    // проверяем кликнул ли пользователь на что то другое в попапе
+  } else if (evt.target.closest(".popup__movie")) {
+    // перенаправляем на страницу фильма
+    const movie_id = document.querySelector(".popup__movie").dataset.id;
+    window.location.href = `movie.html?id=${movie_id}`;
+  }
+}
+
+//вот код который ее запускает, он лежит в дианином js так как слушатель события привязан к main и только если юзер ткнул что то на попапе запускается эта функция:
+
+// const main = document.getElementById("main");
+// main.addEventListener("DOMContentLoaded", () => handleItemClick(evt));
+
+// //функция клика фильма, жанра и кнопки
+// function handleItemClick(evt) {
+//   // console.log("Клик по элементу:", evt.target); // Проверяем, что клики вообще регистрируются
+
+//   if (evt.target.closest(".popup__movie")) {
+//     //пользователь нажал на что-то в попапе, запускаем функцию хэндлинга клика на элементы попапа
+//     handlePopupClick(evt);
+//   } else if (evt.target.closest(".movie")) {
+//     //пользователь нажал на фильм, открываем попап
+//     showPopUp(evt);
+//   } else if (evt.target.closest(".genre")) {
+//     // Проверяем, кликнул ли пользователь на сам блок жанра или на кнопку в блоке жанра (выделять отдельно кнопку и жанр не надо, тк у них у обоих в closest будет .genre)
+//     const genreElement = evt.target.closest(".genre");
+//     const genreId = genreElement.getAttribute("data-id");
+//     if (genreId) {
+//       console.log("Переход на страницу жанра (по контейнеру):", genreId);
+//       window.location.href = `genre.html?id=${genreId}`;
+//     }
+//   }
+// }

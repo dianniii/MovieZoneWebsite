@@ -13,7 +13,7 @@ import {
 import { tmbdUrl, iconPaths } from "../commonVars";
 import { getMoviesFromStorage } from "../localStorage";
 import { createControlRemBar } from "./createRemBtn";
-import { movieCardClickHandler } from "./movieCardClickHandler";
+import { movieCardClickHandler } from "../movieCardClickHandler";
 
 const movieCards = document.querySelector("." + moviesContainerClass);
 
@@ -46,19 +46,40 @@ export function showMsgLstIsEmpty(movieCards) {
 function createMovieElem(movieData, storageProperty) {
   const movieCard = createElementWithProps("div", savedMoviesClss.movieCard);
   movieCard.dataset.id = movieData.id;
-  addMovieCardHandler(movieCard, storageProperty);
+  addMovieCardHandler(movieCard);
+
+  const posterElem = createPosterElem(movieData.poster_path);
+
+  // const closeBtnContainer = createControlRemBar(storageProperty);
+
+  const textContainer = createTextContainer(movieData, storageProperty);
+
+  movieCard.append(posterElem, textContainer);
+
+  addMovieCardHandler(movieCard);
+
+  return movieCard;
+}
+
+function addMovieCardHandler(movieCard) {
+  movieCard.addEventListener("click", (evt) => movieCardClickHandler(evt));
+}
+
+function createTextContainer(movieData, storageProperty) {
+  const textContainer = createElementWithProps("div", savedMoviesClss.textCont);
 
   const closeBtnContainer = createControlRemBar(storageProperty);
-  const posterElem = createPosterElem(movieData.poster_path);
+  textContainer.append(closeBtnContainer);
+
   const titleElem = createTitleElem(movieData.title);
-  movieCard.append(closeBtnContainer, posterElem, titleElem);
+  textContainer.append(titleElem);
 
   if (movieData.release_date) {
     const yearElem = createParElem(
       savedMoviesClss.year,
       movieData.release_date.slice(0, 4)
     );
-    movieCard.append(yearElem);
+    textContainer.append(yearElem);
   }
 
   if (movieData.overview) {
@@ -66,19 +87,12 @@ function createMovieElem(movieData, storageProperty) {
       savedMoviesClss.overview,
       movieData.overview
     );
-    movieCard.append(descriptionElem);
+    textContainer.append(descriptionElem);
   }
 
   const tmbdLinkElem = createTMBDlinkElem(movieData.id);
-  movieCard.append(tmbdLinkElem);
-
-  return movieCard;
-}
-
-function addMovieCardHandler(movieCard, storageProperty) {
-  movieCard.addEventListener("click", (evt) =>
-    movieCardClickHandler(evt, storageProperty)
-  );
+  textContainer.append(tmbdLinkElem);
+  return textContainer;
 }
 
 function createPosterElem(posterPath) {
@@ -105,10 +119,6 @@ function createTitleElem(title) {
     title || "Unknown"
   );
 }
-
-// function createOverviewElem(overview) {
-// если длина текста больше
-// }
 
 function createParElem(className, text) {
   return createElementWithProps("p", className, false, text);

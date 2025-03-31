@@ -19,8 +19,16 @@ function getDataSetMovieInfo(btn) {
   }
 }
 
+export function handleControlBarClick(evt) {
+  if (evt.target.closest(".fav-btn")) {
+    handleFavBtnClick(evt);
+  } else if (evt.target.closest(".watch-btn")) {
+    handleWatchlstBtnClick(evt);
+  }
+}
+
 export function handleFavBtnClick(evt) {
-  const btn = evt.target.closest("button");
+  const btn = evt.target.closest(".fav-btn");
   const movieInfo = getDataSetMovieInfo(btn);
   const btnState = btn.dataset.state;
   if (btnState === "on") {
@@ -31,7 +39,7 @@ export function handleFavBtnClick(evt) {
 }
 
 export function handleWatchlstBtnClick(evt) {
-  const btn = evt.target.closest("button");
+  const btn = evt.target.closest(".watch-btn");
   const movieInfo = getDataSetMovieInfo(btn);
   const btnState = btn.dataset.state;
   if (btnState === "on") {

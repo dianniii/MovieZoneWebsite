@@ -1,4 +1,4 @@
-import { showPopUp } from "../popup";
+import { showPopUp, handlePopupClick } from "../popup";
 // обработчик события click после загрузки страницы
 document.addEventListener("DOMContentLoaded", function () {
   const mainContainer = document.getElementById("main");
@@ -94,9 +94,9 @@ genresList.forEach(({ genre_id, genre_name }) => {
   fetchMoviesByGenre(genre_id, genre_name);
 });
 
-setTimeout(() => {
-  console.log(genresArray);
-}, 1000);
+// setTimeout(() => {
+//   console.log(genresArray);
+// }, 1000);
 
 // Функция для отображения информации о фильмах из genresArray
 function displayMovieInfo(genresArray) {
@@ -133,7 +133,7 @@ function createMovieMarkup(genresArray) {
       // Создаем кнопку Watch All
       const watchAllButton = document.createElement("button");
       watchAllButton.classList.add("genre__watch-all");
-      watchAllButton.textContent = "Watch All >";
+      watchAllButton.textContent = "See All >";
 
       genreContainer.appendChild(genreTitle);
       genreContainer.appendChild(watchAllButton);
@@ -185,6 +185,7 @@ setTimeout(() => {
   createMovieMarkup(genresArray);
 }, 3000);
 
+//ФУНКЦИЯ КЛИКА СМОТРИ ВНИЗУ
 //функция клика фильма, жанра и кнопки
 // function handleItemClick(evt) {
 //   console.log("Клик по элементу:", evt.target); // Проверяем, что клики вообще регистрируются
@@ -221,29 +222,17 @@ setTimeout(() => {
 
 //функция клика фильма, жанра и кнопки
 function handleItemClick(evt) {
-  console.log("Клик по элементу:", evt.target); // Проверяем, что клики вообще регистрируются
+  // console.log("Клик по элементу:", evt.target); // Проверяем, что клики вообще регистрируются
 
-  // Проверяем, кликнул ли пользователь на фильм
-  const movieElement = evt.target.closest(".movie");
-  if (movieElement) {
-    showPopUp(evt); // Важно передать `evt`
-    return; // Завершаем выполнение, чтобы дальше код не выполнялся
-  }
-
-  // Проверяем, кликнул ли пользователь на кнопку "Watch All"
-  const buttonElement = evt.target.closest(".genre__watch-all");
-  if (buttonElement) {
-    const genreId = buttonElement.getAttribute("data-id");
-    if (genreId) {
-      console.log("Переход на страницу жанра:", genreId);
-      window.location.href = `genre.html?id=${genreId}`;
-      return;
-    }
-  }
-
-  // Проверяем, кликнул ли пользователь на сам блок жанра
-  const genreElement = evt.target.closest(".genre");
-  if (genreElement) {
+  if (evt.target.closest(".popup__movie")) {
+    //пользователь нажал на что-то в попапе, запускаем функцию хэндлинга клика на элементы попапа
+    handlePopupClick(evt);
+  } else if (evt.target.closest(".movie")) {
+    //пользователь нажал на фильм, открываем попап
+    showPopUp(evt);
+  } else if (evt.target.closest(".genre")) {
+    // Проверяем, кликнул ли пользователь на сам блок жанра или на кнопку в блоке жанра (выделять отдельно кнопку и жанр не надо, тк у них у обоих в closest будет .genre)
+    const genreElement = evt.target.closest(".genre");
     const genreId = genreElement.getAttribute("data-id");
     if (genreId) {
       console.log("Переход на страницу жанра (по контейнеру):", genreId);
