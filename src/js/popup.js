@@ -124,6 +124,7 @@ export function handlePopupClick(evt) {
 //     handlePopupClick(evt);
 //   } else if (evt.target.closest(".movie")) {
 //     //пользователь нажал на фильм, открываем попап
+//    достать id
 //     showPopUp(evt);
 //   } else if (evt.target.closest(".genre")) {
 //     // Проверяем, кликнул ли пользователь на сам блок жанра или на кнопку в блоке жанра (выделять отдельно кнопку и жанр не надо, тк у них у обоих в closest будет .genre)
