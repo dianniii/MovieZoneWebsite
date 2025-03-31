@@ -9,6 +9,9 @@ import { classesControlBar } from "../js/controlBar/controlBarVars";
 import { moveToPage } from "./moveToPage";
 
 export function movieCardClickHandler(evt) {
+  if (evt.target.closest("a")) {
+    return; // чтобы работала клик по ссылке на tmbd
+  }
   if (evt.target.closest("." + classesControlRemBar.controlBarElem[1])) {
     handleRemoveMovieClick(evt);
   } else if (evt.target.closest("." + classesControlBar.controlBar)) {
