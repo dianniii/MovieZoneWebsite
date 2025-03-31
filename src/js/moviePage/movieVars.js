@@ -33,22 +33,6 @@ export const shortPropertyList = [
   "release_date",
 ];
 
-export const castIds = {
-  hiddenCastPart: "castAdditionalPart",
-  castBtn: "castMovieBtn",
-};
-const movieBanner = "movie-banner";
-const bannerBlockName = movieBanner + "__";
-
-export const classesBanner = {
-  banner: `${movieBanner}`,
-  title: `${bannerBlockName}title`,
-  tagline: [`${bannerBlockName}tagline`, `${movieBlockName}feature`],
-  controlBar: `${bannerBlockName}control-bar`,
-  button: `${bannerBlockName}banner-btn`,
-  icon: `${bannerBlockName}banner-icon`,
-};
-
 export const lstClasses = {
   lst: [`${movieBlockName}lst`, `${movieBlockName}feature-value`],
   items: `${movieBlockName}lst-item`,

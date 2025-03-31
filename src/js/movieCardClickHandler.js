@@ -4,7 +4,7 @@ import {
 } from "./savedMovies/savedMoviesVars";
 import { handleRemoveMovieClick } from "./savedMovies/removeBtnHandler";
 import { handleControlBarClick } from "./controlBar/controlBarBtnHandlers";
-import { classesBanner } from "./moviePage/movieVars";
+import { classesBanner } from "./movieBanner/bannerVars";
 import { classesControlBar } from "../js/controlBar/controlBarVars";
 import { moveToPage } from "./moveToPage";
 

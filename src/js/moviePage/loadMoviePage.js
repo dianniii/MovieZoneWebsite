@@ -1,10 +1,11 @@
 import { movieBlockName, movieContainer } from "./movieVars";
-import { baseBackdropUrl, basePosterUrl } from "../commonVars";
-
-import { isValidUrl, getIdFromWindowLocation } from "../getCheckUrlData";
+import { getIdFromWindowLocation } from "../getCheckUrlData";
 import { fetchMovieObj, filterMovieData } from "./getMovieData";
-import { createMovieBannerElem, createInfoBlock } from "./createMoviePageElems";
-import { movieCardClickHandler } from "../movieCardClickHandler";
+import { createInfoBlock } from "./createMoviePageElems";
+import {
+  createMovieBannerElem,
+  changeBannerBG,
+} from "../movieBanner/movieBannerSetUp";
 
 export async function loadMoviePage() {
   try {
@@ -33,32 +34,12 @@ export async function loadMoviePage() {
 
 function renderMovie(movieData) {
   const movieContainer = document.getElementById("movie");
-  const bannerElem = createMovieBannerElem(movieData, movieBlockName);
+  const bannerElem = createMovieBannerElem(movieData);
   const infoBlockElem = createInfoBlock(movieData, movieBlockName);
   movieContainer.append(bannerElem, infoBlockElem);
 
   changeBannerBG(bannerElem, movieData);
-  bannerElem.addEventListener("click", (evt) => movieCardClickHandler(evt));
-}
-
-export function changeBannerBG(bannerElem, movieDescription) {
-  const currentBg = getComputedStyle(bannerElem).backgroundImage;
-  const imagePath =
-    movieDescription.backdrop_path || movieDescription.poster_path;
-  if (imagePath) {
-    const baseUrl = movieDescription.backdrop_path
-      ? baseBackdropUrl
-      : basePosterUrl;
-    const fullUrl = baseUrl + imagePath;
-
-    if (isValidUrl(fullUrl)) {
-      const updatedBg = currentBg.replace(
-        /url\(["']?(.*?)["']?\)/,
-        `url("${baseUrl + imagePath}")`
-      );
-      bannerElem.style.backgroundImage = updatedBg;
-    }
-  }
+  // bannerElem.addEventListener("click", (evt) => movieCardClickHandler(evt));
 }
 
 function showErrorMessage() {

@@ -1,4 +1,4 @@
-import { classesBanner, classesInfo, lstClasses } from "./movieVars";
+import { classesInfo, lstClasses } from "./movieVars";
 import {
   createElementWithProps,
   createListElem,
@@ -7,39 +7,6 @@ import {
   exctractValues,
 } from "../elementCreation";
 import { tmbdUrl, iconPaths } from "../commonVars";
-import { createControlBarElem } from "../controlBar/createControlBar";
-// import { toggleCastElementLength } from "./moviePageClickHandlers";
-
-export function createMovieBannerElem(movieDescription, movieBlockName) {
-  const bannerElem = createElementWithProps("div", `${movieBlockName}banner`);
-  bannerElem.dataset.id = movieDescription.id;
-  const titleElem = createTitleBannerElem(movieDescription);
-  bannerElem.append(titleElem);
-
-  if (movieDescription.tagline) {
-    const taglineElem = createElementWithProps(
-      "p",
-      classesBanner.tagline,
-      false,
-      movieDescription.tagline
-    );
-
-    bannerElem.append(taglineElem);
-  }
-
-  bannerElem.append(createControlBarElem(movieDescription));
-  return bannerElem;
-}
-
-function createTitleBannerElem(movieDescription) {
-  const titleElem = createElementWithProps(
-    "h1",
-    classesBanner.title,
-    false,
-    movieDescription.title || "Unknown"
-  );
-  return titleElem;
-}
 
 export function createInfoBlock(movieDescription, movieBlockName) {
   const infoBlockElem = createElementWithProps("div", `${movieBlockName}info`);
@@ -128,7 +95,7 @@ function createCastContent(cast) {
       false,
       "see more..."
     );
-    // btn.addEventListener("click", toggleCastElementLength);
+
     parElem.append(shownPart, hiddenPart, btn);
   } else {
     parElem.textContent = cast.join(", ");
