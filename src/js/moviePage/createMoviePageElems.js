@@ -1,4 +1,4 @@
-import { classesInfo, lstClasses } from "./movieVars";
+import { classesInfo, lstClasses, castIds } from "./movieVars";
 import {
   createElementWithProps,
   createListElem,
@@ -86,13 +86,13 @@ function createCastContent(cast) {
     const hiddenPart = createElementWithProps(
       "span",
       classesInfo.hiddenCast,
-      false,
+      castIds.hidden,
       secondPart + " "
     );
     const btn = createElementWithProps(
       "button",
       classesInfo.castBtn,
-      false,
+      castIds.btn,
       "see more..."
     );
 

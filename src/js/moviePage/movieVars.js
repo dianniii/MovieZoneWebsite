@@ -54,3 +54,8 @@ export const classesInfo = {
   linkIcon: `${movieBlockName}link-icon`,
   facts: `${movieBlockName}facts`,
 };
+
+export const castIds = {
+  btn: "castBtn",
+  hidden: "castHidden",
+};
