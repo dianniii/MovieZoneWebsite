@@ -1,21 +1,11 @@
 import { classesControlBar } from "./controlBar/controlBarVars";
 import { createControlBarElem } from "./controlBar/createControlBar";
-import { basePosterUrl } from "./commonVars";
+import { basePosterUrl, domenPartUrl, pathForAllGenres, pathForSearchByGenre, pathForFullMovieDescription, pathForSearchByTitle, pathForSearchById, pathForPopularMovies } from "./commonVars";
 import { movieCardClickHandler } from "./movieCardClickHandler";
+import { searchMedia } from "./header";
+
 
 const movie_container = document.getElementById("movie-cards");
-// console.log(movie_container);
-
-export const domenPartUrl = "https://movies.gila.workers.dev";
-//reverse server paths
-export const pathForAllGenres = "/genres";
-export const pathForSearchByGenre = "/search/genre";
-export const pathForFullMovieDescription = "/search/movie/description";
-export const pathForSearchByTitle = "/search/movie/byTitle";
-export const pathForSearchById = "/search/movie/byId";
-export const pathForPopularMovies = "/popular";
-
-import {domenPartUrl, pathForAllGenres, pathForSearchByGenre, pathForFullMovieDescription, pathForSearchByTitle, pathForSearchById, pathForPopularMovies } from "./src/js/commonVars.js";
 
 function searchTitle() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -23,12 +13,11 @@ function searchTitle() {
   return title;
 }
 
-export async function fetchData(path, paramName, param){
+export async function fetchData(pathParam){
    try {
-      let response = await fetch(
-        `${domenPartUrl}${path}?${paramName}=${param}`
-      );
 
+      let response = await fetch(`${domenPartUrl}${pathParam}`);
+    
       if (!response.ok) {
         console.log("Cannot fetch data form the server");
         throw new Error("HTTP Error: " + response.status);
@@ -42,27 +31,6 @@ export async function fetchData(path, paramName, param){
       return null;
     }
   }
-
-  
-
-// async function fetchMovies(title) {
-//   try {
-//     const response = await fetch(
-//       `https://movies.gila.workers.dev/search/movie/byTitle?title=${title}`
-//     );
-//     if (!response.ok) {
-//       console.log("Cannot fetch data form the server");
-//       throw new Error("HTTP Error: " + response.status);
-//     }
-//     const data = await response.json();
-//     // console.log(data);
-//     return data;
-//   } catch (error) {
-//     movie_container.classList.add("errorMessage");
-//     movie_container.textContent = `${error.message} 😔 Please try again later`;
-//     throw error;
-//   }
-// }
 
 function filterMoviesProps(data) {
   const propsArray = [];
@@ -80,45 +48,28 @@ function filterMoviesProps(data) {
 }
 
 export async function mainSearchFunction() {
-  try {
+  
     const title = searchTitle();
     if (!title) return;
-    // const title_search = searchMedia(title);
-    const movies = await fetchData(pathForSearchByTitle, 'title', title);
-    if(movies=null){
-      movie_container.classList.add("errorMessage");
-          movie_container.textContent = `${error.message} 😔 Please try again later`;
+    const title_search = searchMedia(title);
+    let movies = await fetchData(`/search/movie/byTitle?title=${title_search}`);
+    if(movies == null){
+        displayErrorMsg(error);
     }
 
-    if (movies && movies.results && movies.results.length > 0) {
+    if (movies && movies.results.length > 0) {
       const filtered_results = filterMoviesProps(movies);
       createCards(filtered_results, movie_container);
-      // !!! ТЕПЕРЬ EVENT HANDLER НАВЕШИВАЕТСЯ НА КАРТОЧКУ ПРЯМ В ФУНКЦИИ createCard  И ИСПОЛЬЗУЕТ ФУНКЦИЮ ИЗ movieCardClickHandler.js
-
-      //   movie_container.addEventListener("click", (evt) => {
-      //     const controlBar = evt.target.closest(
-      //       "." + classesControlBar.controlBar
-      //     );
-      //     const clickOnbtns =
-      //       controlBar &&
-      //       controlBar.classList.contains(classesControlBar.controlBar);
-      //     if (!clickOnbtns) {
-      //       const movieElem = evt.target.closest(".movie-card");
-      //       if (movieElem) {
-      //         const movie_id = movieElem.getAttribute("data-id");
-      //         window.location.href = `movie.html?id=${movie_id}`;
-      //       }
-      //     }
-      //   });
     } else {
       movie_container.classList.add("errorMessage");
       movie_container.textContent = "No results found 😔";
     }
-  } catch (error) {
-    console.error("Error in mainSearchFunction: ", error);
-    movie_container.textContent = `An error occured: ${error.message}.`;
+  } 
+
+  function displayErrorMsg(error){
+    movie_container.classList.add("errorMessage");
+    movie_container.textContent = `An error occured: ${error.message} 😔 Please try again later`;
   }
-}
 
 export function createCards(arrayOfObjs, container) {
   // container.innerHTML = "";
