@@ -66,6 +66,14 @@ body {
     background-color: $light-black;
   }
 
+  &__genre {
+    cursor: pointer;
+  }
+
+  &__genre:hover {
+    color: $tomato;
+  }
+
   // &__link-item {
   //   width: 50px;
   //   height: 40px;
