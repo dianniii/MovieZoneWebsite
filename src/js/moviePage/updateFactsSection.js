@@ -1,6 +1,9 @@
 import { appendListElem } from "../elementCreation";
 import { clssInfo, lstClasses } from "./movieVars";
 import { changeElemContent, extractNames, makePlural } from "./helperFuns";
+import countries from "i18n-iso-countries";
+import en from "i18n-iso-countries/langs/en.json";
+countries.registerLocale(en);
 
 export function pasteToFacts(movieObj) {
   const factsContainer = document.querySelector("." + clssInfo.facts);
@@ -33,10 +36,15 @@ function pasteYearContent(yearContainer, date) {
   }
 }
 
-function pasteCountryContent(countryElem, countries) {
-  if (countries.length > 0) {
+function pasteCountryContent(countryElem, countryCodes) {
+  if (countryCodes.length > 0) {
+    const countries = getCountryNames(countryCodes);
     changeElemContent(countryElem, countries);
   }
+}
+
+function getCountryNames(countryCodes) {
+  return countryCodes.map((code) => countries.getName(code, "en"));
 }
 
 function pasteLanguageContent(langContainer, languages) {
