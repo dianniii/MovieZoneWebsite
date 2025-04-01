@@ -98,7 +98,7 @@ body {
 }
 
 .error-msg {
-  // display: none;
+  display: none;
   text-align: center;
   @include font-main-errorMsg;
 }
