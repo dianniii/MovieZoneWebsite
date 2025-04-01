@@ -54,4 +54,5 @@ function showErrorMessage() {
 // function showErrorMessage() {
 //   const errorElem = document.querySelector(".error-msg");
 //   errorElem.style.display = "block";
+//   document.getElementById("movie").style.display = "none";
 // }
