@@ -3,8 +3,8 @@ import {
   createLinkWithIcon,
   appendListElem,
 } from "../elementCreation";
-import { tmbdUrl } from "../commonVars";
-import { clssInfo, lstClasses, iconPaths, castIds } from "./movieVars";
+import { tmbdUrl, iconPaths } from "../commonVars";
+import { clssInfo, lstClasses, castIds } from "./movieVars";
 import { makePlural, changeElemContent, exctractValues } from "./helperFuns";
 
 export function pasteToContent(movieObj) {

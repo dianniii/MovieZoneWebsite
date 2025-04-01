@@ -2,11 +2,6 @@ export const movieContainer = document.getElementById("movie");
 
 export const movieBlockName = "full-movie__";
 
-export const iconPaths = {
-  TMBDIcon: "/icons/TMDB.svg",
-  filmIcon: "/icons/filmIcon.svg",
-};
-
 export const fullPropertylist = [
   "id",
   "title",
