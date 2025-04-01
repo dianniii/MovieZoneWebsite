@@ -1,5 +1,3 @@
-import { createElementWithProps } from "../elementCreation";
-
 export function makePlural(elem, array) {
   if (array.length > 1) elem.textContent += "s";
 }

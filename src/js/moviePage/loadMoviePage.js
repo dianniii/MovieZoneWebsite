@@ -1,11 +1,12 @@
-import { movieBlockName, movieContainer } from "./movieVars";
+import { movieContainer } from "./movieVars";
 import { getIdFromWindowLocation } from "../getCheckUrlData";
 import { fetchMovieObj, filterMovieData } from "./getMovieData";
-import { createInfoBlock } from "./createMoviePageElems";
 import {
   createMovieBannerElem,
   changeBannerBG,
 } from "../movieBanner/movieBannerSetUp";
+import { pasteToContent } from "./updateContentSection";
+import { pasteToFacts } from "./updateFactsSection";
 import { handleFullMovieClick } from "./moviePageClickHadlers";
 
 export async function loadMoviePage() {
@@ -21,7 +22,7 @@ export async function loadMoviePage() {
     const movieData = filterMovieData(rawMovieData);
 
     if (!movieData) {
-      showErrorMessage();
+      showErrorMsg();
       console.warn("Movie object is empty. Cannot filter movie info");
       return;
     }
@@ -29,30 +30,24 @@ export async function loadMoviePage() {
     renderMovie(movieData);
   } catch (error) {
     console.error("Error during movie processing:", error);
-    showErrorMessage();
+    showErrorMsg();
   }
 }
 
 function renderMovie(movieData) {
-  const movieContainer = document.getElementById("movie");
   const bannerElem = createMovieBannerElem(movieData);
-  //тут будем не создавать, а вставлять текст в уже готовые элементы
-  const infoBlockElem = createInfoBlock(movieData, movieBlockName);
-  // тут будем prepend banner
-  movieContainer.append(bannerElem, infoBlockElem);
+  movieContainer.prepend(bannerElem);
+
+  pasteToContent(movieData);
+  pasteToFacts(movieData);
 
   changeBannerBG(bannerElem, movieData);
 
   movieContainer.addEventListener("click", handleFullMovieClick);
 }
 
-function showErrorMessage() {
-  movieContainer.classList.add("error-msg");
-  movieContainer.innerHTML = "Cannot load movie. Please, try again later";
+function showErrorMsg() {
+  const errorElem = document.querySelector(".error-msg");
+  errorElem.style.display = "block";
+  movieContainer.style.display = "none";
 }
-
-// function showErrorMsg() {
-//   const errorElem = document.querySelector(".error-msg");
-//   errorElem.style.display = "block";
-//   movieContainer.style.display = "none";
-// }
