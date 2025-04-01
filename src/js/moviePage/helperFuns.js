@@ -1,5 +1,7 @@
 export function makePlural(elem, array) {
-  if (array.length > 1) elem.textContent += "s";
+  const text = elem.textContent;
+  if (array.length > 1)
+    elem.textContent = text.slice(0, elem.textContent.length - 1) + "s";
 }
 
 export function changeElemContent(elem, content) {
