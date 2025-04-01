@@ -1,44 +1,12 @@
-import { classesBanner, castIds, classesInfo, lstClasses } from "./movieVars";
+import { classesInfo, lstClasses, castIds } from "./movieVars";
 import {
   createElementWithProps,
   createListElem,
   createLinkWithIcon,
   extractNames,
+  exctractValues,
 } from "../elementCreation";
 import { tmbdUrl, iconPaths } from "../commonVars";
-import { createControlBarElem } from "../controlBar/createControlBar";
-import { toggleCastElementLength } from "./setUpMovieCastBtn";
-
-export function createMovieBannerElem(movieDescription, movieBlockName) {
-  const bannerElem = createElementWithProps("div", `${movieBlockName}banner`);
-  bannerElem.dataset.id = movieDescription.id;
-  const titleElem = createTitleBannerElem(movieDescription);
-  bannerElem.append(titleElem);
-
-  if (movieDescription.tagline) {
-    const taglineElem = createElementWithProps(
-      "p",
-      classesBanner.tagline,
-      false,
-      movieDescription.tagline
-    );
-
-    bannerElem.append(taglineElem);
-  }
-
-  bannerElem.append(createControlBarElem(movieDescription));
-  return bannerElem;
-}
-
-function createTitleBannerElem(movieDescription) {
-  const titleElem = createElementWithProps(
-    "h1",
-    classesBanner.title,
-    false,
-    movieDescription.title || "Unknown"
-  );
-  return titleElem;
-}
 
 export function createInfoBlock(movieDescription, movieBlockName) {
   const infoBlockElem = createElementWithProps("div", `${movieBlockName}info`);
@@ -118,16 +86,16 @@ function createCastContent(cast) {
     const hiddenPart = createElementWithProps(
       "span",
       classesInfo.hiddenCast,
-      castIds.hiddenCastPart,
+      castIds.hidden,
       secondPart + " "
     );
     const btn = createElementWithProps(
       "button",
       classesInfo.castBtn,
-      castIds.castBtn,
+      castIds.btn,
       "see more..."
     );
-    btn.addEventListener("click", toggleCastElementLength);
+
     parElem.append(shownPart, hiddenPart, btn);
   } else {
     parElem.textContent = cast.join(", ");
@@ -159,12 +127,17 @@ function createGenresElem(movieDescription) {
   const featureElem = createElementWithProps("div", classesInfo.feature);
   const subtitleElem = createFeatureNameElem("Genres:");
 
-  let genres = ["Unknown"];
+  let genres = ["", "Unknown"];
   if (movieDescription.genres && movieDescription.genres.length) {
-    genres = extractNames(movieDescription.genres, "name");
+    genres = exctractValues(movieDescription.genres);
   }
 
-  const genreLstElem = createListElem(genres, lstClasses.lst, lstClasses.items);
+  const genreLstElem = createListElem(
+    genres,
+    lstClasses.lst,
+    lstClasses.genreItems,
+    true
+  );
   featureElem.append(subtitleElem, genreLstElem);
   return featureElem;
 }

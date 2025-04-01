@@ -1,7 +1,37 @@
+.main-title {
+  @include padding-left-right;
+  @include font-h1;
+  // text-align: center;
+}
+
 .movie-cards {
   &__info-msg {
     font-size: 70px;
     text-align: center;
     color: white;
   }
+}
+
+.movie-cards {
+  &__info-msg {
+    font-size: 70px;
+    text-align: center;
+    color: white;
+  }
+}
+
+.movie-card {
+  position: relative;
+
+  &__link-container {
+    padding-top: 5px;
+    width: 40px;
+    height: 30px;
+  }
+}
+
+.control-rem-bar {
+  position: absolute;
+  right: 20px;
+  top: 20px;
 }

@@ -6,7 +6,7 @@ export const basePosterUrl = "https://image.tmdb.org/t/p/w220_and_h330_face";
 export const domenPartUrl = "https://movies.gila.workers.dev";
 //reverse server paths
 export const pathForAllGenres = "/genres";
-export const pathForSearchByGenre = " /search/genre";
+export const pathForSearchByGenre = "/search/genre";
 export const pathForFullMovieDescription = "/search/movie/description";
 export const pathForSearchByTitle = "/search/movie/byTitle";
 export const pathForSearchById = "/search/movie/byId";
