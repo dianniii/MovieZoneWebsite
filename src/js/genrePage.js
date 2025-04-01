@@ -59,29 +59,46 @@ console.log(moviesByGenre);
   }
 }
 
-export function loadMoreAddHide(results) {
-  if (results.page < results.total_pages) {
+export function loadMoreAddHide(recievedData, containerParam) {
+  let isLoading = false;
+  if (recievedData.page < recievedData.total_pages) {
     loadMoreButton.style.display = "block";
-    loadMoreButton.addEventListener(
-      "click",
-      () => {
-        currentPage++;
-        results.page = currentPage;
-        console.log(results);
-        movie_container.innerHTML += createCards(results.results, movie_container)
-        // mainGenrePageFunction();
-        if (currentPage === results.total_pages) {
-          loadMoreButton.style.display = "none";
-        }
-      },
-      { once: true }
-    );
-  } else {
+
+    loadMoreButton.removeEventListener("click", loadMoreHandler);
+    loadMoreButton.addEventListener("click", loadMoreHandler);
+  }else {
     loadMoreButton.style.display = "none";
   }
+
+function loadMoreHandler(){
+  if(isLoading) return;
+  isLoading = true;
+  
+        currentPage++;
+        recievedData.page = currentPage;
+        console.log(recievedData);
+        const container = containerParam;
+        console.log("Received data:", recievedData);
+        console.log("Container:", container);
+        if(container){
+          console.log("container before creating card:", container);
+          // const moreElements= 
+          createCards(recievedData.results, container);
+          // container.innerHTML += moreElements;
+          isLoading = false;
+          if (currentPage >= recievedData.total_pages) {
+            loadMoreButton.style.display = "none";
+          }
+        }
+        else{
+          console.error("Container us undefined when trying to create cards");
+            isLoading = false;
+        }
 }
+}
+
 
 document.addEventListener("DOMContentLoaded", () => {
   mainGenrePageFunction();
-  loadMoreAddHide(moviesByGenre);
+  loadMoreAddHide(moviesByGenre, movie_container);
 });
