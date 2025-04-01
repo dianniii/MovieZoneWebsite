@@ -95,6 +95,10 @@ body {
     text-decoration: underline;
     color: inherit;
   }
+
+  &__cast-btn:hover {
+    color: $tomato;
+  }
 }
 
 .error-msg {

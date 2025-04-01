@@ -15,7 +15,7 @@ export async function loadMoviePage() {
     const rawMovieData = await fetchMovieObj(movie_id);
 
     if (!rawMovieData) {
-      showErrorMessage();
+      showErrorMsg();
       return;
     }
 
