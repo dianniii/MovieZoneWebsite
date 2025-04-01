@@ -1,10 +1,10 @@
 import {
   createElementWithProps,
   createLinkWithIcon,
-  appendLitElem,
+  appendListElem,
 } from "../elementCreation";
 import { tmbdUrl } from "../commonVars";
-import { clssInfo, lstClasses, iconPaths } from "./movieVars2";
+import { clssInfo, lstClasses, iconPaths, castIds } from "./movieVars";
 import { makePlural, changeElemContent, exctractValues } from "./helperFuns";
 
 export function pasteToContent(movieObj) {
@@ -102,7 +102,7 @@ function pasteGenreContent(genresContainer, genres) {
 function updateGenresList(ulElem, genres) {
   ulElem.innerHTML = "";
   const genresParsed = exctractValues(genres);
-  appendLitElem(genresParsed, ulElem, lstClasses.genreItems, true);
+  appendListElem(genresParsed, ulElem, lstClasses.genreItems, true);
 }
 
 function updateLinksContent(linksContainer, movieObj) {

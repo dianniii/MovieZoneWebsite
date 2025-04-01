@@ -54,7 +54,7 @@ export function createImgElem(className, src, alt) {
   return imgElem;
 }
 
-export function appendLitElem(arr, ulElem, liClass, nestedArr = false) {
+export function appendListElem(arr, ulElem, liClass, nestedArr = false) {
   arr.forEach((item) => {
     const liElem = createElementWithProps(
       "li",

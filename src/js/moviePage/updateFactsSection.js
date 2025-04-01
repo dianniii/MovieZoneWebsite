@@ -1,11 +1,6 @@
-import { appendLitElem } from "../elementCreation";
-import { clssInfo, lstClasses } from "./movieVars2";
-import {
-  appendLitElem,
-  changeElemContent,
-  extractNames,
-  makePlural,
-} from "./helperFuns";
+import { appendListElem } from "../elementCreation";
+import { clssInfo, lstClasses } from "./movieVars";
+import { changeElemContent, extractNames, makePlural } from "./helperFuns";
 
 export function pasteToFacts(movieObj) {
   const factsContainer = document.querySelector("." + clssInfo.facts);
@@ -57,13 +52,13 @@ function pasteLanguageContent(langContainer, languages) {
 function updateLangLst(ulElem, languages) {
   ulElem.innerHTML = "";
   const languageNamesArr = extractNames(languages, "english_name");
-  appendLitElem(languageNamesArr, ulElem, lstClasses.items);
+  appendListElem(languageNamesArr, ulElem, lstClasses.items);
 }
 
 function pasteRuntimeContent(runtimeContainer, runtime) {
   if (runtime) {
     const runtimePar = runtimeContainer.querySelector("p");
-    runtimePar.textContent = runtime + "min.";
+    runtimePar.textContent = runtime + " min";
   }
 }
 
