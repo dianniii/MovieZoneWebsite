@@ -53,11 +53,3 @@ export function createImgElem(className, src, alt) {
   imgElem.setAttribute("alt", alt);
   return imgElem;
 }
-
-export function extractNames(arr, key) {
-  return arr.map((item) => item[key]);
-}
-
-export function exctractValues(arrOfObj) {
-  return arrOfObj.map((item) => Object.values(item));
-}

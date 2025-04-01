@@ -1,7 +1,12 @@
 import { createElementWithProps, createLinkWithIcon } from "../elementCreation";
 import { tmbdUrl } from "../commonVars";
 import { clssInfo, lstClasses, iconPaths } from "./movieVars2";
-import { makePlural, changeElemContent, exctractValues } from "./helperFuns";
+import {
+  makePlural,
+  changeElemContent,
+  exctractValues,
+  appendLitElem,
+} from "./helperFuns";
 
 export function pasteToContent(movieObj) {
   const contentElem = document.querySelector("." + clssInfo.content);
@@ -15,7 +20,10 @@ export function pasteToContent(movieObj) {
   pasteCastContent(castContainer, movieObj.cast);
 
   //description
-  pasteDescription(movieObj.overview);
+  const descriptionContainer = contentElem.querySelector(
+    "." + clssInfo.description
+  );
+  pasteDescription(descriptionContainer, movieObj.overview);
 
   //genres
   const genresContainer = contentElem.querySelector("." + clssInfo.genres);
@@ -76,12 +84,10 @@ function splitAndJoinCastArr(castArr) {
   return [firstFiveStr, restStr];
 }
 
-function pasteDescription(description) {
+function pasteDescription(descriptionContainer, description) {
   if (description) {
-    const descriptionContainer = contentElem.querySelector(
-      "." + clssInfo.description
-    );
-    changeElemContent(descriptionContainer, description);
+    const descriptionPar = descriptionContainer.querySelector("p");
+    descriptionPar.textContent = description;
   }
 }
 
@@ -90,27 +96,14 @@ function pasteGenreContent(genresContainer, genres) {
     const titleElem = genresContainer.querySelector("h2");
     makePlural(titleElem, genres);
     const genreList = genresContainer.querySelector("ul");
-    genreList.innerHTML = "";
     updateGenresList(genreList, genres);
   }
 }
 
 function updateGenresList(ulElem, genres) {
+  ulElem.innerHTML = "";
   const genresParsed = exctractValues(genres);
   appendLitElem(genresParsed, ulElem, lstClasses.genreItems, true);
-}
-
-function appendLitElem(arr, ulElem, liClass, nestedArr = false) {
-  arr.forEach((item) => {
-    const liElem = createElementWithProps(
-      "li",
-      liClass,
-      false,
-      nestedArr ? item[1] : item
-    );
-    ulElem.append(liElem);
-    if (nestedArr) liElem.dataset.id = item[0];
-  });
 }
 
 function updateLinksContent(linksContainer, movieObj) {

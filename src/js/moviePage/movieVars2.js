@@ -60,7 +60,7 @@ export const clssInfo = {
   year: `${movieBlockName}year`,
   country: `${movieBlockName}country`,
   language: `${movieBlockName}language`,
-  duration: `${movieBlockName}duration`,
+  runtime: `${movieBlockName}runtime`,
   rating: `${movieBlockName}rating`,
 };
 
