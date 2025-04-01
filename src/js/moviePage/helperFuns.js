@@ -8,3 +8,11 @@ export function changeElemContent(elem, content) {
   if (content.length > 1) makePlural(titleElem, content);
   parElem.textContent = content.join(".");
 }
+
+export function extractNames(arr, key) {
+  return arr.map((item) => item[key]);
+}
+
+export function exctractValues(arrOfObj) {
+  return arrOfObj.map((item) => Object.values(item));
+}
