@@ -1,3 +1,9 @@
+.main-title {
+  @include padding-left-right;
+  @include font-h1;
+  // text-align: center;
+}
+
 .movie-cards {
   &__info-msg {
     font-size: 70px;
