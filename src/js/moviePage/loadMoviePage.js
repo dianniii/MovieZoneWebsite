@@ -51,8 +51,8 @@ function showErrorMessage() {
   movieContainer.innerHTML = "Cannot load movie. Please, try again later";
 }
 
-// function showErrorMessage() {
+// function showErrorMsg() {
 //   const errorElem = document.querySelector(".error-msg");
 //   errorElem.style.display = "block";
-//   document.getElementById("movie").style.display = "none";
+//   movieContainer.style.display = "none";
 // }

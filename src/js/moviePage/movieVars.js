@@ -3,7 +3,7 @@ export const movieContainer = document.getElementById("movie");
 export const movieBlockName = "full-movie__";
 
 export const iconPaths = {
-  TMBDIcon: "/icons/TMBD.svg",
+  TMBDIcon: "/icons/TMDB.svg",
   filmIcon: "/icons/filmIcon.svg",
 };
 
