@@ -36,7 +36,9 @@ export async function loadMoviePage() {
 function renderMovie(movieData) {
   const movieContainer = document.getElementById("movie");
   const bannerElem = createMovieBannerElem(movieData);
+  //тут будем не создавать, а вставлять текст в уже готовые элементы
   const infoBlockElem = createInfoBlock(movieData, movieBlockName);
+  // тут будем prepend banner
   movieContainer.append(bannerElem, infoBlockElem);
 
   changeBannerBG(bannerElem, movieData);
@@ -48,3 +50,8 @@ function showErrorMessage() {
   movieContainer.classList.add("error-msg");
   movieContainer.innerHTML = "Cannot load movie. Please, try again later";
 }
+
+// function showErrorMessage() {
+//   const errorElem = document.querySelector(".error-msg");
+//   errorElem.style.display = "block";
+// }
