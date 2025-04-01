@@ -66,6 +66,14 @@ body {
     background-color: $light-black;
   }
 
+  &__genre {
+    cursor: pointer;
+  }
+
+  &__genre:hover {
+    color: $tomato;
+  }
+
   // &__link-item {
   //   width: 50px;
   //   height: 40px;
@@ -95,9 +103,14 @@ body {
     text-decoration: underline;
     color: inherit;
   }
+
+  &__cast-btn:hover {
+    color: $tomato;
+  }
 }
 
 .error-msg {
+  display: none;
   text-align: center;
   @include font-main-errorMsg;
 }
