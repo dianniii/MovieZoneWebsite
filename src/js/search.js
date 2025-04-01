@@ -23,10 +23,10 @@ function searchTitle() {
   return title;
 }
 
-export async function fetchData(paramName, param){
+export async function fetchData(path, paramName, param){
    try {
       let response = await fetch(
-        `${domenPartUrl}?${paramName}=${param}`
+        `${domenPartUrl}${path}?${paramName}=${param}`
       );
 
       if (!response.ok) {
@@ -84,12 +84,12 @@ export async function mainSearchFunction() {
     const title = searchTitle();
     if (!title) return;
     // const title_search = searchMedia(title);
-    const movies = await fetchData('title', title);
+    const movies = await fetchData(pathForSearchByTitle, 'title', title);
     if(movies=null){
       movie_container.classList.add("errorMessage");
           movie_container.textContent = `${error.message} 😔 Please try again later`;
     }
-    
+
     if (movies && movies.results && movies.results.length > 0) {
       const filtered_results = filterMoviesProps(movies);
       createCards(filtered_results, movie_container);
