@@ -23,11 +23,17 @@ export function createButtonWithIcon(classBtn, classIcon, iconSrc, alt) {
   return btn;
 }
 
-export function createListElem(arr, ulClass, liClass) {
+export function createListElem(arr, ulClass, liClass, nestedArr = false) {
   const lstElem = createElementWithProps("ul", ulClass);
   arr.forEach((item) => {
-    const liElem = createElementWithProps("li", liClass, false, item);
+    const liElem = createElementWithProps(
+      "li",
+      liClass,
+      false,
+      nestedArr ? item[1] : item
+    );
     lstElem.append(liElem);
+    if (nestedArr) liElem.dataset.id = item[0];
   });
   return lstElem;
 }
@@ -50,4 +56,8 @@ export function createImgElem(className, src, alt) {
 
 export function extractNames(arr, key) {
   return arr.map((item) => item[key]);
+}
+
+export function exctractValues(arrOfObj) {
+  return arrOfObj.map((item) => Object.values(item));
 }

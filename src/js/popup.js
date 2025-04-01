@@ -95,6 +95,9 @@ export async function showPopUp(evt, movie_id) {
 
 //Эта функция импортирована в movies-genres/genres.js
 export function handlePopupClick(evt) {
+  if (evt.target.closest("a")) {
+    return; // чтобы работала клик по ссылке на tmbd
+  }
   //проверяем кликнул ли пользователь на кнопку закрытия попапа
   if (evt.target.closest(".popup__close-btn")) {
     document.getElementById("movie-popup").classList.remove("active"); //закрываем попап

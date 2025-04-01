@@ -1,0 +1,46 @@
+.movie-banner {
+  margin-bottom: 50px;
+  padding-top: 50px;
+  padding-bottom: 20px;
+  @include padding-left-right;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 20px;
+  border-radius: $borderRadiusMain;
+  border: 1px solid $mediun-grey;
+  background-image: linear-gradient(
+      0deg,
+      $light-black 0%,
+      rgba(20, 20, 20, 0) 100%
+    ),
+    url("./assets/images/defaultMovieBG2.jpg");
+  background-color: lightgray;
+  background-position: top center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  &__title {
+    @include font-h1;
+  }
+
+  &__tagline {
+    @include font-tagline;
+    color: $greyTextColor;
+  }
+
+  &__control-bar {
+    display: flex;
+    gap: 10px;
+  }
+
+  &__banner-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: $borderRadiusIcons;
+    border: 1px solid $mediun-grey;
+    background: $dark-black;
+  }
+}
