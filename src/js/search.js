@@ -6,30 +6,63 @@ import { movieCardClickHandler } from "./movieCardClickHandler";
 const movie_container = document.getElementById("movie-cards");
 // console.log(movie_container);
 
+export const domenPartUrl = "https://movies.gila.workers.dev";
+//reverse server paths
+export const pathForAllGenres = "/genres";
+export const pathForSearchByGenre = "/search/genre";
+export const pathForFullMovieDescription = "/search/movie/description";
+export const pathForSearchByTitle = "/search/movie/byTitle";
+export const pathForSearchById = "/search/movie/byId";
+export const pathForPopularMovies = "/popular";
+
+import {domenPartUrl, pathForAllGenres, pathForSearchByGenre, pathForFullMovieDescription, pathForSearchByTitle, pathForSearchById, pathForPopularMovies } from "./src/js/commonVars.js";
+
 function searchTitle() {
   const urlParams = new URLSearchParams(window.location.search);
   const title = urlParams.get("title");
   return title;
 }
 
-async function fetchMovies(title) {
-  try {
-    const response = await fetch(
-      `https://movies.gila.workers.dev/search/movie/byTitle?title=${title}`
-    );
-    if (!response.ok) {
-      console.log("Cannot fetch data form the server");
-      throw new Error("HTTP Error: " + response.status);
+export async function fetchData(paramName, param){
+   try {
+      let response = await fetch(
+        `${domenPartUrl}?${paramName}=${param}`
+      );
+
+      if (!response.ok) {
+        console.log("Cannot fetch data form the server");
+        throw new Error("HTTP Error: " + response.status);
+      }
+  
+      const data = await response.json();
+  
+      return data;
+    } catch (error) {
+      console.error("Error while loading movie information", error);
+      return null;
     }
-    const data = await response.json();
-    // console.log(data);
-    return data;
-  } catch (error) {
-    movie_container.classList.add("errorMessage");
-    movie_container.textContent = `${error.message} 😔 Please try again later`;
-    throw error;
   }
-}
+
+  
+
+// async function fetchMovies(title) {
+//   try {
+//     const response = await fetch(
+//       `https://movies.gila.workers.dev/search/movie/byTitle?title=${title}`
+//     );
+//     if (!response.ok) {
+//       console.log("Cannot fetch data form the server");
+//       throw new Error("HTTP Error: " + response.status);
+//     }
+//     const data = await response.json();
+//     // console.log(data);
+//     return data;
+//   } catch (error) {
+//     movie_container.classList.add("errorMessage");
+//     movie_container.textContent = `${error.message} 😔 Please try again later`;
+//     throw error;
+//   }
+// }
 
 function filterMoviesProps(data) {
   const propsArray = [];
@@ -51,7 +84,12 @@ export async function mainSearchFunction() {
     const title = searchTitle();
     if (!title) return;
     // const title_search = searchMedia(title);
-    const movies = await fetchMovies(title);
+    const movies = await fetchData('title', title);
+    if(movies=null){
+      movie_container.classList.add("errorMessage");
+          movie_container.textContent = `${error.message} 😔 Please try again later`;
+    }
+    
     if (movies && movies.results && movies.results.length > 0) {
       const filtered_results = filterMoviesProps(movies);
       createCards(filtered_results, movie_container);
