@@ -53,3 +53,16 @@ export function createImgElem(className, src, alt) {
   imgElem.setAttribute("alt", alt);
   return imgElem;
 }
+
+export function appendLitElem(arr, ulElem, liClass, nestedArr = false) {
+  arr.forEach((item) => {
+    const liElem = createElementWithProps(
+      "li",
+      liClass,
+      false,
+      nestedArr ? item[1] : item
+    );
+    ulElem.append(liElem);
+    if (nestedArr) liElem.dataset.id = item[0];
+  });
+}

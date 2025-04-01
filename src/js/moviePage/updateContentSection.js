@@ -1,12 +1,11 @@
-import { createElementWithProps, createLinkWithIcon } from "../elementCreation";
+import {
+  createElementWithProps,
+  createLinkWithIcon,
+  appendLitElem,
+} from "../elementCreation";
 import { tmbdUrl } from "../commonVars";
 import { clssInfo, lstClasses, iconPaths } from "./movieVars2";
-import {
-  makePlural,
-  changeElemContent,
-  exctractValues,
-  appendLitElem,
-} from "./helperFuns";
+import { makePlural, changeElemContent, exctractValues } from "./helperFuns";
 
 export function pasteToContent(movieObj) {
   const contentElem = document.querySelector("." + clssInfo.content);

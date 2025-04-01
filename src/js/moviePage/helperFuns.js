@@ -18,16 +18,3 @@ export function extractNames(arr, key) {
 export function exctractValues(arrOfObj) {
   return arrOfObj.map((item) => Object.values(item));
 }
-
-export function appendLitElem(arr, ulElem, liClass, nestedArr = false) {
-  arr.forEach((item) => {
-    const liElem = createElementWithProps(
-      "li",
-      liClass,
-      false,
-      nestedArr ? item[1] : item
-    );
-    ulElem.append(liElem);
-    if (nestedArr) liElem.dataset.id = item[0];
-  });
-}

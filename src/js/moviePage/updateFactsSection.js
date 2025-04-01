@@ -1,3 +1,4 @@
+import { appendLitElem } from "../elementCreation";
 import { clssInfo, lstClasses } from "./movieVars2";
 import {
   appendLitElem,
