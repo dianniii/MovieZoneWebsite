@@ -44,7 +44,7 @@ function pasteCountryContent(countryElem, countryCodes) {
 }
 
 function getCountryNames(countryCodes) {
-  return countryCodes.map((code) => countries.getName(code, "en"));
+  return countryCodes.map((code) => countries.alpha2ToAlpha3(code));
 }
 
 function pasteLanguageContent(langContainer, languages) {
