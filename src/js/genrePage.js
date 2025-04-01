@@ -83,7 +83,7 @@ function loadMoreHandler(){
         if(container){
           console.log("container before creating card:", container);
           // const moreElements= 
-          createCards(recievedData.results, container);
+          container.append(createCards(recievedData.results, container));
           // container.innerHTML += moreElements;
           isLoading = false;
           if (currentPage >= recievedData.total_pages) {

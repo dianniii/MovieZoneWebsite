@@ -86,7 +86,6 @@ export function createCard(movie) {
   movieCard.classList.add("movie-card");
   movieCard.setAttribute("data-id", movie.id);
 
-  //вот тут была ошибка в пути к дефолтной картинке вместо постера, путь должен быть относительно html а не js
   const posterPath = movie.poster_path
     ? `${basePosterUrl}${movie.poster_path}`
     : "./src/assets/images/no-Image-Placeholder.svg";
