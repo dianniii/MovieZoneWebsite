@@ -13,7 +13,7 @@ export const pathForSearchById = "/search/movie/byId";
 export const pathForPopularMovies = "/popular";
 
 export const iconPaths = {
-  TMBDIcon: "/icons/TMBD.svg",
+  TMBDIcon: "/icons/TMDB.svg",
   filmIcon: "/icons/filmIcon.svg",
 };
 

@@ -2,11 +2,6 @@ export const movieContainer = document.getElementById("movie");
 
 export const movieBlockName = "full-movie__";
 
-export const iconPaths = {
-  TMBDIcon: "/icons/TMBD.svg",
-  filmIcon: "/icons/filmIcon.svg",
-};
-
 export const fullPropertylist = [
   "id",
   "title",
@@ -39,20 +34,29 @@ export const lstClasses = {
   genreItems: [`${movieBlockName}lst-item`, `${movieBlockName}genre`],
 };
 
-export const classesInfo = {
+export const clssInfo = {
+  info: `${movieBlockName}info`,
   content: `${movieBlockName}content`,
   facts: `${movieBlockName}facts`,
   feature: `${movieBlockName}feature`,
   featureName: `${movieBlockName}feature-name`,
   featureVal: `${movieBlockName}feature-value`,
-  genre: `${movieBlockName}genre`,
+  director: `${movieBlockName}director`,
+  cast: `${movieBlockName}cast`,
   shownCast: `${movieBlockName}feature-value--shown`,
   hiddenCast: `${movieBlockName}feature-value--hidden`,
   castBtn: `${movieBlockName}cast-btn`,
-  links: [`${movieBlockName}feature-value`, `${movieBlockName}links`],
+  description: `${movieBlockName}description`,
+  genres: `${movieBlockName}genres`,
+  genre: `${movieBlockName}genre`,
+  links: `${movieBlockName}links`,
   link: `${movieBlockName}link`,
   linkIcon: `${movieBlockName}link-icon`,
-  facts: `${movieBlockName}facts`,
+  year: `${movieBlockName}year`,
+  country: `${movieBlockName}country`,
+  language: `${movieBlockName}language`,
+  runtime: `${movieBlockName}runtime`,
+  rating: `${movieBlockName}rating`,
 };
 
 export const castIds = {
