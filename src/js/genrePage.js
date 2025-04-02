@@ -1,25 +1,30 @@
 const movie_container = document.querySelector(".movies-container");
 const loadMoreButton = document.getElementById("load-more");
-let currentPage = 1;
+let currentPage;
 export let moviesByGenre;
+let totalPage;
 let moviesArr;
+let genreId
 
-import { createCards, createCard } from "./search.js";
+import { createCards, createCard, fetchData } from "./search.js";
+// import { getLocalStorageData } from "./localStorage.js"
 
 export function getIdFromWindowLocation() {
   const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get("id");
+genreId = urlParams.get("id");
+return genreId;
 }
 
-export function getLocalStorageData(jsonName) {
-  moviesArr = JSON.parse(window.localStorage.getItem(jsonName));
-  if (!moviesArr) {
-    movie_container.textContent =
-      "Oops! Something went wrong. Please try again ";
-    return;
-  }
+export function getLocalStorageData(propertyName) {
+  moviesArr = JSON.parse(window.localStorage.getItem(propertyName));
+  // if (!moviesArr) {
+  //   movie_container.textContent =
+  //     "Oops! Something went wrong. Please try again ";
+  //   return;
+  // }
   return moviesArr;
 }
+
 
 export function filterMoviesArr() {
   getLocalStorageData("movies");
@@ -31,74 +36,119 @@ export function filterMoviesArr() {
 
 export function mainGenrePageFunction() {
   moviesByGenre = filterMoviesArr();
-  movie_container.innerHTML = "";
-console.log(moviesByGenre);
+  if(!filterMoviesArr()){
+    moviesByGenre = fetchData(`/search/genre/genre?genre_id=${genreId}`);
+  }
+  else{ movie_container.textContent =
+        "Oops! Something went wrong. Please try again ";
+      return;}
+
   if (moviesByGenre.results && moviesByGenre.results.length > 0) {
     createCards(moviesByGenre.results, movie_container);
-    // !!! ТЕПЕРЬ EVENT HANDLER НАВЕШИВАЕТСЯ НА КАРТОЧКУ ПРЯМ В ФУНКЦИИ createCard  И ИСПОЛЬЗУЕТ ФУНКЦИЮ ИЗ movieCardClickHandler.js
-
-    //    movie_container.addEventListener("click", (evt) => {
-
-    //           const controlBar = evt.target.closest(
-    //               "." + classesControlBar.controlBar
-    //           );
-    //           const clickOnbtns =
-    //               controlBar &&
-    //               controlBar.classList.contains(classesControlBar.controlBar);
-    //           if (!clickOnbtns) {
-    //               const movieElem = evt.target.closest(".movie-card");
-    //               if (movieElem) {
-    //                   const movie_id = movieElem.getAttribute("data-id");
-    //                   window.location.href = `movie.html?id=${movie_id}`;
-    //               }
-    //           }
-    //           });
+    currentPage = moviesByGenre.page;
+    totalPage = moviesByGenre.total_pages;
+    
   } else {
     movie_container.textContent =
       "There are no available results. Please choose another genre";
   }
-}
 
-export function loadMoreAddHide(recievedData, containerParam) {
-  let isLoading = false;
-  if (recievedData.page < recievedData.total_pages) {
-    loadMoreButton.style.display = "block";
-
-    loadMoreButton.removeEventListener("click", loadMoreHandler);
-    loadMoreButton.addEventListener("click", loadMoreHandler);
-  }else {
+  checkPages(moviesByGenre)
+  if(isLastPage){
     loadMoreButton.style.display = "none";
   }
+  else{loadMoreButton.style.display = "block";
+    return;
+  }
+}
 
-function loadMoreHandler(){
-  if(isLoading) return;
-  isLoading = true;
+function checkPages(recievedData){
+  let isLastPage;
+  if(recievedData.page < recievedData.total_pages){
+    isLastPage=false;
+  } 
+  else isLastPage=true;
+  return isLastPage;
+}
+
+export function fetchNextPageData(recievedData){
+  let newData = recievedData.page(currentPage);
+ 
+  if(!recievedData){
+    newData = fetchData(`/search/genre/genre?genre_id=${genreId}&page=${currentPage}`);
+  }
+  return newData.results;
+}
+
+function addCards(data, container){
+  let cards = createCards(fetchNextPageData(data), container);
+  container.append(cards);
+}
+
+function loadMoreHandler(data, container){
+  currentPage++;
+  let newResults = fetchNextPageData(data);
+  addCards(newResults, container);
+  checkPages(data)
+}
+
+// export function loadMoreAddHide(recievedData, containerParam) {
   
-        currentPage++;
-        recievedData.page = currentPage;
-        console.log(recievedData);
-        const container = containerParam;
-        console.log("Received data:", recievedData);
-        console.log("Container:", container);
-        if(container){
-          console.log("container before creating card:", container);
-          // const moreElements= 
-          container.append(createCards(recievedData.results, container));
-          // container.innerHTML += moreElements;
-          isLoading = false;
-          if (currentPage >= recievedData.total_pages) {
-            loadMoreButton.style.display = "none";
-          }
-        }
-        else{
-          console.error("Container us undefined when trying to create cards");
-            isLoading = false;
-        }
-}
-}
+//   if (recievedData.page < recievedData.total_pages) {
+//     loadMoreButton.style.display = "block";
+
+//     loadMoreButton.addEventListener("click", loadMoreHandler);
+//   }else {
+//     loadMoreButton.style.display = "none";
+//   }
+
+// function loadMoreHandler(){
+//   currentPage++;
+//   recievedData.page = currentPage;
+//         console.log(recievedData);
+//         const container = containerParam;
+//         console.log("Received data:", recievedData);
+//         console.log("Container:", container);
+//         if(container){
+//           console.log("container before creating card:", container);
+//           // const moreElements= 
+//           container.append(createCards(recievedData.results, container));
+//           // container.innerHTML += moreElements;
+       
+//           if (currentPage >= recievedData.total_pages) {
+//             loadMoreButton.style.display = "none";
+//           }
+//         }
+//         else{
+//           console.error("Container us undefined when trying to create cards");
+          
+//         }
+// }
+// }
+
+// OLD FUNCTION
+// export function loadMoreAddHide(results) {
+//   if (results.page < results.total_pages) {
+//     loadMoreButton.style.display = "block";
+//     loadMoreButton.addEventListener(
+//       "click",
+//       () => {
+//         currentPage++;
+//         mainGenrePageFunction(currentPage);
+//         if (currentPage === results.total_pages) {
+//           loadMoreButton.style.display = "none";
+//         }
+//       },
+//       { once: true }
+//     );
+//   } else {
+//     loadMoreButton.style.display = "none";
+//   }
+// }
 
 
-document.addEventListener("DOMContentLoaded", () => {
-  mainGenrePageFunction();
-  loadMoreAddHide(moviesByGenre, movie_container);
-});
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   mainGenrePageFunction();
+//   loadMoreAddHide(moviesByGenre, movie_container);
+// });

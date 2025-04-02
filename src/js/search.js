@@ -72,7 +72,6 @@ export async function mainSearchFunction() {
   }
 
 export function createCards(arrayOfObjs, container) {
-  // container.innerHTML = "";
   if (Array.isArray(arrayOfObjs)) {
     arrayOfObjs.forEach((movie) => {
       const card = createCard(movie);
