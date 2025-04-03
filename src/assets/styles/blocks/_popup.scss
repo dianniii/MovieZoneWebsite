@@ -19,6 +19,8 @@
 .popup {
   background: $dark-grey;
   border-radius: $borderRadiusMain;
+  padding-top: 25px;
+  padding-bottom: 25px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -103,11 +105,6 @@
     color: $textColor;
   }
 
-  &__tmdb-icon {
-    width: 9%;
-    height: 6%;
-  }
-
   &__overview-container {
     grid-area: overview;
     width: 100%;
@@ -127,7 +124,16 @@
   &__tmdb-container {
     grid-area: tmdb;
     width: 100%;
+    display: flex
+    align-items: flex-start;
+    justify-content: space-between;
   }
+
+  &__tmdb-icon {
+    width: 53px;
+    height: 6%;
+  }
+
 }
 
 .control-bar__container {
