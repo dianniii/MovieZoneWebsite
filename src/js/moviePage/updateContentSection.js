@@ -42,7 +42,7 @@ function pasteDirectorsContent(directorContainer, directors) {
 function pasteCastContent(castContainer, cast) {
   if (Array.isArray(cast) && cast.length) {
     const castPar = castContainer.querySelector("p");
-    castPar.innerHTML = "";
+    castPar.textContent = "";
     createCastContent(castPar, cast);
   }
 }
