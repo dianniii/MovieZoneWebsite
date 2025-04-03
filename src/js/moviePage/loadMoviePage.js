@@ -1,5 +1,6 @@
 import { movieContainer } from "./movieVars";
 import { getIdFromWindowLocation } from "../getCheckUrlData";
+import { showErrorMsg } from "../errorMsg";
 import { fetchMovieObj, filterMovieData } from "./getMovieData";
 import {
   createMovieBannerElem,
@@ -44,9 +45,4 @@ function renderMovie(movieData) {
   changeBannerBG(bannerElem, movieData);
 
   movieContainer.addEventListener("click", handleFullMovieClick);
-}
-
-export function showErrorMsg(errorElem, toHideElem) {
-  errorElem.style.display = "block";
-  toHideElem.style.display = "none";
 }

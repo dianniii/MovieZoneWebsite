@@ -5,6 +5,7 @@ import {
   pathForAllGenres,
   pathForSearchByGenre,
 } from "../commonVars";
+import { showErrorMsg } from "../errorMsg";
 
 async function getGenres() {
   try {
