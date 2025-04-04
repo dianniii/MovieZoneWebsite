@@ -1,12 +1,6 @@
 .movie-cards {
   margin-top: 30px;
   margin-bottom: 30px;
-  // display: flex;
-  // align-items: center;
-  // align-items: stretch;
-  // flex-direction: column;
-  // flex-wrap: wrap;
-  // justify-content: center;
   @include padding-left-right;
   display: grid;
   grid-auto-rows: 1fr; //added by Nastya
@@ -20,17 +14,12 @@
   padding: 20px;
   display: flex;
   gap: 30px;
-  align-items: flex-start; // важно!
+  // align-items: flex-start; // важно!
   background-color: $dark-grey;
   width: calc(100% - 100px);
   @include font-basic;
   line-height: 140%;
   border-radius: $borderRadiusMain;
-
-  // Управление высотой карточки
-  max-height: 400px; // ограничение в закрытом состоянии
-  overflow: hidden;
-  transition: max-height 0.3s ease-in-out;
 
   &:hover {
     max-height: 1000px; // Разрешаем карточке увеличиваться
@@ -56,6 +45,11 @@
     align-items: flex-start;
     flex-shrink: 1;
     // padding-right: 40px;
+
+    // Управление высотой карточки через высоту text-container
+    max-height: 400px; // ограничение в закрытом состоянии
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
   }
 
   &__movieTitle,
