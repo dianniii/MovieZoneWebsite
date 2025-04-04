@@ -1,12 +1,6 @@
 .movie-cards {
   margin-top: 30px;
   margin-bottom: 30px;
-  // display: flex;
-  // align-items: center;
-  // align-items: stretch;
-  // flex-direction: column;
-  // flex-wrap: wrap;
-  // justify-content: center;
   @include padding-left-right;
   display: grid;
   grid-auto-rows: 1fr; //added by Nastya
@@ -20,20 +14,14 @@
   padding: 20px;
   display: flex;
   gap: 30px;
-  align-items: flex-start; // важно!
   background-color: $dark-grey;
   width: calc(100% - 100px);
   @include font-basic;
   line-height: 140%;
   border-radius: $borderRadiusMain;
 
-  // Управление высотой карточки
-  max-height: 400px; // ограничение в закрытом состоянии
-  overflow: hidden;
-  transition: max-height 0.3s ease-in-out;
-
   &:hover {
-    max-height: 1000px; // Разрешаем карточке увеличиваться
+    cursor: pointer;
   }
 
   &__poster-container {
@@ -55,6 +43,15 @@
     align-items: flex-start;
     flex-shrink: 1;
     // padding-right: 40px;
+
+    // Управление высотой карточки через высоту text-container
+    max-height: 400px; // ограничение в закрытом состоянии
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+  }
+
+  &__text-container:hover {
+    max-height: 1000px;
   }
 
   &__movieTitle,
@@ -68,11 +65,15 @@
 
   &__movieTitle {
     font-size: $font-size-h2;
-    // padding-bottom: 20px; //commented by Nastya
     padding-bottom: 10px; //added by Nastya
+    width: 90%;
     line-height: 150%;
     -webkit-line-clamp: 2; // ограничение строк в обычном состоянии
     line-clamp: 2;
+  }
+
+  &__movieTitle:hover {
+    color: $tomato;
   }
 
   &__movie-info {

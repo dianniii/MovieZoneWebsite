@@ -12,7 +12,7 @@
   position: relative;
 
   &__title {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     top: 0;
     z-index: 10;
     @include font-h2;
@@ -31,12 +31,13 @@
 
   &__watch-all {
     position: absolute;
-    top: 50px;
-    right: -5px;
+    top: 10px;
+    right: 5px;
     background-color: $light-black;
     color: $greyTextColor;
     border: none;
-    font-size: 14px;
+    // font-size: 14px;
+    @include font-basic;
     border-radius: 4px;
     padding: 5px 10px;
     cursor: pointer;
@@ -45,7 +46,7 @@
   &__watch-all:hover,
   &__title:hover {
     cursor: pointer;
-    font-weight: bold;
+    font-weight: $font-weight-800;
     color: tomato;
   }
 }
