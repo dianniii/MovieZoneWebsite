@@ -9,7 +9,7 @@ import { loadMainPage } from "./js/mainPage/mainPageNastya.js";
 import { initUpButton } from "./js/upButton.js";
 import { searchHandle } from "./js/header.js";
 import { mainSearchFunction } from "./js/search.js";
-import { mainGenrePageFunction, loadMoreHandler} from "./js/genrePage.js";
+import { mainGenrePageFunction, setUpBtnListener } from "./js/genrePage.js";
 
 if (
   getPathFromWindowLocation() === "/" ||
@@ -26,29 +26,21 @@ if (getPathFromWindowLocation() === "/movie.html") {
   document.addEventListener("DOMContentLoaded", loadMoviePage);
 }
 
-
 if (getPathFromWindowLocation() === "/genre.html") {
-  document.addEventListener("DOMContentLoaded", ()=>{
-      mainGenrePageFunction();
-      const loadMoreButton = document.getElementById("load-more");
-    loadMoreButton.addEventListener("click", loadMoreHandler);
-  })
+  document.addEventListener("DOMContentLoaded", () => {
+    mainGenrePageFunction();
+    initUpButton();
+    setUpBtnListener();
+  });
 }
-
 
 document.addEventListener("DOMContentLoaded", searchHandle);
 
-
-
 if (getPathFromWindowLocation() === "/search.html") {
-  document.addEventListener("DOMContentLoaded", () => { 
-    ()=> {
+  document.addEventListener("DOMContentLoaded", () => {
     mainSearchFunction();
     initUpButton();
-  };
-    const loadMoreButton = document.getElementById("load-more");
-    loadMoreButton.addEventListener("click", loadMoreHandler);
-  })
+  });
 }
 
 if (
@@ -56,8 +48,7 @@ if (
   getPathFromWindowLocation() === "/watchlist.html"
 ) {
   document.addEventListener("DOMContentLoaded", () => {
-      loadSavedMovies(getPageName());
-      initUpButton();
-    }
-  );
+    loadSavedMovies(getPageName());
+    initUpButton();
+  });
 }
