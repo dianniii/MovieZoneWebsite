@@ -34,6 +34,7 @@
 
   &:hover {
     max-height: 1000px; // Разрешаем карточке увеличиваться
+    cursor: pointer;
   }
 
   &__poster-container {
@@ -73,6 +74,10 @@
     line-height: 150%;
     -webkit-line-clamp: 2; // ограничение строк в обычном состоянии
     line-clamp: 2;
+  }
+
+  &__movieTitle:hover {
+    color: $tomato;
   }
 
   &__movie-info {
