@@ -3,33 +3,37 @@ import { classesControlBar } from "./controlBar/controlBarVars";
 import { handleControlBarClick } from "./controlBar/controlBarBtnHandlers";
 import { domenPartUrl, basePosterUrl } from "./commonVars";
 import { moveToPage } from "./moveToPage";
+import { pathForSearchById } from "./commonVars";
+import { fetchData } from "./fetchData";
 
 /**
  * Функция для запроса данных о фильме по ID (19995 = «Аватар»).
  * Возвращает объект с информацией о фильме в формате JSON.
  */
-async function fetchMovieDataById(id) {
-  // Формируем URL для запроса, используя полученный id
-  const url = `${domenPartUrl}/search/movie/byId?movie_id=${id}`;
-  try {
-    // Выполняем запрос к API
-    const response = await fetch(url);
 
-    // Если HTTP-статус не 200-299, считаем, что произошла ошибка
-    if (!response.ok) {
-      throw new Error(`Ошибка сети: ${response.status} ${response.statusText}`);
-    }
+// ЭТУ ФУНКЦИЮ НЕ ИСПОЛЬЗУЕМ, ТАК КАК ЕСТЬ fetchData ФУНКЦИЯ НАПИСАННАЯ НАТАШЕЙ
+// async function fetchMovieDataById(id) {
+//   // Формируем URL для запроса, используя полученный id
+//   const url = `${domenPartUrl}/search/movie/byId?movie_id=${id}`;
+//   try {
+//     // Выполняем запрос к API
+//     const response = await fetch(url);
 
-    // Преобразуем ответ в JSON-объект
-    const data = await response.json();
-    return data; // Возвращаем полученные данные
-  } catch (error) {
-    // Выводим ошибку в консоль для отладки
-    console.error("Failed to load movie information:", error);
-    // Можем пробросить ошибку дальше, чтобы ее обработал вызывающий код
-    throw error;
-  }
-}
+//     // Если HTTP-статус не 200-299, считаем, что произошла ошибка
+//     if (!response.ok) {
+//       throw new Error(`Ошибка сети: ${response.status} ${response.statusText}`);
+//     }
+
+//     // Преобразуем ответ в JSON-объект
+//     const data = await response.json();
+//     return data; // Возвращаем полученные данные
+//   } catch (error) {
+//     // Выводим ошибку в консоль для отладки
+//     console.error("Failed to load movie information:", error);
+//     // Можем пробросить ошибку дальше, чтобы ее обработал вызывающий код
+//     throw error;
+//   }
+// }
 
 // Обработчик клика по элементу с id "movie"
 export async function showPopUp(evt, movie_id) {
@@ -45,7 +49,16 @@ export async function showPopUp(evt, movie_id) {
 
   try {
     // Запрашиваем данные о фильме по ID через нашу функцию fetchMovieDataById
-    const movieData = await fetchMovieDataById(movie_id);
+    // const movieData = await fetchMovieDataById(movie_id);
+
+    //NEW CODE ===>
+    // используем функцию fetchData импортированную из fetchData.js
+    const movieData = await fetchData(
+      `${pathForSearchById}?movie_id=${movie_id}`
+    );
+    if (!movieData) return; // если фетч не получился, fetchData вернет null, а мы следовательно просто не покажем попап
+    // <==== NEW CODE END
+
     if (movieData.poster_path) {
       // Заполняем левую колонку popup: задаём src для постера
       document.querySelector(".popup__poster").src =

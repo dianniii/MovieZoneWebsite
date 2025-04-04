@@ -1,7 +1,9 @@
+import { pathForFullMovieDescription } from "../commonVars";
 import { movieContainer } from "./movieVars";
 import { getIdFromWindowLocation } from "../getCheckUrlData";
 import { showErrorMsg } from "../errorMsg";
-import { fetchMovieObj, filterMovieData } from "./getMovieData";
+import { filterMovieData } from "./getMovieData";
+import { fetchData } from "../fetchData";
 import {
   createMovieBannerElem,
   changeBannerBG,
@@ -13,7 +15,9 @@ import { handleFullMovieClick } from "./moviePageClickHadlers";
 export async function loadMoviePage() {
   try {
     const movie_id = getIdFromWindowLocation();
-    const rawMovieData = await fetchMovieObj(movie_id);
+    const rawMovieData = await fetchData(
+      `${pathForFullMovieDescription}?movie_id=${movie_id}`
+    );
 
     if (!rawMovieData) {
       showErrorMsg(movieContainer);

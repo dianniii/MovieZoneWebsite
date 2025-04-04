@@ -15,8 +15,8 @@ import {
   getFromSessionStorage,
 } from "../sessionStorage";
 import { handleItemClick } from "./itemClickHandler.js";
+import { fetchData } from "../fetchData.js";
 
-const erContainer = document.querySelector(".error-msg");
 const genresContainer = document.querySelector(".genres");
 const genresArr = [];
 
@@ -37,11 +37,13 @@ function loadMoviesFromStorage() {
 }
 
 async function loadMoviesFromServer() {
-  const genresObj = await getGenres();
+  const genresObj = await fetchData(`${pathForAllGenres}`);
   const genres = genresObj.genres;
 
   for (let genreObj of genres) {
-    const genreMovies = await getMoviesByGenre(genreObj.id);
+    const genreMovies = await fetchData(
+      `${pathForSearchByGenre}?genre_id=${genreObj.id}`
+    );
     updateGenreObj(genreMovies, genreObj.id, genreObj.name);
     renderGenre(genreMovies);
     genresArr.push(genreMovies);
@@ -51,39 +53,38 @@ async function loadMoviesFromServer() {
   addMoviesToSessionStorage(genresArr);
 }
 
-async function getGenres() {
-  try {
-    console.log(">> getGenres вызвана");
-    const response = await fetch(`${domenPartUrl}${pathForAllGenres}`);
-    if (!response.ok) {
-      throw new Error(`Ошибка запроса: ${response.status}`);
-    }
-    const data = await response.json();
+// async function getGenres() {
+//   try {
+//     const response = await fetch(`${domenPartUrl}${pathForAllGenres}`);
+//     if (!response.ok) {
+//       throw new Error(`Ошибка запроса: ${response.status}`);
+//     }
+//     const data = await response.json();
 
-    return data;
-  } catch (error) {
-    console.error("Ошибка:", error);
-    showErrorMsg(genresContainer);
-  }
-}
+//     return data;
+//   } catch (error) {
+//     console.error("Ошибка:", error);
+//     showErrorMsg(genresContainer);
+//   }
+// }
 
-async function getMoviesByGenre(genre_id) {
-  try {
-    const response = await fetch(
-      `${domenPartUrl}${pathForSearchByGenre}?genre_id=${genre_id}`
-    );
+// async function getMoviesByGenre(genre_id) {
+//   try {
+//     const response = await fetch(
+//       `${domenPartUrl}${pathForSearchByGenre}?genre_id=${genre_id}`
+//     );
 
-    if (!response.ok) {
-      throw new Error(`Ошибка запроса: ${response.status}`);
-    }
+//     if (!response.ok) {
+//       throw new Error(`Ошибка запроса: ${response.status}`);
+//     }
 
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Ошибка:", error);
-    showErrorMsg(genresContainer);
-  }
-}
+//     const data = await response.json();
+//     return data;
+//   } catch (error) {
+//     console.error("Ошибка:", error);
+//     showErrorMsg(genresContainer);
+//   }
+// }
 
 function updateGenreObj(genreObj, genre_id, genre_name) {
   genreObj.genre_id = genre_id;

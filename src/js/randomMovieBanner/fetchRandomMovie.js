@@ -1,25 +1,27 @@
-import { domenPartUrl, pathForPopularMovies } from "../commonVars";
+import { pathForPopularMovies } from "../commonVars";
+import { fetchData } from "../fetchData";
 
 export async function fetchPopularMovies() {
   //выбираем рандомно страницу из первых 15 страницы популярных фильмов
   const randomPage = getRandomNum(5, true);
+  const movies = await fetchData(`${pathForPopularMovies}?page=${randomPage}`);
+  return movies;
+  // try {
+  //   const response = await fetch(
+  //     domenPartUrl + pathForPopularMovies + `?page=${randomPage}`
+  //   );
 
-  try {
-    const response = await fetch(
-      domenPartUrl + pathForPopularMovies + `?page=${randomPage}`
-    );
+  //   if (!response.ok) {
+  //     console.log("Cannot fetch data form the server");
+  //     throw new Error("HTTP Error: " + response.status);
+  //   }
 
-    if (!response.ok) {
-      console.log("Cannot fetch data form the server");
-      throw new Error("HTTP Error: " + response.status);
-    }
-
-    const movies = await response.json();
-    return movies;
-  } catch (error) {
-    console.error("Error while loading movie information", error);
-    return null;
-  }
+  //   const movies = await response.json();
+  //   return movies;
+  // } catch (error) {
+  //   console.error("Error while loading movie information", error);
+  //   return null;
+  // }
 }
 
 export function getRandomMovieWithBackdrop(movies) {

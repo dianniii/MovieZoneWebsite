@@ -1,30 +1,25 @@
-import {
-  pathForFullMovieDescription,
-  domenPartUrl,
-  fullPropertylist,
-  shortPropertyList,
-} from "../commonVars";
+import { fullPropertylist, shortPropertyList } from "../commonVars";
 
-export async function fetchMovieObj(movie_id) {
-  try {
-    const searchParameters = `?movie_id=${movie_id}`;
-    let response = await fetch(
-      domenPartUrl + pathForFullMovieDescription + searchParameters
-    );
+// export async function fetchMovieObj(movie_id) {
+//   try {
+//     const searchParameters = `?movie_id=${movie_id}`;
+//     let response = await fetch(
+//       domenPartUrl + pathForFullMovieDescription + searchParameters
+//     );
 
-    if (!response.ok) {
-      console.log("Cannot fetch data form the server");
-      throw new Error("HTTP Error: " + response.status);
-    }
+//     if (!response.ok) {
+//       console.log("Cannot fetch data form the server");
+//       throw new Error("HTTP Error: " + response.status);
+//     }
 
-    const movieData = await response.json();
+//     const movieData = await response.json();
 
-    return movieData;
-  } catch (error) {
-    console.error("Error while loading movie information", error);
-    return null;
-  }
-}
+//     return movieData;
+//   } catch (error) {
+//     console.error("Error while loading movie information", error);
+//     return null;
+//   }
+// }
 
 export function filterMovieData(movieData) {
   if (!movieData || Object.keys(movieData).length === 0) {

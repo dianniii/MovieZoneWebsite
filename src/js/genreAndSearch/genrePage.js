@@ -1,4 +1,4 @@
-import { fetchData, fetchNextPageData } from "../fetchData.js";
+import { fetchData } from "../fetchData.js";
 import {
   createCards,
   changeMainTitle,
