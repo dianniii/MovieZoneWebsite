@@ -42,7 +42,8 @@
     cursor: pointer;
   }
 
-  &__watch-all:hover {
+  &__watch-all:hover,
+  &__title:hover {
     cursor: pointer;
     font-weight: bold;
     color: tomato;
