@@ -2,6 +2,16 @@
 @mixin padding-left-right {
   padding-left: 50px;
   padding-right: 50px;
+
+  @media (max-width: 1200px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  @media (max-width: 900px) {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 }
 
 @mixin footer-later-padding {
@@ -9,6 +19,16 @@
   padding-right: 150px;
   padding-top: 20px;
   padding-bottom: 20px;
+
+  @media (max-width: 1200px) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  @media (max-width: 900px) {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
 }
 
 @mixin lateral-margins {
@@ -28,6 +48,14 @@
 
 @mixin margins-main-banner {
   margin: 50px 50px;
+
+  @media (max-width: 1200px) {
+    margin: 20px;
+  }
+
+  @media (max-width: 900px) {
+    margin: 10px;
+  }
 }
 
 @mixin load-moreButton {
