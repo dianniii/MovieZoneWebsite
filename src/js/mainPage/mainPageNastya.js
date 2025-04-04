@@ -11,11 +11,42 @@ import { showErrorMsg } from "../errorMsg";
 import { createElementWithProps } from "../elementCreation";
 import { genreClss, movieClss } from "./mainPageVars";
 import { addMoviesToLocalStorage } from "../localStorage";
-import { addMoviesToSessionStorage } from "../sessionStorage";
+import {
+  addMoviesToSessionStorage,
+  isInSessionStorage,
+  getFromSessionStorage,
+} from "../sessionStorage";
 
 const erContainer = document.querySelector(".error-msg");
 const genresContainer = document.querySelector(".genres");
 const genresArr = [];
+
+export async function loadMainPage() {
+  let isStored = isInSessionStorage("movies");
+  if (isStored) {
+    loadMoviesFromStorage();
+    return;
+  }
+  loadMoviesFromServer();
+}
+
+function loadMoviesFromStorage() {
+  const genreMoviesArr = getFromSessionStorage("movies");
+  genreMoviesArr.forEach((genreMovies) => renderGenre(genreMovies));
+}
+
+async function loadMoviesFromServer() {
+  const genresObj = await getGenres();
+  const genresArray = genresObj.genres;
+  for (let genreObj of genresArray) {
+    const genreMovies = await getMoviesByGenre(genreObj.id);
+    const updated = updateGenreObj(genreMovies, genreObj.id, genreObj.name);
+    renderGenre(updated);
+    genresArr.push(updated);
+  }
+  addMoviesToLocalStorage(genresArr);
+  addMoviesToSessionStorage(genresArr);
+}
 
 async function getGenres() {
   try {
@@ -54,23 +85,6 @@ function updateGenreObj(genreObj, genre_id, genre_name) {
   genreObj.genre_id = genre_id;
   genreObj.genre_id = genre_name;
   return genreObj;
-}
-
-export async function loadMainPage() {
-  const genresObj = await getGenres();
-  const genresArray = genresObj.genres;
-  let isStored = false;
-
-  for (let genreObj of genresArray) {
-    const genreMovies = await getMoviesByGenre(genreObj.id);
-    const updated = updateGenreObj(genreMovies, genreObj.id, genreObj.name);
-    renderGenre(updated);
-    if (!isStored) {
-      genresArr.push(updated);
-    }
-  }
-  addMoviesToLocalStorage(genresArr);
-  addMoviesToSessionStorage(genresArr);
 }
 
 function renderGenre(genreMovies) {

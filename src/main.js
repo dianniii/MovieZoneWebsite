@@ -5,27 +5,37 @@ import { getPathFromWindowLocation, getPageName } from "./js/getCheckUrlData";
 import { loadMoviePage } from "./js/moviePage/loadMoviePage.js";
 import { loadSavedMovies } from "./js/savedMovies/getAndLoadSavedMovies.js";
 import { renderMovieBanner } from "./js/randomMovieBanner/renderMovieBanner.js";
+import { loadMainPage } from "./js/mainPage/mainPageNastya.js";
 
 if (
   getPathFromWindowLocation() === "/" ||
   getPathFromWindowLocation() === "/index.html"
 ) {
-  document.addEventListener("DOMContentLoaded", renderMovieBanner);
+  document.addEventListener("DOMContentLoaded", () => {
+    renderMovieBanner();
+    loadMainPage();
+  });
 }
 
 if (getPathFromWindowLocation() === "/movie.html") {
   document.addEventListener("DOMContentLoaded", loadMoviePage);
 }
 
-import { moviesByGenre, getLocalStorageData, filterMoviesArr, mainGenrePageFunction, loadMoreAddHide} from "./js/genrePage.js";
+import {
+  moviesByGenre,
+  getLocalStorageData,
+  filterMoviesArr,
+  mainGenrePageFunction,
+  loadMoreAddHide,
+} from "./js/genrePage.js";
 
 if (getPathFromWindowLocation() === "/genre.html") {
-  document.addEventListener("DOMContentLoaded", ()=>{
-      getLocalStorageData('movies');
-      filterMoviesArr();
-      mainGenrePageFunction();
-      loadMoreAddHide(moviesByGenre);
-  })
+  document.addEventListener("DOMContentLoaded", () => {
+    getLocalStorageData("movies");
+    filterMoviesArr();
+    mainGenrePageFunction();
+    loadMoreAddHide(moviesByGenre);
+  });
 }
 
 import { searchHandle } from "./js/header.js";
