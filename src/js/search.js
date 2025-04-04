@@ -1,9 +1,10 @@
 import { classesControlBar } from "./controlBar/controlBarVars";
 import { createControlBarElem } from "./controlBar/createControlBar";
-import { basePosterUrl, domenPartUrl, pathForAllGenres, pathForSearchByGenre, pathForFullMovieDescription, pathForSearchByTitle, pathForSearchById, pathForPopularMovies } from "./commonVars";
+import { basePosterUrl } from "./commonVars";
 import { movieCardClickHandler } from "./movieCardClickHandler";
 import { searchMedia } from "./header";
 import {fetchData, fetchNextPageData } from "./fetchData.js"
+import {showErrorMsg} from "./moviePage/loadMoviePage.js"
 
 
 const movie_container = document.getElementById("movie-cards");
@@ -36,22 +37,23 @@ export async function mainSearchFunction() {
     const title_search = searchMedia(title);
     let movies = await fetchData(`/search/movie/byTitle?title=${title_search}`);
     if(movies == null){
-        displayErrorMsg(error);
+        showErrorMsg();
     }
 
     if (movies && movies.results.length > 0) {
       const filtered_results = filterMoviesProps(movies);
       createCards(filtered_results, movie_container);
     } else {
-      movie_container.classList.add("errorMessage");
-      movie_container.textContent = "No results found 😔";
+      showErrorMsg()
+      // movie_container.classList.add("errorMessage");
+      // movie_container.textContent = "No results found 😔";
     }
   } 
 
-  function displayErrorMsg(error){
-    movie_container.classList.add("errorMessage");
-    movie_container.textContent = `An error occured 😔 Please try again later`;
-  }
+  // function displayErrorMsg(error){
+  //   movie_container.classList.add("errorMessage");
+  //   movie_container.textContent = `An error occured 😔 Please try again later`;
+  // }
 
 export function createCards(arrayOfObjs, container) {
   if (Array.isArray(arrayOfObjs)) {
