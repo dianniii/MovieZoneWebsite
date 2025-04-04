@@ -50,7 +50,7 @@ export async function mainSearchFunction() {
 
   function displayErrorMsg(error){
     movie_container.classList.add("errorMessage");
-    movie_container.textContent = `An error occured: ${error.message} 😔 Please try again later`;
+    movie_container.textContent = `An error occured 😔 Please try again later`;
   }
 
 export function createCards(arrayOfObjs, container) {
