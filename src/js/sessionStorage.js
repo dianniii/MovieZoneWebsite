@@ -3,7 +3,8 @@ export function addMoviesToSessionStorage(moviesArr) {
 }
 
 export function isInSessionStorage(key) {
-  return sessionStorage.getItem(key);
+  const data = sessionStorage.getItem(key);
+  return data && JSON.parse(data).length > 0;
 }
 
 export function getFromSessionStorage(key) {

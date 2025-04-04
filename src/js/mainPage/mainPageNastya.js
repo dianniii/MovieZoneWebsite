@@ -25,7 +25,7 @@ export async function loadMainPage() {
   if (isStored) {
     loadMoviesFromStorage();
   } else {
-    loadMoviesFromServer();
+    await loadMoviesFromServer();
   }
   const main = document.getElementById("main");
   main.addEventListener("click", handleItemClick);
@@ -38,19 +38,22 @@ function loadMoviesFromStorage() {
 
 async function loadMoviesFromServer() {
   const genresObj = await getGenres();
-  const genresArray = genresObj.genres;
-  for (let genreObj of genresArray) {
+  const genres = genresObj.genres;
+
+  for (let genreObj of genres) {
     const genreMovies = await getMoviesByGenre(genreObj.id);
-    const updated = updateGenreObj(genreMovies, genreObj.id, genreObj.name);
-    renderGenre(updated);
-    genresArr.push(updated);
+    updateGenreObj(genreMovies, genreObj.id, genreObj.name);
+    renderGenre(genreMovies);
+    genresArr.push(genreMovies);
   }
+
   addMoviesToLocalStorage(genresArr);
   addMoviesToSessionStorage(genresArr);
 }
 
 async function getGenres() {
   try {
+    console.log(">> getGenres вызвана");
     const response = await fetch(`${domenPartUrl}${pathForAllGenres}`);
     if (!response.ok) {
       throw new Error(`Ошибка запроса: ${response.status}`);
@@ -85,8 +88,6 @@ async function getMoviesByGenre(genre_id) {
 function updateGenreObj(genreObj, genre_id, genre_name) {
   genreObj.genre_id = genre_id;
   genreObj.genre_name = genre_name;
-  console.log(genreObj);
-  return genreObj;
 }
 
 function renderGenre(genreMovies) {
@@ -149,5 +150,3 @@ function createMovieMarkup(movieObj) {
                 `;
   return movieMarkup;
 }
-
-document.addEventListener("DOMContentLoaded", loadMainPage);
