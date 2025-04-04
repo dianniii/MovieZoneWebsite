@@ -5,7 +5,7 @@ import { movieCardClickHandler } from "./movieCardClickHandler";
 import { searchMedia } from "./header";
 import {fetchData, fetchNextPageData } from "./fetchData.js";
 import { loadMoreHandler } from "./genrePage.js";
-import {showErrorMsg} from "./moviePage/loadMoviePage.js";
+// import {showErMsg} from "./errorMsg.js";
 
 
 const movie_container = document.getElementById("movie-cards");
@@ -38,16 +38,21 @@ export async function mainSearchFunction() {
     const title_search = searchMedia(title);
     let movies = await fetchData(`/search/movie/byTitle?title=${title_search}`);
     if(movies == null){
-        showErrorMsg();
+        // showErrorMsg();
+        const errorElem = document.querySelector(".error-msg");
+          errorElem.style.display = "block";
+          movie_container.style.display = "none";
     }
 
     if (movies && movies.results.length > 0) {
       const filtered_results = filterMoviesProps(movies);
       createCards(filtered_results, movie_container);
     } else {
-      showErrorMsg()
-      // movie_container.classList.add("errorMessage");
-      // movie_container.textContent = "No results found 😔";
+      // showErrorMsg()
+      const errorElem = document.querySelector(".error-msg");
+      errorElem.style.display = "block";
+      movie_container.style.display = "none";
+  
     }
   } 
 

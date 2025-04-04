@@ -4,7 +4,7 @@ import { getMoviesFromStorage } from "./localStorage.js";
 import { getIdFromWindowLocation } from "./getCheckUrlData.js";
 import { pathForSearchByGenre } from "./commonVars.js";
 // import { filterMovieData } from "./moviePage/getMovieData.js";
-import {showErrorMsg} from "./moviePage/loadMoviePage.js";
+// import {showErrorMsg} from "./moviePage/loadMoviePage.js";
 
 
 export const movie_container = document.querySelector(".movies-container");
@@ -26,7 +26,10 @@ export async function mainGenrePageFunction() {
 if(
   !moviesByGenre || !moviesByGenre.results || moviesByGenre.results.length <1
 ){
-  showErrorMsg();
+  // showErrorMsg();
+  const errorElem = document.querySelector(".error-msg");
+  errorElem.style.display = "block";
+  movie_container.style.display = "none";
   return;
 }
 
@@ -65,7 +68,10 @@ export async function loadMoreHandler(){
   newResults = await fetchNextPageData( pathAndSearchParams, currentPage+1);
 
   if(!newResults || newResults>0) {
-    showErrorMsg();
+    const errorElem = document.querySelector(".error-msg");
+    errorElem.style.display = "block";
+    movie_container.style.display = "none";
+    // showErrorMsg();
     return;
   }
  createCards(newResults, movie_container);
