@@ -1,10 +1,10 @@
-import { fetchData, fetchNextPageData } from "./fetchData.js";
-import { createCards } from "./search.js";
-import { getMoviesFromStorage } from "./localStorage.js";
-import { getIdFromWindowLocation } from "./getCheckUrlData.js";
-import { pathForSearchByGenre } from "./commonVars.js";
+import { fetchData, fetchNextPageData } from "../fetchData.js";
+import { createCards } from "../search.js";
+import { getMoviesFromStorage } from "../localStorage.js";
+import { getIdFromWindowLocation } from "../getCheckUrlData.js";
+import { pathForSearchByGenre } from "../commonVars.js";
 // import { filterMovieData } from "./moviePage/getMovieData.js";
-import { showErrorMsg } from "./errorMsg.js";
+import { showErrorMsg } from "../errorMsg.js";
 
 export const movie_container = document.querySelector(".movies-container");
 const loadMoreButton = document.getElementById("load-more");
