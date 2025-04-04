@@ -14,7 +14,6 @@
   padding: 20px;
   display: flex;
   gap: 30px;
-  // align-items: flex-start; // важно!
   background-color: $dark-grey;
   width: calc(100% - 100px);
   @include font-basic;
@@ -22,7 +21,6 @@
   border-radius: $borderRadiusMain;
 
   &:hover {
-    max-height: 1000px; // Разрешаем карточке увеличиваться
     cursor: pointer;
   }
 
@@ -52,6 +50,10 @@
     transition: max-height 0.3s ease-in-out;
   }
 
+  &__text-container:hover {
+    max-height: 1000px;
+  }
+
   &__movieTitle,
   &__movie-info {
     overflow: hidden;
@@ -63,8 +65,8 @@
 
   &__movieTitle {
     font-size: $font-size-h2;
-    // padding-bottom: 20px; //commented by Nastya
     padding-bottom: 10px; //added by Nastya
+    width: 90%;
     line-height: 150%;
     -webkit-line-clamp: 2; // ограничение строк в обычном состоянии
     line-clamp: 2;
