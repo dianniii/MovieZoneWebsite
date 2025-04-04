@@ -24,6 +24,9 @@ export async function mainGenrePageFunction() {
   }else{
     moviesByGenre = await fetchData(`/search/genre?genre_id=${genreId}`)
   }
+  mainTitle.textContent= moviesByGenre.genre_name;
+  console.log(movieArr);
+  console.log(moviesByGenre);
 if(
   !moviesByGenre || !moviesByGenre.results || moviesByGenre.results.length <1
 ){
@@ -31,8 +34,6 @@ if(
   const errorElem = document.querySelector(".error-msg");
   errorElem.style.display = "block";
   movie_container.style.display = "none";
-  console.log(movieArr);
-  console.log(moviesByGenre);
   return;
 }
 
@@ -68,7 +69,7 @@ function enableDisableBtn (btn, check){
 
 export async function loadMoreHandler(){
   const pathAndSearchParams = `${pathForSearchByGenre}?genre_id=${genreId}`;
-  newResults = await fetchNextPageData( pathAndSearchParams, currentPage+1);
+  let newResults = await fetchNextPageData( pathAndSearchParams, currentPage+1);
 
   if(!newResults || newResults>0) {
     const errorElem = document.querySelector(".error-msg");
