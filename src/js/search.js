@@ -12,7 +12,9 @@ const movie_container = document.getElementById("movie-cards");
 const loadMoreButton = document.getElementById("load-more");
 const mainTitle = document.querySelector(".main-title");
 let title_search;
-const pathAndSearchParams = `${pathForSearchByTitle}?title=${title_search}`;
+let currentPage;
+let totalPage;
+let pathAndSearchParams;
 
 
 function searchTitle() {
@@ -41,6 +43,8 @@ export async function mainSearchFunction() {
     const title = searchTitle();
     if (!title) return;
     title_search = searchMedia(title);
+    pathAndSearchParams = `${pathForSearchByTitle}?title=${title_search}`;
+
     let movies = await fetchData(`/search/movie/byTitle?title=${title_search}`);
   
     if(movies == null){
@@ -53,10 +57,14 @@ export async function mainSearchFunction() {
       mainTitle.textContent = `Results for your search on "${title}":`;
       const filtered_results = filterMoviesProps(movies);
       createCards(filtered_results, movie_container);
-
-      //trying to add the loadmore button at the end
-      // const check = isLastPage(movies); 
-      // enableDisableBtn(loadMoreButton, check);
+      currentPage = movies.page;
+      totalPage = movies.total_pages;
+      console.log(movies);
+      console.log(filtered_results);
+     
+      const check = isLastPage(movies); 
+      console.log(check);
+      enableDisableBtn(loadMoreButton, check);
     } else {
       // showErrorMsg()
       const errorElem = document.querySelector(".error-msg");
