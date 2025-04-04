@@ -1,3 +1,5 @@
+import{domenPartUrl} from "./commonVars";
+
 export async function fetchData(pathParam){
     try {
  

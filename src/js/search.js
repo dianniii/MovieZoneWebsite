@@ -9,6 +9,7 @@ import { loadMoreHandler } from "./genrePage.js";
 
 
 const movie_container = document.getElementById("movie-cards");
+const mainTitle = document.querySelector(".main-title");
 
 function searchTitle() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -32,7 +33,7 @@ function filterMoviesProps(data) {
 }
 
 export async function mainSearchFunction() {
-  
+
     const title = searchTitle();
     if (!title) return;
     const title_search = searchMedia(title);
@@ -45,6 +46,7 @@ export async function mainSearchFunction() {
     }
 
     if (movies && movies.results.length > 0) {
+      mainTitle.textContent = `Results for your search on "${title}":`;
       const filtered_results = filterMoviesProps(movies);
       createCards(filtered_results, movie_container);
     } else {
