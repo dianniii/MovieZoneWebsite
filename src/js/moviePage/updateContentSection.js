@@ -42,6 +42,7 @@ function pasteDirectorsContent(directorContainer, directors) {
 function pasteCastContent(castContainer, cast) {
   if (Array.isArray(cast) && cast.length) {
     const castPar = castContainer.querySelector("p");
+    castPar.textContent = "";
     createCastContent(castPar, cast);
   }
 }
