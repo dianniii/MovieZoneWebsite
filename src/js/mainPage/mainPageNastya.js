@@ -24,11 +24,11 @@ export async function loadMainPage() {
   let isStored = isInSessionStorage("movies");
   if (isStored) {
     loadMoviesFromStorage();
-    return;
+  } else {
+    loadMoviesFromServer();
   }
-  loadMoviesFromServer();
   const main = document.getElementById("main");
-  main.addEventListener("DOMContentLoaded", () => handleItemClick(evt));
+  main.addEventListener("click", handleItemClick);
 }
 
 function loadMoviesFromStorage() {
@@ -84,7 +84,8 @@ async function getMoviesByGenre(genre_id) {
 
 function updateGenreObj(genreObj, genre_id, genre_name) {
   genreObj.genre_id = genre_id;
-  genreObj.genre_id = genre_name;
+  genreObj.genre_name = genre_name;
+  console.log(genreObj);
   return genreObj;
 }
 
@@ -113,7 +114,8 @@ function createGenreElem(genreId, genreName) {
     false,
     genreName
   );
-  genreElem.append(title);
+  const btn = createElementWithProps("button", genreClss.btn, false, "See all");
+  genreElem.append(title, btn);
   return genreElem;
 }
 

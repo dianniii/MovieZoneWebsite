@@ -5,7 +5,7 @@ export const genreClss = {
   genre: "genre",
   genreTitle: `${genreBlock}title`,
   scroll: `${genreBlock}scrollable`,
-  watchAll: `${genreBlock}watch-all`,
+  btn: `${genreBlock}watch-all`,
 };
 
 const movieBlock = "movie__";
