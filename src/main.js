@@ -8,11 +8,11 @@ import { renderMovieBanner } from "./js/randomMovieBanner/renderMovieBanner.js";
 import { loadMainPage } from "./js/mainPage/mainPageNastya.js";
 import { initUpButton } from "./js/upButton.js";
 import { searchHandle } from "./js/header.js";
-import { mainSearchFunction } from "./js/search.js";
+import { mainSearchFunction } from "./js/genreAndSearch/search.js";
 import {
   mainGenrePageFunction,
   setUpBtnListener,
-} from "./js/genrePage/genrePage.js";
+} from "./js/genreAndSearch/genrePage.js";
 
 if (
   getPathFromWindowLocation() === "/" ||
