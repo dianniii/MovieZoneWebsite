@@ -1,4 +1,5 @@
-export function showErrorMsg(errorElem, toHideElem) {
+export function showErrorMsg(toHideElem) {
+  const errorElem = document.querySelector(".error-msg");
   errorElem.style.display = "block";
   toHideElem.style.display = "none";
 }
