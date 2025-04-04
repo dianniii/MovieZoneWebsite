@@ -41,7 +41,7 @@ export async function showPopUp(evt, movie_id) {
   // }
 
   // Извлекаем ID фильма из data-атрибута
-  document.querySelector(".popup__movie").dataset.id = movie_id;
+  document.querySelector(".popup").dataset.id = movie_id;
 
   try {
     // Запрашиваем данные о фильме по ID через нашу функцию fetchMovieDataById
