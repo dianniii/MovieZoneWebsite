@@ -1,23 +1,58 @@
-import { createControlBarElem } from "../controlBar/createControlBar.js";
-import { basePosterUrl, pathForSearchByTitle } from "../commonVars.js";
-import { movieCardClickHandler } from "../movieCardClickHandler.js";
+import { pathForSearchByTitle } from "../commonVars.js";
+import { getTitleName } from "../getCheckUrlData.js";
+import { fetchData } from "../fetchData.js";
+import { showErrorMsg } from "../errorMsg.js";
 import { searchMedia } from "../header.js";
-import { fetchData, fetchNextPageData } from "../fetchData.js";
-import { isLastPage, enableDisableBtn } from "./genreSearchCommon.js";
-// import {showErMsg} from "./errorMsg.js";
+import {
+  createCards,
+  isLastPage,
+  enableDisableBtn,
+  changeMainTitle,
+} from "./genreSearchCommon.js";
+import {
+  pathAndSearchParams,
+  totalPages,
+  movie_container,
+  loadMoreButton,
+} from "./genreSearchVars.js";
 
-const movie_container = document.getElementById("movie-cards");
-const loadMoreButton = document.getElementById("load-more");
-const mainTitle = document.querySelector(".main-title");
-let title_search;
-let currentPage;
-let totalPage;
-let pathAndSearchParams;
+let title;
+let currentPage = 1;
 
-function searchTitle() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const title = urlParams.get("title");
-  return title;
+export async function mainSearchFunction() {
+  savePathAndSearchSearch();
+
+  if (!pathAndSearchParams.search) {
+    showErrorMsg(movie_container);
+    return;
+  }
+
+  let movies = await fetchData(pathAndSearchParams.search);
+
+  if (!movies || movies.results.length < 1) {
+    showErrorMsg(movie_container, "No movies found");
+    return;
+  }
+
+  loadSearchContent(movies);
+}
+
+function savePathAndSearchSearch() {
+  title = getTitleName();
+  if (!title) return;
+  const title_search = searchMedia(title);
+  pathAndSearchParams.search = `${pathForSearchByTitle}?title=${title_search}`;
+}
+
+function loadSearchContent(movies) {
+  changeMainTitle(`Search results for "${title}":`);
+
+  const filtered_results = filterMoviesProps(movies);
+  createCards(filtered_results, movie_container);
+
+  totalPages.search = movies.total_pages;
+
+  enableDisableBtn(loadMoreButton, isLastPage(currentPage, totalPages.search));
 }
 
 function filterMoviesProps(data) {
@@ -34,79 +69,3 @@ function filterMoviesProps(data) {
 
   return propsArray;
 }
-
-export async function mainSearchFunction() {
-  const title = searchTitle();
-  if (!title) return;
-  title_search = searchMedia(title);
-  pathAndSearchParams = `${pathForSearchByTitle}?title=${title_search}`;
-
-  let movies = await fetchData(`/search/movie/byTitle?title=${title_search}`);
-
-  if (movies == null) {
-    // showErrorMsg();
-    const errorElem = document.querySelector(".error-msg");
-    errorElem.style.display = "block";
-    movie_container.style.display = "none";
-  }
-  if (movies && movies.results.length > 0) {
-    mainTitle.textContent = `Results for your search on "${title}":`;
-    const filtered_results = filterMoviesProps(movies);
-    createCards(filtered_results, movie_container);
-    currentPage = movies.page;
-    totalPage = movies.total_pages;
-    console.log(movies);
-    console.log(filtered_results);
-
-    const check = isLastPage(movies);
-    console.log(check);
-    enableDisableBtn(loadMoreButton, check);
-  } else {
-    // showErrorMsg()
-    const errorElem = document.querySelector(".error-msg");
-    errorElem.style.display = "block";
-    movie_container.style.display = "none";
-  }
-}
-
-// function displayErrorMsg(error){
-//   movie_container.classList.add("errorMessage");
-//   movie_container.textContent = `An error occured 😔 Please try again later`;
-// }
-
-export function createCards(arrayOfObjs, container) {
-  if (Array.isArray(arrayOfObjs)) {
-    arrayOfObjs.forEach((movie) => {
-      const card = createCard(movie);
-      container.appendChild(card);
-    });
-  }
-}
-
-export function createCard(movie) {
-  const movieCard = document.createElement("div");
-  movieCard.classList.add("movie-card");
-  movieCard.setAttribute("data-id", movie.id);
-
-  const posterPath = movie.poster_path
-    ? `${basePosterUrl}${movie.poster_path}`
-    : "./src/assets/images/no-Image-Placeholder.svg";
-
-  movieCard.innerHTML = ` <div class="movie-card__poster-container"> <img class="movie-card__poster" src="${posterPath}" alt ="${
-    movie.title
-  } Poster"> </div>
-    <div class="movie-card__text-container"> <h3 class="movie-card__movieTitle">${
-      movie.title
-    }</h3>
-    <p>${movie.release_date ? movie.release_date.slice(0, 4) : ""}</p>
-    <p class="movie-card__movie-info">${movie.overview}</p> </div>
-    `;
-  movieCard
-    .querySelector(".movie-card__text-container")
-    .append(createControlBarElem(movie));
-  // вешаю слушатель события на созданную карточку
-  movieCard.addEventListener("click", (evt) => movieCardClickHandler(evt));
-  return movieCard;
-}
-
-mainSearchFunction();

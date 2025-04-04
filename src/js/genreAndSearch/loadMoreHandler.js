@@ -1,14 +1,28 @@
-export function setUpBtnListener(pathAndSearchParams) {
+import { getPageName } from "../getCheckUrlData";
+import { fetchNextPageData } from "../fetchData.js";
+import {
+  createCards,
+  isLastPage,
+  enableDisableBtn,
+} from "./genreSearchCommon.js";
+import {
+  pathAndSearchParams,
+  totalPages,
+  movie_container,
+  loadMoreButton,
+} from "./genreSearchVars.js";
+
+let currentPage = 1;
+
+export function setLoadMoreListener() {
   const loadMoreButton = document.getElementById("load-more");
-  loadMoreButton.addEventListener("click", () => {
-    loadMoreHandler(pathAndSearchParams);
-  });
+  loadMoreButton.addEventListener("click", loadMoreHandler);
 }
 
-export async function loadMoreHandler(pathAndSearchParams) {
-  // const pathAndSearchParams = `${pathForSearchByGenre}?genre_id=${genreId}`;
+export async function loadMoreHandler() {
+  const pageName = getPageName();
   const newResults = await fetchNextPageData(
-    pathAndSearchParams,
+    pathAndSearchParams[pageName],
     currentPage + 1
   );
 
@@ -19,5 +33,8 @@ export async function loadMoreHandler(pathAndSearchParams) {
 
   createCards(newResults, movie_container);
   currentPage += 1;
-  enableDisableBtn(loadMoreButton, isLastPage(currentPage, totalPage));
+  enableDisableBtn(
+    loadMoreButton,
+    isLastPage(currentPage, totalPages[pageName])
+  );
 }

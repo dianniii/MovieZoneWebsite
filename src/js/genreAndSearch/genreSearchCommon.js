@@ -2,6 +2,11 @@ import { basePosterUrl } from "../commonVars";
 import { movieCardClickHandler } from "../movieCardClickHandler";
 import { createControlBarElem } from "../controlBar/createControlBar";
 
+export const pathAndSearchParams = {};
+export const totalPages = {};
+export const movie_container = document.querySelector(".movie-cards");
+export const loadMoreButton = document.getElementById("load-more");
+
 export function createCards(arrayOfObjs, container) {
   if (Array.isArray(arrayOfObjs)) {
     arrayOfObjs.forEach((movie) => {
@@ -37,7 +42,7 @@ export function createCard(movie) {
   return movieCard;
 }
 
-export function changeTitle(title) {
+export function changeMainTitle(title) {
   const mainTitle = document.querySelector(".main-title");
   mainTitle.textContent = title;
 }

@@ -9,10 +9,8 @@ import { loadMainPage } from "./js/mainPage/mainPageNastya.js";
 import { initUpButton } from "./js/upButton.js";
 import { searchHandle } from "./js/header.js";
 import { mainSearchFunction } from "./js/genreAndSearch/search.js";
-import {
-  mainGenrePageFunction,
-  setUpBtnListener,
-} from "./js/genreAndSearch/genrePage.js";
+import { mainGenrePageFunction } from "./js/genreAndSearch/genrePage.js";
+import { setLoadMoreListener } from "./js/genreAndSearch/loadMoreHandler.js";
 
 if (
   getPathFromWindowLocation() === "/" ||
@@ -33,7 +31,7 @@ if (getPathFromWindowLocation() === "/genre.html") {
   document.addEventListener("DOMContentLoaded", () => {
     mainGenrePageFunction();
     initUpButton();
-    setUpBtnListener();
+    setLoadMoreListener();
   });
 }
 
@@ -43,6 +41,7 @@ if (getPathFromWindowLocation() === "/search.html") {
   document.addEventListener("DOMContentLoaded", () => {
     mainSearchFunction();
     initUpButton();
+    setLoadMoreListener();
   });
 }
 
