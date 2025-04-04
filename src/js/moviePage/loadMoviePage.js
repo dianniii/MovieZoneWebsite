@@ -16,14 +16,14 @@ export async function loadMoviePage() {
     const rawMovieData = await fetchMovieObj(movie_id);
 
     if (!rawMovieData) {
-      showErrorMsg(document.querySelector(".error-msg"), movieContainer);
+      showErrorMsg(movieContainer);
       return;
     }
 
     const movieData = filterMovieData(rawMovieData);
 
     if (!movieData) {
-      showErrorMsg(document.querySelector(".error-msg"), movieContainer);
+      showErrorMsg(movieContainer);
       console.warn("Movie object is empty. Cannot filter movie info");
       return;
     }
@@ -31,7 +31,7 @@ export async function loadMoviePage() {
     renderMovie(movieData);
   } catch (error) {
     console.error("Error during movie processing:", error);
-    showErrorMsg(document.querySelector(".error-msg"), movieContainer);
+    showErrorMsg(movieContainer);
   }
 }
 

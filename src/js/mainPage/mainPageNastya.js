@@ -63,7 +63,7 @@ async function getGenres() {
     return data;
   } catch (error) {
     console.error("Ошибка:", error);
-    showErrorMsg(erContainer, genresContainer);
+    showErrorMsg(genresContainer);
   }
 }
 
@@ -81,7 +81,7 @@ async function getMoviesByGenre(genre_id) {
     return data;
   } catch (error) {
     console.error("Ошибка:", error);
-    showErrorMsg(erContainer, genresContainer);
+    showErrorMsg(genresContainer);
   }
 }
 
@@ -92,7 +92,7 @@ function updateGenreObj(genreObj, genre_id, genre_name) {
 
 function renderGenre(genreMovies) {
   if (!genreMovies || !genreMovies.results || genreMovies.results.length < 1) {
-    showErrorMsg(erContainer, genresContainer);
+    showErrorMsg(genresContainer);
     return;
   }
   const genreElem = createGenreElem(

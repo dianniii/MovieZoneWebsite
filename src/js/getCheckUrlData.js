@@ -12,6 +12,12 @@ export function getPageName() {
   return path.replace(/^\//, "").replace(".html", "");
 }
 
+export function getTitleName() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const title = urlParams.get("title");
+  return title;
+}
+
 export function isValidUrl(url) {
   try {
     new URL(url);

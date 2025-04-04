@@ -7,6 +7,10 @@ import { loadSavedMovies } from "./js/savedMovies/getAndLoadSavedMovies.js";
 import { renderMovieBanner } from "./js/randomMovieBanner/renderMovieBanner.js";
 import { loadMainPage } from "./js/mainPage/mainPageNastya.js";
 import { initUpButton } from "./js/upButton.js";
+import { searchHandle } from "./js/header.js";
+import { mainSearchFunction } from "./js/genreAndSearch/search.js";
+import { mainGenrePageFunction } from "./js/genreAndSearch/genrePage.js";
+import { setLoadMoreListener } from "./js/genreAndSearch/loadMoreHandler.js";
 
 if (
   getPathFromWindowLocation() === "/" ||
@@ -23,33 +27,21 @@ if (getPathFromWindowLocation() === "/movie.html") {
   document.addEventListener("DOMContentLoaded", loadMoviePage);
 }
 
-import {
-  moviesByGenre,
-  getLocalStorageData,
-  filterMoviesArr,
-  mainGenrePageFunction,
-  loadMoreAddHide,
-} from "./js/genrePage.js";
-
 if (getPathFromWindowLocation() === "/genre.html") {
   document.addEventListener("DOMContentLoaded", () => {
-    getLocalStorageData("movies");
-    filterMoviesArr();
     mainGenrePageFunction();
-    loadMoreAddHide(moviesByGenre);
+    initUpButton();
+    setLoadMoreListener();
   });
 }
 
-import { searchHandle } from "./js/header.js";
-
 document.addEventListener("DOMContentLoaded", searchHandle);
 
-import { mainSearchFunction } from "./js/search.js";
-
 if (getPathFromWindowLocation() === "/search.html") {
-  document.addEventListener("DOMContentLoaded", () => { 
+  document.addEventListener("DOMContentLoaded", () => {
     mainSearchFunction();
     initUpButton();
+    setLoadMoreListener();
   });
 }
 
@@ -58,8 +50,7 @@ if (
   getPathFromWindowLocation() === "/watchlist.html"
 ) {
   document.addEventListener("DOMContentLoaded", () => {
-      loadSavedMovies(getPageName());
-      initUpButton();
-    }
-  );
+    loadSavedMovies(getPageName());
+    initUpButton();
+  });
 }
