@@ -1,5 +1,3 @@
-import { showPopUp, handlePopupClick } from "../popup";
-import { moveToPage } from "../moveToPage";
 import {
   domenPartUrl,
   pathForAllGenres,
@@ -16,6 +14,7 @@ import {
   isInSessionStorage,
   getFromSessionStorage,
 } from "../sessionStorage";
+import { handleItemClick } from "./itemClickHandler.js";
 
 const erContainer = document.querySelector(".error-msg");
 const genresContainer = document.querySelector(".genres");
@@ -28,6 +27,8 @@ export async function loadMainPage() {
     return;
   }
   loadMoviesFromServer();
+  const main = document.getElementById("main");
+  main.addEventListener("DOMContentLoaded", () => handleItemClick(evt));
 }
 
 function loadMoviesFromStorage() {
