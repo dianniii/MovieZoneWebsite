@@ -14,10 +14,20 @@
 @mixin lateral-margins {
   margin-left: 100px;
   margin-right: 100px;
+
+  @media (max-width: 1200px) {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  @media (max-width: 900px) {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 }
 
 @mixin margins-main-banner {
-  margin: 20px 50px;
+  margin: 50px 50px;
 }
 
 @mixin load-moreButton {

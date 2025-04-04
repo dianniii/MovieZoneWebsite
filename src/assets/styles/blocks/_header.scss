@@ -52,6 +52,7 @@
     border-radius: 20px;
     width: 20vw;
     border: none;
+    @include font-footer-300;
   }
 
   &__icon {
@@ -60,6 +61,6 @@
   }
 }
 
-.header .full-movie__banner {
+.header .movie-banner {
   @include margins-main-banner;
 }
