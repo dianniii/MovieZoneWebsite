@@ -1,15 +1,19 @@
 import { classesControlBar } from "./controlBar/controlBarVars";
 import { createControlBarElem } from "./controlBar/createControlBar";
-import { basePosterUrl } from "./commonVars";
+import { basePosterUrl, pathForSearchByTitle } from "./commonVars";
 import { movieCardClickHandler } from "./movieCardClickHandler";
 import { searchMedia } from "./header";
 import {fetchData, fetchNextPageData } from "./fetchData.js";
-import { loadMoreHandler } from "./genrePage.js";
+import { isLastPage, enableDisableBtn, loadMoreHandler } from "./genrePage.js";
 // import {showErMsg} from "./errorMsg.js";
 
 
 const movie_container = document.getElementById("movie-cards");
+const loadMoreButton = document.getElementById("load-more");
 const mainTitle = document.querySelector(".main-title");
+let title_search;
+const pathAndSearchParams = `${pathForSearchByTitle}?title=${title_search}`;
+
 
 function searchTitle() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -36,26 +40,29 @@ export async function mainSearchFunction() {
 
     const title = searchTitle();
     if (!title) return;
-    const title_search = searchMedia(title);
+    title_search = searchMedia(title);
     let movies = await fetchData(`/search/movie/byTitle?title=${title_search}`);
+  
     if(movies == null){
         // showErrorMsg();
         const errorElem = document.querySelector(".error-msg");
           errorElem.style.display = "block";
           movie_container.style.display = "none";
     }
-
     if (movies && movies.results.length > 0) {
       mainTitle.textContent = `Results for your search on "${title}":`;
       const filtered_results = filterMoviesProps(movies);
       createCards(filtered_results, movie_container);
+
+      //trying to add the loadmore button at the end
+      // const check = isLastPage(movies); 
+      // enableDisableBtn(loadMoreButton, check);
     } else {
       // showErrorMsg()
       const errorElem = document.querySelector(".error-msg");
       errorElem.style.display = "block";
       movie_container.style.display = "none";
-  
-    }
+  }
   } 
 
   // function displayErrorMsg(error){
@@ -98,4 +105,4 @@ export function createCard(movie) {
   return movieCard;
 }
 
-mainSearchFunction();
+mainSearchFunction()

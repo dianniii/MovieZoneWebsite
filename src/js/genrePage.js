@@ -13,6 +13,7 @@ const loadMoreButton = document.getElementById("load-more");
 let currentPage;
 let totalPage;
 let genreId;
+const pathAndSearchParams = `${pathForSearchByGenre}?genre_id=${genreId}`;
 
 export async function mainGenrePageFunction() {
   genreId=Number(getIdFromWindowLocation());
@@ -55,11 +56,11 @@ export function filterMoviesArr(movieArr){
 }
 
 
-function isLastPage(){
+export function isLastPage(){
   return currentPage < totalPage;
 }
 
-function enableDisableBtn (btn, check){
+export function enableDisableBtn (btn, check){
   if (check){
     btn.style.display = "block";
     return;
@@ -68,9 +69,9 @@ function enableDisableBtn (btn, check){
 }
 
 export async function loadMoreHandler(){
-  const pathAndSearchParams = `${pathForSearchByGenre}?genre_id=${genreId}`;
-  let newResults = await fetchNextPageData( pathAndSearchParams, currentPage+1);
 
+  let newResults = await fetchNextPageData( pathAndSearchParams, currentPage+1);
+ 
   if(!newResults || newResults>0) {
     const errorElem = document.querySelector(".error-msg");
     errorElem.style.display = "block";
