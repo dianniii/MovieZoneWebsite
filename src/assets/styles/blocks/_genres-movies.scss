@@ -12,7 +12,7 @@
   position: relative;
 
   &__title {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     top: 0;
     z-index: 10;
     @include font-h2;
@@ -31,20 +31,22 @@
 
   &__watch-all {
     position: absolute;
-    top: 50px;
-    right: -5px;
+    top: 10px;
+    right: 5px;
     background-color: $light-black;
     color: $greyTextColor;
     border: none;
-    font-size: 14px;
+    // font-size: 14px;
+    @include font-basic;
     border-radius: 4px;
     padding: 5px 10px;
     cursor: pointer;
   }
 
-  &__watch-all:hover {
+  &__watch-all:hover,
+  &__title:hover {
     cursor: pointer;
-    font-weight: bold;
+    font-weight: $font-weight-800;
     color: tomato;
   }
 }
@@ -62,11 +64,11 @@
     height: 100%;
     position: relative;
     display: block;
-    object-fit: contain;
+    // object-fit: contain;
+    object-fit: cover;
     border-radius: $borderRadiusMovieMain;
     background-color: $dark-grey; // Задний фон для рамки
     border: 1px solid $mediun-grey;
-    // box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5); // Тень для объёмности
   }
 
   &__info {

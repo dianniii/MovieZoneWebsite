@@ -1,0 +1,28 @@
+.scroll-top {
+  position: fixed; // Фиксированное позиционирование: кнопка всегда видна, независимо от прокрутки страницы
+  bottom: 20px; // Отступ 20px от нижнего края экрана
+  right: 20px; // Отступ 20px от правого края экрана
+  width: 40px; // Ширина кнопки
+  height: 40px; // Высота кнопки
+  border-radius: 50%; // Делает кнопку круглой
+  background-color: $mediun-grey; // Cерый фон кнопки
+  color: $textColor; // Белый цвет текста
+  border: 2px solid $textColor; // Белая рамка, 2px
+  @include font-base; // Обычное начертание шрифта
+  cursor: pointer; // При наведении курсор становится указателем
+  transition: background-color 0.3s ease, border 0.3s ease, font-weight 0.3s ease;
+  // Плавный переход для фона, границы и начертания при hover
+  opacity: 0; // По умолчанию кнопка невидима
+  pointer-events: none; // И не реагирует на клики, пока не станет видимой
+
+  &.visible {
+    opacity: 1; // При наличии класса "visible" кнопка становится видимой
+    pointer-events: auto; // И начинает реагировать на клики
+
+    &:hover {
+      background-color: darkgray; // При наведении фон становится серым
+      border: 2px solid darkgray; // Рамка меняется на серую
+      font-weight: $font-weight-800; // Текст становится жирнее
+    }
+  }
+}
