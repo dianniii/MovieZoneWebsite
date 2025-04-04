@@ -42,7 +42,8 @@
     cursor: pointer;
   }
 
-  &__watch-all:hover {
+  &__watch-all:hover,
+  &__title:hover {
     cursor: pointer;
     font-weight: bold;
     color: tomato;
@@ -62,11 +63,11 @@
     height: 100%;
     position: relative;
     display: block;
-    object-fit: contain;
+    // object-fit: contain;
+    object-fit: cover;
     border-radius: $borderRadiusMovieMain;
     background-color: $dark-grey; // Задний фон для рамки
     border: 1px solid $mediun-grey;
-    // box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.5); // Тень для объёмности
   }
 
   &__info {

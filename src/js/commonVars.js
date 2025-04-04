@@ -17,6 +17,8 @@ export const iconPaths = {
   filmIcon: "/icons/filmIcon.svg",
 };
 
+export const defaultPosterPath = "./src/assets/images/no-Image-Placeholder.svg";
+
 export const fullPropertylist = [
   "id",
   "title",
