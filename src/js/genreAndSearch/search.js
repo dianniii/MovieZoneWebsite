@@ -1,12 +1,10 @@
-import { classesControlBar } from "./controlBar/controlBarVars";
-import { createControlBarElem } from "./controlBar/createControlBar";
-import { basePosterUrl, pathForSearchByTitle } from "./commonVars";
-import { movieCardClickHandler } from "./movieCardClickHandler";
-import { searchMedia } from "./header";
-import {fetchData, fetchNextPageData } from "./fetchData.js";
-import { isLastPage, enableDisableBtn, loadMoreHandler } from "./genrePage.js";
+import { createControlBarElem } from "../controlBar/createControlBar.js";
+import { basePosterUrl, pathForSearchByTitle } from "../commonVars.js";
+import { movieCardClickHandler } from "../movieCardClickHandler.js";
+import { searchMedia } from "../header.js";
+import { fetchData, fetchNextPageData } from "../fetchData.js";
+import { isLastPage, enableDisableBtn } from "./genreSearchCommon.js";
 // import {showErMsg} from "./errorMsg.js";
-
 
 const movie_container = document.getElementById("movie-cards");
 const loadMoreButton = document.getElementById("load-more");
@@ -15,7 +13,6 @@ let title_search;
 let currentPage;
 let totalPage;
 let pathAndSearchParams;
-
 
 function searchTitle() {
   const urlParams = new URLSearchParams(window.location.search);
@@ -39,44 +36,43 @@ function filterMoviesProps(data) {
 }
 
 export async function mainSearchFunction() {
+  const title = searchTitle();
+  if (!title) return;
+  title_search = searchMedia(title);
+  pathAndSearchParams = `${pathForSearchByTitle}?title=${title_search}`;
 
-    const title = searchTitle();
-    if (!title) return;
-    title_search = searchMedia(title);
-    pathAndSearchParams = `${pathForSearchByTitle}?title=${title_search}`;
+  let movies = await fetchData(`/search/movie/byTitle?title=${title_search}`);
 
-    let movies = await fetchData(`/search/movie/byTitle?title=${title_search}`);
-  
-    if(movies == null){
-        // showErrorMsg();
-        const errorElem = document.querySelector(".error-msg");
-          errorElem.style.display = "block";
-          movie_container.style.display = "none";
-    }
-    if (movies && movies.results.length > 0) {
-      mainTitle.textContent = `Results for your search on "${title}":`;
-      const filtered_results = filterMoviesProps(movies);
-      createCards(filtered_results, movie_container);
-      currentPage = movies.page;
-      totalPage = movies.total_pages;
-      console.log(movies);
-      console.log(filtered_results);
-     
-      const check = isLastPage(movies); 
-      console.log(check);
-      enableDisableBtn(loadMoreButton, check);
-    } else {
-      // showErrorMsg()
-      const errorElem = document.querySelector(".error-msg");
-      errorElem.style.display = "block";
-      movie_container.style.display = "none";
+  if (movies == null) {
+    // showErrorMsg();
+    const errorElem = document.querySelector(".error-msg");
+    errorElem.style.display = "block";
+    movie_container.style.display = "none";
   }
-  } 
+  if (movies && movies.results.length > 0) {
+    mainTitle.textContent = `Results for your search on "${title}":`;
+    const filtered_results = filterMoviesProps(movies);
+    createCards(filtered_results, movie_container);
+    currentPage = movies.page;
+    totalPage = movies.total_pages;
+    console.log(movies);
+    console.log(filtered_results);
 
-  // function displayErrorMsg(error){
-  //   movie_container.classList.add("errorMessage");
-  //   movie_container.textContent = `An error occured 😔 Please try again later`;
-  // }
+    const check = isLastPage(movies);
+    console.log(check);
+    enableDisableBtn(loadMoreButton, check);
+  } else {
+    // showErrorMsg()
+    const errorElem = document.querySelector(".error-msg");
+    errorElem.style.display = "block";
+    movie_container.style.display = "none";
+  }
+}
+
+// function displayErrorMsg(error){
+//   movie_container.classList.add("errorMessage");
+//   movie_container.textContent = `An error occured 😔 Please try again later`;
+// }
 
 export function createCards(arrayOfObjs, container) {
   if (Array.isArray(arrayOfObjs)) {
@@ -113,4 +109,4 @@ export function createCard(movie) {
   return movieCard;
 }
 
-mainSearchFunction()
+mainSearchFunction();

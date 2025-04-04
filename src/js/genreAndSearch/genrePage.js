@@ -1,5 +1,10 @@
 import { fetchData, fetchNextPageData } from "../fetchData.js";
-import { createCards } from "../search.js";
+import {
+  createCards,
+  changeTitle,
+  isLastPage,
+  enableDisableBtn,
+} from "./genreSearchCommon.js";
 import { getMoviesFromStorage } from "../localStorage.js";
 import { getIdFromWindowLocation } from "../getCheckUrlData.js";
 import { pathForSearchByGenre } from "../commonVars.js";
@@ -42,7 +47,7 @@ function createSearchParamVar() {
   pathAndSearchParams = `${pathForSearchByGenre}?genre_id=${genreId}`;
 }
 
-export function filterMoviesArr(movieArr) {
+function filterMoviesArr(movieArr) {
   if (movieArr && movieArr.length > 0) {
     const filteredArr = movieArr.filter((movie) => {
       return movie.genre_id === Number(getIdFromWindowLocation());
@@ -51,30 +56,14 @@ export function filterMoviesArr(movieArr) {
   }
 }
 
-export function loadGenreContent(moviesByGenre) {
+function loadGenreContent(moviesByGenre) {
   changeTitle(moviesByGenre.genre_name);
   createCards(moviesByGenre.results, movie_container);
   currentPage = moviesByGenre.page;
   totalPage = moviesByGenre.total_pages;
 
-  const check = isLastPage(moviesByGenre);
+  const check = isLastPage(currentPage, totalPage);
   enableDisableBtn(loadMoreButton, check);
-}
-
-export function changeTitle(title) {
-  const mainTitle = document.querySelector(".main-title");
-  mainTitle.textContent = title;
-}
-export function isLastPage() {
-  return currentPage < totalPage;
-}
-
-export function enableDisableBtn(btn, check) {
-  if (check) {
-    btn.style.display = "block";
-    return;
-  }
-  btn.style.display = "none";
 }
 
 export function setUpBtnListener() {
@@ -96,5 +85,5 @@ export async function loadMoreHandler() {
 
   createCards(newResults, movie_container);
   currentPage += 1;
-  enableDisableBtn(loadMoreButton, isLastPage());
+  enableDisableBtn(loadMoreButton, isLastPage(currentPage, totalPage));
 }
