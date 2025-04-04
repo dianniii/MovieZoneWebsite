@@ -3,6 +3,7 @@ import { createControlBarElem } from "./controlBar/createControlBar";
 import { basePosterUrl, domenPartUrl, pathForAllGenres, pathForSearchByGenre, pathForFullMovieDescription, pathForSearchByTitle, pathForSearchById, pathForPopularMovies } from "./commonVars";
 import { movieCardClickHandler } from "./movieCardClickHandler";
 import { searchMedia } from "./header";
+import {fetchData, fetchNextPageData } from "./fetchData.js"
 
 
 const movie_container = document.getElementById("movie-cards");
@@ -12,25 +13,6 @@ function searchTitle() {
   const title = urlParams.get("title");
   return title;
 }
-
-export async function fetchData(pathParam){
-   try {
-
-      let response = await fetch(`${domenPartUrl}${pathParam}`);
-    
-      if (!response.ok) {
-        console.log("Cannot fetch data form the server");
-        throw new Error("HTTP Error: " + response.status);
-      }
-  
-      const data = await response.json();
-  
-      return data;
-    } catch (error) {
-      console.error("Error while loading movie information", error);
-      return null;
-    }
-  }
 
 function filterMoviesProps(data) {
   const propsArray = [];

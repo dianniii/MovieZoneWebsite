@@ -1,4 +1,5 @@
-import { createCards, fetchData } from "./search.js";
+import {fetchData, fetchNextPageData } from "./fetchData.js"
+import { createCards} from "./search.js";
 import { getMoviesFromStorage } from "./localStorage.js";
 import { getIdFromWindowLocation } from "./getCheckUrlData.js";
 import { pathForSearchByGenre } from "./commonVars.js";
@@ -70,7 +71,4 @@ currentPage+=1;
 enableDisableBtn(loadMoreButton, isLastPage());
 }
 
-export async function fetchNextPageData(pathAndSearchParams, pageNum){
-  const newData = await fetchData(`${pathAndSearchParams}&page=${pageNum}`);
-  return newData.results;
-}
+
