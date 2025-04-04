@@ -106,9 +106,9 @@ export function handlePopupClick(evt) {
     //отправляем к функции которая хэндлит нажатия на кнопки в control bar
     handleControlBarClick(evt);
     // проверяем кликнул ли пользователь на что то другое в попапе
-  } else if (evt.target.closest(".popup__movie")) {
+  } else if (evt.target.closest(".popup")) {
     // перенаправляем на страницу фильма
-    moveToPage(document.querySelector(".popup__movie"), "movie");
+    moveToPage(document.querySelector(".popup"), "movie");
   }
 }
 
@@ -121,7 +121,7 @@ export function handlePopupClick(evt) {
 // function handleItemClick(evt) {
 //   // console.log("Клик по элементу:", evt.target); // Проверяем, что клики вообще регистрируются
 
-//   if (evt.target.closest(".popup__movie")) {
+//   if (evt.target.closest(".popup")) {
 //     //пользователь нажал на что-то в попапе, запускаем функцию хэндлинга клика на элементы попапа
 //     handlePopupClick(evt);
 //   } else if (evt.target.closest(".movie")) {
