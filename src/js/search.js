@@ -3,8 +3,9 @@ import { createControlBarElem } from "./controlBar/createControlBar";
 import { basePosterUrl } from "./commonVars";
 import { movieCardClickHandler } from "./movieCardClickHandler";
 import { searchMedia } from "./header";
-import {fetchData, fetchNextPageData } from "./fetchData.js"
-import {showErrorMsg} from "./moviePage/loadMoviePage.js"
+import {fetchData, fetchNextPageData } from "./fetchData.js";
+import { loadMoreHandler } from "./genrePage.js";
+import {showErrorMsg} from "./moviePage/loadMoviePage.js";
 
 
 const movie_container = document.getElementById("movie-cards");

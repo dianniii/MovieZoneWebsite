@@ -35,7 +35,11 @@ document.addEventListener("DOMContentLoaded", searchHandle);
 
 
 if (getPathFromWindowLocation() === "/search.html") {
-  document.addEventListener("DOMContentLoaded", mainSearchFunction());
+  document.addEventListener("DOMContentLoaded", ()=> {
+    mainSearchFunction();
+    const loadMoreButton = document.getElementById("load-more");
+    loadMoreButton.addEventListener("click", loadMoreHandler);
+  })
 }
 
 if (
