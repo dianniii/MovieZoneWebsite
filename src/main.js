@@ -6,6 +6,7 @@ import { loadMoviePage } from "./js/moviePage/loadMoviePage.js";
 import { loadSavedMovies } from "./js/savedMovies/getAndLoadSavedMovies.js";
 import { renderMovieBanner } from "./js/randomMovieBanner/renderMovieBanner.js";
 import { loadMainPage } from "./js/mainPage/mainPageNastya.js";
+import { initUpButton } from "./js/upButton.js";
 
 if (
   getPathFromWindowLocation() === "/" ||
@@ -14,6 +15,7 @@ if (
   document.addEventListener("DOMContentLoaded", () => {
     renderMovieBanner();
     loadMainPage();
+    initUpButton();
   });
 }
 
@@ -45,14 +47,19 @@ document.addEventListener("DOMContentLoaded", searchHandle);
 import { mainSearchFunction } from "./js/search.js";
 
 if (getPathFromWindowLocation() === "/search.html") {
-  document.addEventListener("DOMContentLoaded", mainSearchFunction());
+  document.addEventListener("DOMContentLoaded", () => { 
+    mainSearchFunction();
+    initUpButton();
+  });
 }
 
 if (
   getPathFromWindowLocation() === "/favorites.html" ||
   getPathFromWindowLocation() === "/watchlist.html"
 ) {
-  document.addEventListener("DOMContentLoaded", () =>
-    loadSavedMovies(getPageName())
+  document.addEventListener("DOMContentLoaded", () => {
+      loadSavedMovies(getPageName());
+      initUpButton();
+    }
   );
 }
