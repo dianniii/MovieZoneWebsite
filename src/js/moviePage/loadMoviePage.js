@@ -1,4 +1,4 @@
-import { pathForFullMovieDescription } from "../commonVars";
+import { pathForFullMovieDescription, websiteNameToAdd } from "../commonVars";
 import { movieContainer } from "./movieVars";
 import { getIdFromWindowLocation } from "../getCheckUrlData";
 import { showErrorMsg } from "../errorMsg";
@@ -40,6 +40,8 @@ export async function loadMoviePage() {
 }
 
 function renderMovie(movieData) {
+  document.title =
+    `${movieData.title}${websiteNameToAdd}` || `Movie${websiteNameToAdd}`;
   const bannerElem = createMovieBannerElem(movieData);
   movieContainer.prepend(bannerElem);
 

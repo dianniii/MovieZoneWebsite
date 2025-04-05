@@ -1,3 +1,6 @@
+export const websiteName = "The Movie Tracker";
+export const websiteNameToAdd = " -- The Movie Tracker";
+
 export const tmbdUrl = `https://www.themoviedb.org/movie/`;
 export const baseBackdropUrl = "https://image.tmdb.org/t/p/original";
 export const basePosterUrl = "https://image.tmdb.org/t/p/w220_and_h330_face";
