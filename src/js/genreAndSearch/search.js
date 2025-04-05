@@ -33,7 +33,7 @@ export async function mainSearchFunction() {
     showErrorMsg(movie_container, "No movies found");
     return;
   }
-  changeDocName();
+  changeSearchDocTitle();
   loadSearchContent(movies);
 }
 
@@ -44,7 +44,7 @@ function savePathAndSearchSearch() {
   pathAndSearchParams.search = `${pathForSearchByTitle}?title=${title_search}`;
 }
 
-function changeDocName() {
+function changeSearchDocTitle() {
   if (title) {
     document.title = `${title}${websiteNameToAdd}`;
   }

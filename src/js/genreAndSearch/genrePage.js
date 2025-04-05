@@ -31,9 +31,10 @@ export async function mainGenrePageFunction() {
 
   if (movieArr && movieArr.length > 0) {
     moviesByGenre = filterMoviesArr(movieArr);
+    changeGenreDocTitle(moviesByGenre.genre_name);
   } else {
     moviesByGenre = await fetchData(pathAndSearchParams.genre);
-    changeDocTitle();
+    changeGenreDocTitle();
   }
 
   if (
@@ -63,8 +64,10 @@ function filterMoviesArr(movieArr) {
   }
 }
 
-async function changeDocTitle() {
-  const genreName = await getGenreName();
+async function changeGenreDocTitle(genreName) {
+  if (!genreName) {
+    genreName = await getGenreName();
+  }
   if (genreName) {
     document.title = `${genreName}${websiteNameToAdd}`;
   }
@@ -77,10 +80,15 @@ async function getGenreName() {
   return genre.name;
 }
 
-function loadGenreContent(moviesByGenre) {
-  changeMainTitle(moviesByGenre.genre_name);
+async function loadGenreContent(moviesByGenre) {
+  let genre_name = moviesByGenre.genre_name;
+
+  if (!moviesByGenre.genre_name) {
+    genre_name = await getGenreName();
+  }
+
+  changeMainTitle(genre_name);
   createCards(moviesByGenre.results, movie_container);
   totalPages.genre = moviesByGenre.total_pages;
-  const check = isLastPage(currentPage, totalPages.genre);
-  enableDisableBtn(loadMoreButton, check);
+  enableDisableBtn(loadMoreButton, isLastPage(currentPage, totalPages.genre));
 }

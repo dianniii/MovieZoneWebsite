@@ -32,7 +32,7 @@ export async function loadMoviePage() {
       return;
     }
 
-    changeDocName(movieData.title);
+    changeMovieDocName(movieData.title);
     renderMovie(movieData);
   } catch (error) {
     console.error("Error during movie processing:", error);
@@ -52,7 +52,7 @@ function renderMovie(movieData) {
   movieContainer.addEventListener("click", handleFullMovieClick);
 }
 
-function changeDocName(title) {
+function changeMovieDocName(title) {
   if (title) {
     document.title = `${title}${websiteNameToAdd}`;
   }
