@@ -32,6 +32,7 @@ export async function loadMoviePage() {
       return;
     }
 
+    changeDocName(movieData.title);
     renderMovie(movieData);
   } catch (error) {
     console.error("Error during movie processing:", error);
@@ -40,8 +41,6 @@ export async function loadMoviePage() {
 }
 
 function renderMovie(movieData) {
-  document.title =
-    `${movieData.title}${websiteNameToAdd}` || `Movie${websiteNameToAdd}`;
   const bannerElem = createMovieBannerElem(movieData);
   movieContainer.prepend(bannerElem);
 
@@ -51,4 +50,10 @@ function renderMovie(movieData) {
   changeBannerBG(bannerElem, movieData);
 
   movieContainer.addEventListener("click", handleFullMovieClick);
+}
+
+function changeDocName(title) {
+  if (title) {
+    document.title = `${title}${websiteNameToAdd}`;
+  }
 }

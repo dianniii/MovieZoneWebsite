@@ -13,13 +13,15 @@ import {
 } from "./genreSearchVars.js";
 import { getMoviesFromStorage } from "../localStorage.js";
 import { getIdFromWindowLocation } from "../getCheckUrlData.js";
-import { pathForSearchByGenre } from "../commonVars.js";
+import {
+  pathForAllGenres,
+  pathForSearchByGenre,
+  websiteNameToAdd,
+} from "../commonVars.js";
 import { showErrorMsg } from "../errorMsg.js";
 
-// const movie_container = document.querySelector(".movie-cards");
-// const loadMoreButton = document.getElementById("load-more");
 let currentPage = 1;
-// let totalPage;
+let genreId;
 
 export async function mainGenrePageFunction() {
   savePathAndSearchGenre();
@@ -31,6 +33,7 @@ export async function mainGenrePageFunction() {
     moviesByGenre = filterMoviesArr(movieArr);
   } else {
     moviesByGenre = await fetchData(pathAndSearchParams.genre);
+    changeDocTitle();
   }
 
   if (
@@ -47,7 +50,7 @@ export async function mainGenrePageFunction() {
 }
 
 function savePathAndSearchGenre() {
-  const genreId = Number(getIdFromWindowLocation());
+  genreId = Number(getIdFromWindowLocation());
   pathAndSearchParams.genre = `${pathForSearchByGenre}?genre_id=${genreId}`;
 }
 
@@ -58,6 +61,20 @@ function filterMoviesArr(movieArr) {
     });
     return filteredArr[0];
   }
+}
+
+async function changeDocTitle() {
+  const genreName = await getGenreName();
+  if (genreName) {
+    document.title = `${genreName}${websiteNameToAdd}`;
+  }
+}
+
+async function getGenreName() {
+  const genres = await fetchData(pathForAllGenres);
+  const genresArr = genres.genres;
+  const genre = genresArr.find((genre) => genre.id === genreId);
+  return genre.name;
 }
 
 function loadGenreContent(moviesByGenre) {

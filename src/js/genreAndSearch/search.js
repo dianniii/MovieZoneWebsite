@@ -1,4 +1,4 @@
-import { pathForSearchByTitle } from "../commonVars.js";
+import { pathForSearchByTitle, websiteNameToAdd } from "../commonVars.js";
 import { getTitleName } from "../getCheckUrlData.js";
 import { fetchData } from "../fetchData.js";
 import { showErrorMsg } from "../errorMsg.js";
@@ -33,7 +33,7 @@ export async function mainSearchFunction() {
     showErrorMsg(movie_container, "No movies found");
     return;
   }
-
+  changeDocName();
   loadSearchContent(movies);
 }
 
@@ -42,6 +42,12 @@ function savePathAndSearchSearch() {
   if (!title) return;
   const title_search = searchMedia(title);
   pathAndSearchParams.search = `${pathForSearchByTitle}?title=${title_search}`;
+}
+
+function changeDocName() {
+  if (title) {
+    document.title = `${title}${websiteNameToAdd}`;
+  }
 }
 
 function loadSearchContent(movies) {
