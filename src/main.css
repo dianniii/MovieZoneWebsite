@@ -24,7 +24,6 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: normal;
   margin: 0;
 }
 
@@ -169,6 +168,15 @@ body {
   font-style: normal;
 }
 
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+.logo-container__icon {
+  object-fit: cover;
+  cursor: pointer;
+}
+
 .header__first-line {
   height: 70px;
   border-radius: 10px;
@@ -195,20 +203,7 @@ body {
   }
 }
 
-.logo {
-  height: 100%;
-  color: white;
-  display: flex;
-  align-items: center;
-}
-.logo__icon {
-  height: 100%;
-  object-fit: cover;
-  cursor: pointer;
-}
-
 .nav {
-  height: 100%;
   display: flex;
   align-items: center;
 }
@@ -216,10 +211,8 @@ body {
   display: flex;
   gap: 5vw;
   font-family: "Manrope", sans-serif;
-  line-height: 150%;
-  font-weight: 500;
-  font-size: 24px;
-  font-style: normal;
+  font-size: 20px;
+  font-weight: 600;
 }
 .nav__menu-item:hover {
   cursor: pointer;
@@ -228,7 +221,6 @@ body {
 }
 
 .search {
-  height: 100%;
   display: flex;
   align-items: center;
   gap: 20px;
@@ -239,7 +231,7 @@ body {
   width: 20vw;
   border: none;
   font-family: "Manrope", sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 300;
 }
 .search__icon {
@@ -261,21 +253,28 @@ body {
   }
 }
 
+.logo-container {
+  display: grid;
+  grid-row: 1;
+  align-content: end;
+}
+
 .footer {
+  padding-top: 15px;
+  padding-bottom: 15px;
   background-color: #0f0f0f;
   color: white;
 }
 .footer__container {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  font-family: "Manrope", sans-serif;
-  font-size: 20px;
-  font-weight: 600;
   padding-left: 60px;
   padding-right: 60px;
   padding-top: 20px;
   padding-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
 }
 @media (max-width: 1200px) {
   .footer__container {
@@ -289,48 +288,41 @@ body {
     padding-right: 20px;
   }
 }
-.footer__logo {
-  display: grid;
-  grid-row: 1;
-  align-content: end;
+.footer__nav, .footer__links {
+  padding-top: 7px;
 }
-.footer__menu {
-  display: grid;
-  grid-row: 1;
-  align-content: center;
-}
-.footer__menu-link {
-  text-decoration: none;
-  justify-self: center;
-}
-.footer__menu-link--hover:hover {
-  cursor: pointer;
-  color: tomato;
-}
-.footer__contact {
-  display: grid;
-  grid-column: 5;
-  grid-row: 2;
-}
-.footer__social-list {
+.footer__links {
   display: flex;
-  margin: 0;
-  padding: 0;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  gap: 20px;
-  list-style-type: none;
+  gap: 10px;
+  font-family: "Manrope", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
 }
-.footer__social-item {
-  width: 40px;
+.footer__links-list {
+  display: flex;
+  gap: 15px;
+}
+.footer__links-item {
+  width: 48px;
   height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer__links-link {
+  display: inline-block;
+  width: 100%;
+  height: auto;
 }
 .footer__policy {
-  display: grid;
-  grid-template-columns: repeat(9, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap-reverse;
   font-family: "Manrope", sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   padding-left: 60px;
   padding-right: 60px;
@@ -349,29 +341,22 @@ body {
     padding-right: 20px;
   }
 }
-.footer__rights {
-  grid-column: 1/4;
+.footer__legal {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.footer__disclaimer {
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-weight: 300;
 }
 .footer__terms {
-  grid-column: 7;
+  display: flex;
+  gap: 10px;
 }
-.footer__privacy-policy {
-  grid-column: 8;
-}
-.footer__cookie-policy {
-  grid-column: 9;
-}
-.footer__policy-link {
-  text-decoration: none;
-  justify-content: center;
-}
-.footer__tmdb {
-  grid-column: 1/5;
-  grid-row: 3;
-  justify-content: start;
-  font-family: "Manrope", sans-serif;
-  font-size: 16px;
-  font-weight: 300;
+.footer__terms-link:hover {
+  color: tomato;
 }
 
 .example-container {
