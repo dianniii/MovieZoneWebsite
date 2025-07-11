@@ -10,7 +10,7 @@ export function createElementWithProps(
     ? className.forEach((name) => element.classList.add(name))
     : element.classList.add(className);
 
-  id && element.setAttribute("id", id); //&& возвращает первое ложное или, если оба истины, последнее истинное. То есть если id = false, то дальше код выполнятся не будет, а если истинное - то id добавится в качестве атрибута
+  id && element.setAttribute("id", id); 
 
   if (text) element.textContent = text;
 

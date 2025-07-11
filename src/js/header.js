@@ -9,7 +9,6 @@ searchBtn.addEventListener('click', ()=>{
     let searchRequest = document.getElementById('search__input').value.trim();
     if(!searchRequest){return}
     const searchResults = searchMedia(searchRequest);
-    // console.log(`search.html?title=${searchResults}`);
     window.location.href = `search.html?title=${searchResults}`
 });
 

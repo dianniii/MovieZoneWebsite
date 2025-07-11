@@ -37,7 +37,6 @@ export function createCard(movie) {
   movieCard
     .querySelector(".movie-card__text-container")
     .append(createControlBarElem(movie));
-  // вешаю слушатель события на созданную карточку
   movieCard.addEventListener("click", (evt) => movieCardClickHandler(evt));
   return movieCard;
 }

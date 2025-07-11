@@ -5,7 +5,7 @@ import { getPathFromWindowLocation, getPageName } from "./js/getCheckUrlData";
 import { loadMoviePage } from "./js/moviePage/loadMoviePage.js";
 import { loadSavedMovies } from "./js/savedMovies/getAndLoadSavedMovies.js";
 import { renderMovieBanner } from "./js/randomMovieBanner/renderMovieBanner.js";
-import { loadMainPage } from "./js/mainPage/mainPageNastya.js";
+import { loadMainPage } from "./js/mainPage/mainPage.js";
 import { initUpButton } from "./js/upButton.js";
 import { searchHandle } from "./js/header.js";
 import { mainSearchFunction } from "./js/genreAndSearch/search.js";

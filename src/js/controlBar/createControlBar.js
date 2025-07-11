@@ -16,11 +16,9 @@ export function createControlBarElem(movieData) {
   saveShortMovieInfo(controlBarElem, movieData);
 
   const favBtnElem = createFavoriteBtn(movieData);
-  // favBtnElem.addEventListener("click", handleFavBtnClick);
 
   const watchListBtnElem = createWatchListBtn(movieData);
-  // watchListBtnElem.addEventListener("click", handleWatchlstBtnClick);
-
+  
   controlBarElem.append(favBtnElem, watchListBtnElem);
   return controlBarElem;
 }
