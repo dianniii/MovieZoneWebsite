@@ -12,45 +12,32 @@ import { mainSearchFunction } from "./js/genreAndSearch/search.js";
 import { mainGenrePageFunction } from "./js/genreAndSearch/genrePage.js";
 import { setLoadMoreListener } from "./js/genreAndSearch/loadMoreHandler.js";
 
-if (
-  getPathFromWindowLocation() === "/" ||
-  getPathFromWindowLocation() === "/index.html"
-) {
-  document.addEventListener("DOMContentLoaded", () => {
-    renderMovieBanner();
-    loadMainPage();
-    initUpButton();
-  });
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const curPath = getPathFromWindowLocation();
 
-if (getPathFromWindowLocation() === "/movie.html") {
-  document.addEventListener("DOMContentLoaded", loadMoviePage);
-}
+  searchHandle();
+  initUpButton();
 
-if (getPathFromWindowLocation() === "/genre.html") {
-  document.addEventListener("DOMContentLoaded", () => {
-    mainGenrePageFunction();
-    initUpButton();
-    setLoadMoreListener();
-  });
-}
-
-document.addEventListener("DOMContentLoaded", searchHandle);
-
-if (getPathFromWindowLocation() === "/search.html") {
-  document.addEventListener("DOMContentLoaded", () => {
-    mainSearchFunction();
-    initUpButton();
-    setLoadMoreListener();
-  });
-}
-
-if (
-  getPathFromWindowLocation() === "/favorites.html" ||
-  getPathFromWindowLocation() === "/watchlist.html"
-) {
-  document.addEventListener("DOMContentLoaded", () => {
-    loadSavedMovies(getPageName());
-    initUpButton();
-  });
-}
+  switch (curPath) {
+    case "/":
+    case "/index.html":
+      renderMovieBanner();
+      loadMainPage();
+      break;
+    case "/movie.html":
+      loadMoviePage();
+      break;
+    case "/genre.html":
+      mainGenrePageFunction();
+      setLoadMoreListener();
+      break;
+    case "/search.html":
+      mainSearchFunction();
+      setLoadMoreListener();
+      break;
+    case "/favorites.html":
+    case "/watchlist.html":
+      loadSavedMovies(getPageName());
+      break;
+  }
+});
