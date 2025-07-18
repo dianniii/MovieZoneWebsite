@@ -21,7 +21,7 @@ The Movie Tracer — это современное JavaScript-приложени
 | **Vite-сборщик** | быстрый сборщик, который улучшает производительность и ускоряет разработку. |
 
 ## API
-[TMDB-API] (https://www.themoviedb.org/movie/611251)
+[TMDB-API](https://www.themoviedb.org/movie/611251)
 
 ## Требования
 
