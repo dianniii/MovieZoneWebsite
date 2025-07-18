@@ -24,16 +24,16 @@ export async function loadMoviePage() {
       return;
     }
 
-    const movieData = filterMovieData(rawMovieData);
+    const filteredMovieData = filterMovieData(rawMovieData);
 
-    if (!movieData) {
+    if (!filteredMovieData) {
       showErrorMsg(movieContainer);
       console.warn("Movie object is empty. Cannot filter movie info");
       return;
     }
 
-    changeMovieDocName(movieData.title);
-    renderMovie(movieData);
+    changeMovieDocName(filteredMovieData.title);
+    renderMovie(filteredMovieData);
   } catch (error) {
     console.error("Error during movie processing:", error);
     showErrorMsg(movieContainer);
