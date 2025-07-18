@@ -3,7 +3,7 @@ import { fetchNextPageData } from "../fetchData.js";
 import {
   createCards,
   isLastPage,
-  enableDisableBtn,
+  toggleBtnState,
 } from "./genreSearchCommon.js";
 import {
   pathAndSearchParams,
@@ -33,8 +33,5 @@ export async function loadMoreHandler() {
 
   createCards(newResults, movie_container);
   currentPage += 1;
-  enableDisableBtn(
-    loadMoreButton,
-    isLastPage(currentPage, totalPages[pageName])
-  );
+  toggleBtnState(loadMoreButton, isLastPage(currentPage, totalPages[pageName]));
 }

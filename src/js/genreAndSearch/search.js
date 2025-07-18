@@ -6,7 +6,7 @@ import { searchMedia } from "../header.js";
 import {
   createCards,
   isLastPage,
-  enableDisableBtn,
+  toggleBtnState,
   changeMainTitle,
 } from "./genreSearchCommon.js";
 import {
@@ -58,7 +58,7 @@ function loadSearchContent(movies) {
 
   totalPages.search = movies.total_pages;
 
-  enableDisableBtn(loadMoreButton, isLastPage(currentPage, totalPages.search));
+  toggleBtnState(loadMoreButton, isLastPage(currentPage, totalPages.search));
 }
 
 function filterMoviesProps(data) {

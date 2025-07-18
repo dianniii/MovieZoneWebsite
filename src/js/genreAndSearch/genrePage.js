@@ -3,7 +3,7 @@ import {
   createCards,
   changeMainTitle,
   isLastPage,
-  enableDisableBtn,
+  toggleBtnState,
 } from "./genreSearchCommon.js";
 import {
   pathAndSearchParams,
@@ -42,7 +42,7 @@ export async function mainGenrePageFunction() {
     !moviesByGenre.results ||
     moviesByGenre.results.length < 1
   ) {
-    enableDisableBtn(loadMoreButton, false);
+    toggleBtnState(loadMoreButton, false);
     showErrorMsg(movie_container);
     return;
   }
@@ -90,5 +90,5 @@ async function loadGenreContent(moviesByGenre) {
   changeMainTitle(genre_name);
   createCards(moviesByGenre.results, movie_container);
   totalPages.genre = moviesByGenre.total_pages;
-  enableDisableBtn(loadMoreButton, isLastPage(currentPage, totalPages.genre));
+  toggleBtnState(loadMoreButton, isLastPage(currentPage, totalPages.genre));
 }

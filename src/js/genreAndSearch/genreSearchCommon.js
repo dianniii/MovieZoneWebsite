@@ -2,11 +2,6 @@ import { basePosterUrl } from "../commonVars";
 import { movieCardClickHandler } from "../movieCardClickHandler";
 import { createControlBarElem } from "../controlBar/createControlBar";
 
-export const pathAndSearchParams = {};
-export const totalPages = {};
-export const movie_container = document.querySelector(".movie-cards");
-export const loadMoreButton = document.getElementById("load-more");
-
 export function createCards(arrayOfObjs, container) {
   if (Array.isArray(arrayOfObjs)) {
     arrayOfObjs.forEach((movie) => {
@@ -37,6 +32,7 @@ export function createCard(movie) {
   movieCard
     .querySelector(".movie-card__text-container")
     .append(createControlBarElem(movie));
+  // вешаю слушатель события на созданную карточку
   movieCard.addEventListener("click", (evt) => movieCardClickHandler(evt));
   return movieCard;
 }
@@ -50,7 +46,7 @@ export function isLastPage(currentPage, totalPage) {
   return currentPage < totalPage;
 }
 
-export function enableDisableBtn(btn, check) {
+export function toggleBtnState(btn, check) {
   if (check) {
     btn.style.display = "block";
     return;
